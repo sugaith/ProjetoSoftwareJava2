@@ -5,6 +5,9 @@
  */
 package gui.formasGeometricas;
 
+import gui.formasGeometricas.handlers.InterfaceFormaHandler;
+import gui.formasGeometricas.handlers.PontoHandler;
+
 import java.awt.Graphics;
 import java.beans.Transient;
 import java.io.ByteArrayOutputStream;
@@ -23,10 +26,11 @@ public class Ponto implements FormaGeometrica {
     }
 
     public Ponto(byte[] arrayForma) {
-        this.x = (arrayForma[0] & 0xFF);
-        this.y = (arrayForma[1] & 0xFF);
+//        this.x = (arrayForma[0] & 0xFF);
+//        this.y = (arrayForma[1] & 0xFF);
+        this.x = (arrayForma[0]);
+        this.y = (arrayForma[1]);
     }
-
 
     public static int getIdentificadorBinario() {
         return 1;
@@ -62,6 +66,11 @@ public class Ponto implements FormaGeometrica {
         baos.write( y );
 
         return baos.toByteArray();
+    }
+
+    @Override
+    public InterfaceFormaHandler getFormaHandler(FormaGeometrica forma) {
+        return new PontoHandler(this);
     }
 
     public int getX(){
