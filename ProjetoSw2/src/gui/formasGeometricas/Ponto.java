@@ -22,6 +22,11 @@ public class Ponto implements FormaGeometrica {
     private int x;
     private int y;
 
+    public Ponto(Ponto p) {
+        x = p.getX();
+        y = p.getY();
+    }
+
     public Ponto(int x, int y) {
         this.x = x;
         this.y = y;
@@ -57,7 +62,7 @@ public class Ponto implements FormaGeometrica {
 
     @Override
     public String toString() {
-        return "Ponto";
+        return NOME;
     }
 
     @Override

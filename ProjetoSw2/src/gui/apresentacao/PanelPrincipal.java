@@ -7,6 +7,7 @@ package gui.apresentacao;
 
 import gui.Documento;
 import gui.formasGeometricas.FormaGeometrica;
+import gui.formasGeometricas.Linha;
 import gui.formasGeometricas.Ponto;
 import gui.formasGeometricas.handlers.InterfaceFormaHandler;
 import gui.uteis.Iterador;
@@ -51,6 +52,46 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
         this.labelY = labelY;
         this.labelEventoMouse = labelEventoMouse;
     }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        switch (states.getSelectedTool()){
+            case (StateMach.MOUSE_TOOL):{
+
+
+            }break;
+
+            case (Ponto.NOME):{
+                Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
+                novaFormaGeometrica( p );
+                manipulador = p.getFormaHandler(p);
+                atualizar(); // repinta JFrame
+            }break;
+
+            case (Linha.NOME):{
+                Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
+                Linha l = new Linha( p );
+                novaFormaGeometrica( l );
+                manipulador = l.getFormaHandler(l);
+                atualizar(); // repinta JFrame
+            }break;
+
+
+
+
+            default: break;
+        }
+
+
+
+
+        labelX.setText( String.valueOf( e.getPoint().x ) );
+        labelY.setText( String.valueOf( e.getPoint().y ) );
+        labelEventoMouse.setText( "pressionando.." );
+        System.out.println("pressionou..");
+
+    }
+
     @Override
     public void mouseDragged(MouseEvent e) {
         //salva forma na lista
@@ -60,10 +101,30 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
         //todo aqui vai ser diferenciado As formas geometricas,
         // por enquanto so tem ponto
 //                    doc.inserirFim( new Ponto( e.getPoint().x, e.getPoint().y ) );
-        novaFormaGeometrica( new Ponto( e.getPoint().x, e.getPoint().y ) );
-        atualizar(); // repinta JFrame
+//        novaFormaGeometrica( new Ponto( e.getPoint().x, e.getPoint().y ) );
+//        atualizar(); // repinta JFrame
 
 
+        switch (states.getSelectedTool()){
+            case (StateMach.MOUSE_TOOL):{
+
+
+            }break;
+
+            case (Ponto.NOME):{
+                Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
+                novaFormaGeometrica( p );
+                manipulador = p.getFormaHandler(p);
+                atualizar(); // repinta JFrame
+            }break;
+
+            default: {
+                if (manipulador != null){
+                    manipulador.drag(e.getPoint().x, e.getPoint().y );
+                    atualizar(); // repinta JFrame
+                }
+            }break;
+        }
 
         //atualiza as posicoes do mouse nos labels
         labelX.setText( String.valueOf( e.getPoint().x ) );
@@ -88,33 +149,7 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
 
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-        switch (states.getSelectedTool()){
-            case (StateMach.MOUSE_TOOL):{
 
-
-            }break;
-
-            case (Ponto.NOME):{
-
-            }break;
-
-
-
-
-            default: break;
-        }
-
-
-
-
-        labelX.setText( String.valueOf( e.getPoint().x ) );
-        labelY.setText( String.valueOf( e.getPoint().y ) );
-        labelEventoMouse.setText( "pressionando.." );
-        System.out.println("pressionou..");
-
-    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
