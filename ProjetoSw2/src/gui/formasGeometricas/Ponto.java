@@ -8,15 +8,17 @@ package gui.formasGeometricas;
 import gui.formasGeometricas.handlers.InterfaceFormaHandler;
 import gui.formasGeometricas.handlers.PontoHandler;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.beans.Transient;
 import java.io.ByteArrayOutputStream;
+import java.util.stream.Collectors;
 
 /**
  *
  * @author Thiago Correa
  */
 public class Ponto implements FormaGeometrica {
+    public static final String NOME = "Ponto";
     private int x;
     private int y;
 
@@ -39,6 +41,7 @@ public class Ponto implements FormaGeometrica {
     @Transient
     @Override
     public   void desenhar(  Graphics g) {
+//        g.setColor(Color.RED);
         g.fillOval(x, y, 4, 4);
     }
 

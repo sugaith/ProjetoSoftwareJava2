@@ -8,82 +8,141 @@ package gui.apresentacao;
 import gui.Documento;
 import gui.formasGeometricas.FormaGeometrica;
 import gui.formasGeometricas.Ponto;
+import gui.formasGeometricas.handlers.InterfaceFormaHandler;
 import gui.uteis.Iterador;
 import gui.uteis.ListaEncadeada;
+import gui.uteis.StateMach;
 
 import javax.swing.*;
-import java.awt.Graphics;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 
 /**
  *
  * @author Tania
  */
-public class PanelPrincipal extends javax.swing.JPanel implements InterfaceOuvintePanels{
-    
+public class PanelPrincipal extends javax.swing.JPanel implements MouseListener, MouseMotionListener,InterfaceOuvintePanels{
 //    private ListaEncadeada<Ponto> points;
-    protected JLabel labelX, labelY;
+    protected JLabel labelX, labelY, labelEventoMouse;
     protected Documento doc;
+    private StateMach states;
+
+    private InterfaceFormaHandler manipulador = null;
 
     /**
      * Creates new form PanelPrincipal
      */
-    public PanelPrincipal(Documento doc) {
+    public PanelPrincipal(Documento doc, StateMach states) {
         this.doc = doc;
+        this.states = states;
         initComponents();
-//        points = new ListaEncadeada<>();
-        
-//        this.addMouseMotionListener(new MouseAdapter() {
-//                    public void mouseDragged (MouseEvent event){
-//                        //salva ponto na lista
-//                        getPoints().inserirFim(event.getPoint());
-//                        repaint();
-//                    }
-//
-//                }
-//        );
-        
-        
+        addMouseListener(this);
+        addMouseMotionListener(this);
+
+
     }
 
-
-    public void addListener4MousePos(JLabel labelX, JLabel labelY){
+    public void addListener4MousePos(JLabel labelX, JLabel labelY, JLabel labelEventoMouse){
         this.labelX = labelX;
         this.labelY = labelY;
-        this.addMouseMotionListener(new MouseAdapter() {
-            @Override
-            public void mouseDragged (MouseEvent e){
-                    //salva forma na lista
+        this.labelEventoMouse = labelEventoMouse;
+    }
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        //salva forma na lista
 //                    getPoints().inserirFim( new Ponto( e.getPoint().x, e.getPoint().y ) );
 //                    repaint();
 
-                    //todo aqui vai ser diferenciado As formas geometricas,
-                    // por enquanto so tem ponto
+        //todo aqui vai ser diferenciado As formas geometricas,
+        // por enquanto so tem ponto
 //                    doc.inserirFim( new Ponto( e.getPoint().x, e.getPoint().y ) );
-                    novaFormaGeometrica( new Ponto( e.getPoint().x, e.getPoint().y ) );
-                    atualizar(); // repinta JFrame
+        novaFormaGeometrica( new Ponto( e.getPoint().x, e.getPoint().y ) );
+        atualizar(); // repinta JFrame
 
 
-                    //atualiza as posicoes do mouse nos labels
-                    labelX.setText( String.valueOf( e.getPoint().x ) );
-                    labelY.setText( String.valueOf( e.getPoint().y ) );
-                }
 
-
-                @Override
-                public void mouseMoved(MouseEvent e) {
-                    //atualiza as posicoes do mouse nos labels
-                    labelX.setText( String.valueOf( e.getPoint().x ) );
-                    labelY.setText( String.valueOf( e.getPoint().y ) );
-                }
-            }
-        );
+        //atualiza as posicoes do mouse nos labels
+        labelX.setText( String.valueOf( e.getPoint().x ) );
+        labelY.setText( String.valueOf( e.getPoint().y ) );
+        labelEventoMouse.setText( "arrastando.." );
+        System.out.println("arrastando..");
     }
-    
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        //atualiza as posicoes do mouse nos labels
+        labelX.setText( String.valueOf( e.getPoint().x ) );
+        labelY.setText( String.valueOf( e.getPoint().y ) );
+        labelEventoMouse.setText( "movendo.." );
+    }
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        labelX.setText( String.valueOf( e.getPoint().x ) );
+        labelY.setText( String.valueOf( e.getPoint().y ) );
+        labelEventoMouse.setText( "soltou.." );
+        System.out.println("soltou..");
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        switch (states.getSelectedTool()){
+            case (StateMach.MOUSE_TOOL):{
+
+
+            }break;
+
+            case (Ponto.NOME):{
+
+            }break;
+
+
+
+
+            default: break;
+        }
+
+
+
+
+        labelX.setText( String.valueOf( e.getPoint().x ) );
+        labelY.setText( String.valueOf( e.getPoint().y ) );
+        labelEventoMouse.setText( "pressionando.." );
+        System.out.println("pressionou..");
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        labelX.setText( String.valueOf( e.getPoint().x ) );
+        labelY.setText( String.valueOf( e.getPoint().y ) );
+        labelEventoMouse.setText( "clicou.." );
+        System.out.println("clicou ..");
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        labelX.setText( String.valueOf( e.getPoint().x ) );
+        labelY.setText( String.valueOf( e.getPoint().y ) );
+        labelEventoMouse.setText( "entrou.." );
+        System.out.println("entrou ..");
+
+//        setCursor(new Cursor(Cursor.S_RESIZE_CURSOR));
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        labelX.setText( String.valueOf( e.getPoint().x ) );
+        labelY.setText( String.valueOf( e.getPoint().y ) );
+        labelEventoMouse.setText( "saiu.." );
+        System.out.println("saiu ..");
+    }
+
     @Override
     public void paintComponent (Graphics g){
         super.paintComponent(g);//limpa area de desenho        
@@ -113,11 +172,11 @@ public class PanelPrincipal extends javax.swing.JPanel implements InterfaceOuvin
     public void novaFormaGeometrica(FormaGeometrica forma) {
         doc.inserirFim(forma);
     }
-    
-    
-    
-    
-    
+
+
+
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -139,6 +198,10 @@ public class PanelPrincipal extends javax.swing.JPanel implements InterfaceOuvin
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public void setStates(StateMach states) {
+        this.states = states;
+    }
 
 //    /**
 //     * @return the points

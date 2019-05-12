@@ -13,22 +13,26 @@ public class PontoHandler implements InterfaceFormaHandler {
 
     @Override
     public void click(int x, int y) {
-
+        p.setX(x);
+        p.setY(y);
     }
 
     @Override
     public void press(int x, int y) {
-
+        p.setX(x);
+        p.setY(y);
     }
 
     @Override
     public void release(int x, int y) {
-
+        p.setX(x);
+        p.setY(y);
     }
 
     @Override
     public void drag(int x, int y) {
-
+        p.setX(x);
+        p.setY(y);
     }
 
     @Override

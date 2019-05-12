@@ -19,12 +19,16 @@
     - gerar diagrama de classes das etapas
 
 
+#TRABAHO FINAL APRESENTACAO
+1) DIAGRAMA DE CLASSE -> identificar o padroes de projetos nas classes
+    - descriminar os padroes de projeto (handler, listener, iterator, singleton, )
+    
+2) PADRAO MANIPULADOR (handler) E CONTINUACAO P/ DE FORMAS AUTOMATICAS
+   - LINHA QUADRADO(GANHA UMA ESTRELINHA) E CIRCULO, RETANGULO
 
-- PARA APRESENTACAO FINAL:::
-    - LINHA QUADRADO(GANHA UMA ESTRELINHA) E CIRCULO, RETANGULO
-    - PADRAO MANIPULADOR (handler) E CONTINUACAO P/ DE FORMAS AUTOMATICAS
-    - ACESSO A BANCO DE DADOS
-        - tabela DOCUMENTO -> FORMA -> CRIAR, LER, REMOVER
-    - DIAGRAMA DE CLASSE -> identificar o padroes de projetos nas classes
-    - VISUALIZACAO FORMATO DE TABELA
+3) ACESSO A BANCO DE DADOS
+   - tabela DOCUMENTO -> FORMA -> CRIAR, LER, REMOVER   
+    
+4) VISUALIZACAO FORMATO DE TABELA
+    - semelhante ao textArea dos pontos, mas em tabela..
 

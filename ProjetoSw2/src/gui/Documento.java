@@ -36,9 +36,6 @@ public class Documento implements Serializable {
     }
 
 
-
-
-
     // Metodo Attach(Observer) do padrão Observer
     public void adicionaOuvinte(InterfaceOuvintePanels view) {
         listaOuvintes.inserirFim(view);
