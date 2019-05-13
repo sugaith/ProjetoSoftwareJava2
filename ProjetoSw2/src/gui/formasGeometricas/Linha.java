@@ -13,7 +13,8 @@ public class Linha implements FormaGeometrica {
 	private Ponto b;
 
 	public Linha(Linha l) {
-		new Linha(l.getA(), l.getB());
+		this.a = l.getA();
+		this.b = l.getB();
 	}
 
 	public Linha(Ponto p) {

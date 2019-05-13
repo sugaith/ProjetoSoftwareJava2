@@ -9,6 +9,7 @@ import gui.formasGeometricas.handlers.InterfaceFormaHandler;
 import gui.formasGeometricas.handlers.PontoHandler;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.beans.Transient;
 import java.io.ByteArrayOutputStream;
 import java.util.stream.Collectors;
@@ -48,6 +49,7 @@ public class Ponto implements FormaGeometrica {
     public   void desenhar(  Graphics g) {
 //        g.setColor(Color.RED);
         g.fillOval(x, y, 4, 4);
+
     }
 
     @Override

@@ -10,16 +10,16 @@ import gui.formasGeometricas.FormaGeometrica;
 import gui.formasGeometricas.Linha;
 import gui.formasGeometricas.Ponto;
 import gui.formasGeometricas.handlers.InterfaceFormaHandler;
-import gui.uteis.Iterador;
-import gui.uteis.ListaEncadeada;
 import gui.uteis.StateMach;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 
 
 /**
@@ -31,6 +31,9 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
     protected JLabel labelX, labelY, labelEventoMouse;
     protected Documento doc;
     private StateMach states;
+    public static int WIDTH_CANVAS = 2000, HEIGHT_CANVAS = 1800;
+    private BufferedImage canvas = new BufferedImage(WIDTH_CANVAS, HEIGHT_CANVAS, BufferedImage.TYPE_INT_RGB);
+    private BufferedImage snapCanvas = new BufferedImage(WIDTH_CANVAS, HEIGHT_CANVAS, BufferedImage.TYPE_INT_RGB);
 
     private InterfaceFormaHandler manipulador = null;
 
@@ -38,6 +41,7 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
      * Creates new form PanelPrincipal
      */
     public PanelPrincipal(Documento doc, StateMach states) {
+        super(true);
         this.doc = doc;
         this.states = states;
         initComponents();
@@ -45,6 +49,26 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
         addMouseMotionListener(this);
 
 
+        iniciaCanvas();
+
+
+
+//        repaint();
+
+    }
+
+    private void iniciaCanvas() {
+        Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
+
+        newGraph.setColor(Color.WHITE);
+        newGraph.fillRect(0, 0, WIDTH_CANVAS, HEIGHT_CANVAS);
+        newGraph.setColor(Color.BLACK);
+//
+//        newGraph.setBackground(Color.WHITE);
+        newGraph.setPaint(Color.BLACK);
+//        newGraph.setColor(Color.BLACK);
+        newGraph.dispose();
+        paintComponent(newGraph);
     }
 
     public void addListener4MousePos(JLabel labelX, JLabel labelY, JLabel labelEventoMouse){
@@ -69,6 +93,8 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
             }break;
 
             case (Linha.NOME):{
+                snapCanvas = deepCopyBI( canvas );
+
                 Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
                 Linha l = new Linha( p );
                 novaFormaGeometrica( l );
@@ -118,10 +144,13 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
                 atualizar(); // repinta JFrame
             }break;
 
+
+
+
             default: {
                 if (manipulador != null){
                     manipulador.drag(e.getPoint().x, e.getPoint().y );
-                    atualizar(); // repinta JFrame
+                    atualizar();
                 }
             }break;
         }
@@ -178,29 +207,81 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
         System.out.println("saiu ..");
     }
 
+//    @Override
+//    public void paint(Graphics g) {
+//        super.paint(g);
+//
+////        if (manipulador != null)
+////            manipulador.paint(g);
+//    }
+
+
     @Override
     public void paintComponent (Graphics g){
-        super.paintComponent(g);//limpa area de desenho        
-         //desenha todos ospontos do array
-//        for (int i=0; i<getPoints().getTamanho(); i++){
-//            Ponto p = getPoints().pesquisar(i);
-//            g.fillOval(p.getX(), p.getY(), 4, 4);
+
+//        super.paintComponent(g);//limpa area de desenho
+//        Iterador<FormaGeometrica> it = doc.getIterador();
+//        FormaGeometrica forma;
+//
+//         while((forma = it.proximo()) != null) {
+//                forma.desenhar(g);
+//         }
+
+
+
+
+        //TODO TENTAR FAZER SEM REDESENHAR TUDO
+
+
+
+//todo try 4 SUCESSO!!!!!!!!!
+        if (manipulador != null){
+            canvas = deepCopyBI(snapCanvas);
+
+            Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
+            newGraph.setColor(Color.black);
+            manipulador.paint(newGraph);
+            newGraph.dispose();
+        }
+
+        g.drawImage(canvas, 0, 0, null);
+        repaint();
+
+
+
+//todo try 3 SUCESSO +-
+//        if (manipulador != null){
+//            Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
+//            newGraph.setColor(Color.black);
+//            manipulador.paint(newGraph);
+//            newGraph.dispose();
+//        }
+//        g.drawImage(canvas, 0, 0, null);
+//        repaint();
+
+
+//todo try 2
+//        if (newGraph == null){
+//            super.paintComponent(g);//limpa area de desenho
+//            newGraph = (Graphics2D) g.create();
+//        }else{
+//            if (manipulador != null)
+//                manipulador.paint(newGraph);
 //        }
 
-        //todo novo esquema de desenhar por iterador
-        // e com FormaGeometrica
-        Iterador<FormaGeometrica> it = doc.getIterador();
-        FormaGeometrica forma;
-        super.paintComponent(g);//limpa area de desenho
 
-        while((forma = it.proximo()) != null) {
-            forma.desenhar(g);
-        }
+//todo try1
+//        newGraph = (Graphics2D) g.create();
+//        newGraph.setBackground(Color.WHITE);
+//        super.paintComponent(newGraph);
+//        if (manipulador != null)
+//            manipulador.paint(newGraph);
+
     }
 
     @Override
     public void atualizar() {
-        getParent().revalidate();
+//        getParent().revalidate();
         repaint();
     }
     @Override
@@ -209,7 +290,12 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
     }
 
 
-
+    static BufferedImage deepCopyBI(BufferedImage bi) {
+        ColorModel cm = bi.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = bi.copyData(null);
+        return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+    }
 
 
 
