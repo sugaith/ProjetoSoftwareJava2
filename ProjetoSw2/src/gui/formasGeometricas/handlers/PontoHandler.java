@@ -37,6 +37,6 @@ public class PontoHandler implements InterfaceFormaHandler {
 
     @Override
     public void paint(Graphics g) {
-        g.fillOval(p.getX(), p.getY(), 4, 4);
+        g.fillOval(p.getX(), p.getY(), 2, 2);
     }
 }

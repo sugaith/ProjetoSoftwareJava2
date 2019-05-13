@@ -6,9 +6,7 @@
 package gui.apresentacao;
 
 import gui.Documento;
-import gui.formasGeometricas.FormaGeometrica;
-import gui.formasGeometricas.Linha;
-import gui.formasGeometricas.Ponto;
+import gui.formasGeometricas.*;
 import gui.formasGeometricas.handlers.InterfaceFormaHandler;
 import gui.uteis.StateMach;
 
@@ -57,8 +55,10 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
 
     }
 
-    private void iniciaCanvas() {
+    public void iniciaCanvas() {
         Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
+
+
 
         newGraph.setColor(Color.WHITE);
         newGraph.fillRect(0, 0, WIDTH_CANVAS, HEIGHT_CANVAS);
@@ -68,7 +68,11 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
         newGraph.setPaint(Color.BLACK);
 //        newGraph.setColor(Color.BLACK);
         newGraph.dispose();
-        paintComponent(newGraph);
+
+        snapCanvas = deepCopyBI(canvas);
+        manipulador = null;
+
+        repaint();
     }
 
     public void addListener4MousePos(JLabel labelX, JLabel labelY, JLabel labelEventoMouse){
@@ -80,9 +84,8 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
     @Override
     public void mousePressed(MouseEvent e) {
         switch (states.getSelectedTool()){
+
             case (StateMach.MOUSE_TOOL):{
-
-
             }break;
 
             case (Ponto.NOME):{
@@ -96,9 +99,49 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
                 snapCanvas = deepCopyBI( canvas );
 
                 Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
-                Linha l = new Linha( p );
-                novaFormaGeometrica( l );
-                manipulador = l.getFormaHandler(l);
+                Linha linha = new Linha( p );
+                novaFormaGeometrica( linha );
+                manipulador = linha.getFormaHandler(linha);
+                atualizar(); // repinta JFrame
+            }break;
+
+            case (Lapis.NOME):{
+                snapCanvas = deepCopyBI( canvas );
+
+                Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
+                Lapis lapis = new Lapis( p );
+                novaFormaGeometrica( lapis );
+                manipulador = lapis.getFormaHandler(lapis);
+                atualizar(); // repinta JFrame
+            }break;
+
+            case (Quadrado.NOME):{
+                snapCanvas = deepCopyBI( canvas );
+
+                Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
+                Quadrado quadrado = new Quadrado( p );
+                novaFormaGeometrica( quadrado );
+                manipulador = quadrado.getFormaHandler(quadrado);
+                atualizar(); // repinta JFrame
+            }break;
+
+            case (Retangulo.NOME):{
+                snapCanvas = deepCopyBI( canvas );
+
+                Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
+                Retangulo retangulo = new Retangulo( p );
+                novaFormaGeometrica( retangulo );
+                manipulador = retangulo.getFormaHandler(retangulo);
+                atualizar(); // repinta JFrame
+            }break;
+
+            case (Circulo.NOME):{
+                snapCanvas = deepCopyBI( canvas );
+
+                Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
+                Circulo circulo = new Circulo( p );
+                novaFormaGeometrica( circulo );
+                manipulador = circulo.getFormaHandler(circulo);
                 atualizar(); // repinta JFrame
             }break;
 
@@ -143,8 +186,6 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
                 manipulador = p.getFormaHandler(p);
                 atualizar(); // repinta JFrame
             }break;
-
-
 
 
             default: {

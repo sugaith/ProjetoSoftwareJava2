@@ -6,9 +6,7 @@
 package gui.apresentacao;
 
 import gui.Documento;
-import gui.formasGeometricas.FormaGeometrica;
-import gui.formasGeometricas.Linha;
-import gui.formasGeometricas.Ponto;
+import gui.formasGeometricas.*;
 import gui.uteis.Iterador;
 import gui.uteis.ListaEncadeada;
 import gui.uteis.StateMach;
@@ -138,6 +136,30 @@ public class FramePrincipal extends javax.swing.JFrame {
         btnLinha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLinhaActionPerformed(evt);
+            }
+        });
+
+        btnLapis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLapisActionPerformed(evt);
+            }
+        });
+
+        btnQuadrado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuadradoActionPerformed(evt);
+            }
+        });
+
+        btnRetangulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetanguloActionPerformed(evt);
+            }
+        });
+
+        btnCirculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCirculoActionPerformed(evt);
             }
         });
 //
@@ -384,6 +406,26 @@ public class FramePrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCirculoActionPerformed(ActionEvent evt) {
+        states.setSelectedTool(Circulo.NOME);
+        labelSelectedTool.setText(Circulo.NOME);
+    }
+
+    private void btnRetanguloActionPerformed(ActionEvent evt) {
+        states.setSelectedTool(Retangulo.NOME);
+        labelSelectedTool.setText(Retangulo.NOME);
+    }
+
+    private void btnQuadradoActionPerformed(ActionEvent evt) {
+        states.setSelectedTool(Quadrado.NOME);
+        labelSelectedTool.setText(Quadrado.NOME);
+    }
+
+    private void btnLapisActionPerformed(ActionEvent evt) {
+        states.setSelectedTool(Lapis.NOME);
+        labelSelectedTool.setText(Lapis.NOME);
+    }
+
     private void btnPontoActionPerformed(ActionEvent evt) {
         states.setSelectedTool(Ponto.NOME);
         labelSelectedTool.setText(Ponto.NOME);
@@ -397,6 +439,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private void menuItem_limparTelaActionPerformed(ActionEvent evt) {
         doc.setListaFormas( new ListaEncadeada<FormaGeometrica>() );
         doc.atualizaOuvintes();
+        panelPrincipal.iniciaCanvas();
     }
 
     private void menuItem_abrirTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_abrirTxtActionPerformed
@@ -409,7 +452,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
             try {
                 File selectedFile = fileChooser.getSelectedFile();
-                System.out.println("arqivo selecionado====> " + selectedFile.getAbsolutePath());
+                System.out.println("arquivo selecionado====> " + selectedFile.getAbsolutePath());
                 Path file = Paths.get(selectedFile.getCanonicalPath());
                 Stream<String> lines = Files.lines(file,Charset.forName("UTF-8") );
                 ListaEncadeada<FormaGeometrica> listaPoint_aux = new ListaEncadeada<>();

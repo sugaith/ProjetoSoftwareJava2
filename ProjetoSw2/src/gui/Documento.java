@@ -11,14 +11,6 @@ public class Documento implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private ListaEncadeada<FormaGeometrica> lista;
-    public ListaEncadeada<FormaGeometrica> getListaFormas() {
-        return lista;
-    }
-    public void setListaFormas(ListaEncadeada<FormaGeometrica> lista) {
-        this.lista = lista;
-    }
-
-
     private transient ListaEncadeada<InterfaceOuvintePanels> listaOuvintes;
 
     public Documento(){
@@ -52,7 +44,12 @@ public class Documento implements Serializable {
         }
     }
 
-
+    public ListaEncadeada<FormaGeometrica> getListaFormas() {
+        return lista;
+    }
+    public void setListaFormas(ListaEncadeada<FormaGeometrica> lista) {
+        this.lista = lista;
+    }
 
 
 }

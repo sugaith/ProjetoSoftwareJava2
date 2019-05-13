@@ -6,13 +6,8 @@
 
 
 ### À fazer:
-- FAazer uma classe Aplicacao que instancia o documento e chama o FramePrincipal
+- FAazer uma classe Aplicacao que instancia o documento e chama o FramePrincipal (SINGLETON)
 - adicionar barra de rolagem no canvas (interface para determinar tamanho do canvas)
-- IMPLEMENTAR PONTO, LINHA TRIANGULO E CIRCULO
-
-- *** (extra) fazer esquema que nao precisa redesenhar todas as figuras denovo - com handler ou ouvinte
-    - implementar o manipulador (handler das formas geometricas)
-    - fazer uma maquina de estados (fazer handlers para cada forma geometrica)
 
 - DOCUMENTACAO
     - fazer e gerar java doc
@@ -23,12 +18,18 @@
 1) DIAGRAMA DE CLASSE -> identificar o padroes de projetos nas classes
     - descriminar os padroes de projeto (handler, listener, iterator, singleton, )
     
-2) PADRAO MANIPULADOR (handler) E CONTINUACAO P/ DE FORMAS AUTOMATICAS
-   - LINHA QUADRADO(GANHA UMA ESTRELINHA) E CIRCULO, RETANGULO
+2)FOI** PADRAO MANIPULADOR (handler) E CONTINUACAO P/ DE FORMAS AUTOMATICAS
+   - FOI** LINHA QUADRADO(GANHA UMA ESTRELINHA) E CIRCULO, RETANGULO
+   - RETANGULO DIAGONAL
 
 3) ACESSO A BANCO DE DADOS
    - tabela DOCUMENTO -> FORMA -> CRIAR, LER, REMOVER   
     
 4) VISUALIZACAO FORMATO DE TABELA
     - semelhante ao textArea dos pontos, mas em tabela..
+    
+PLUS)- FOI* PINTAR SEM PERCORRER E REDESENHAR TODAS AS FORMAS
+    - MAQINA ESTADOS    
+    - FOI* QUADRADO
+       
 
