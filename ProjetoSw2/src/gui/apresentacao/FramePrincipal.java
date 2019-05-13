@@ -48,6 +48,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         initComponents();
 
 
+        //atualiza label com estado inicial
+        labelSelectedTool.setText(states.getSelectedTool());
+
         //listener para posicao do mouse
         panelPrincipal.addListener4MousePos( labelPosicaoMouseX, labelPosicaoMouseY, labelEventoMouse );
         doc.adicionaOuvinte(panelPrincipal);
@@ -162,6 +165,13 @@ public class FramePrincipal extends javax.swing.JFrame {
                 btnCirculoActionPerformed(evt);
             }
         });
+
+
+        btnMouse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMouseActionPerformed(evt);
+            }
+        });
 //
 //        btnLapis.setText("lapis");
 //
@@ -177,7 +187,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         labelSelectedTool.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelSelectedTool.setForeground(new java.awt.Color(255, 51, 51));
-        labelSelectedTool.setText("select tool");
+//        labelSelectedTool.setText("select tool");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -405,6 +415,11 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnMouseActionPerformed(ActionEvent evt) {
+        states.setSelectedTool(MouseSelect.NOME);
+        labelSelectedTool.setText(MouseSelect.NOME);
+    }
 
     private void btnCirculoActionPerformed(ActionEvent evt) {
         states.setSelectedTool(Circulo.NOME);

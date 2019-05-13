@@ -1,7 +1,9 @@
 package gui.uteis;
 
+import gui.formasGeometricas.MouseSelect;
+
 public class StateMach {
-    public static final String MOUSE_TOOL = "mouse";
+
 
 
     private String selectedTool;
@@ -9,7 +11,7 @@ public class StateMach {
 
 
     public StateMach() {
-        selectedTool = MOUSE_TOOL;
+        selectedTool = MouseSelect.NOME;
     }
 
 

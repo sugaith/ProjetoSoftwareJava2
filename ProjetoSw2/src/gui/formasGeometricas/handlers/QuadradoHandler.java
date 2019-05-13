@@ -2,7 +2,7 @@ package gui.formasGeometricas.handlers;
 
 import gui.formasGeometricas.Quadrado;
 import gui.formasGeometricas.Ponto;
-import gui.uteis.Uteis;
+import utils.Uteis;
 
 import java.awt.*;
 

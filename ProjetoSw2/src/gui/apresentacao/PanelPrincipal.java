@@ -9,6 +9,7 @@ import gui.Documento;
 import gui.formasGeometricas.*;
 import gui.formasGeometricas.handlers.InterfaceFormaHandler;
 import gui.uteis.StateMach;
+import utils.Uteis;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,19 +47,11 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
         addMouseListener(this);
         addMouseMotionListener(this);
 
-
         iniciaCanvas();
-
-
-
-//        repaint();
-
     }
 
     public void iniciaCanvas() {
         Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
-
-
 
         newGraph.setColor(Color.WHITE);
         newGraph.fillRect(0, 0, WIDTH_CANVAS, HEIGHT_CANVAS);
@@ -69,7 +62,7 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
 //        newGraph.setColor(Color.BLACK);
         newGraph.dispose();
 
-        snapCanvas = deepCopyBI(canvas);
+        snapCanvas = Uteis.deepCopyBI(canvas);
         manipulador = null;
 
         repaint();
@@ -85,7 +78,14 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
     public void mousePressed(MouseEvent e) {
         switch (states.getSelectedTool()){
 
-            case (StateMach.MOUSE_TOOL):{
+            case (MouseSelect.NOME):{
+                snapCanvas = Uteis.deepCopyBI( canvas );
+
+                Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
+                MouseSelect retangulo = new MouseSelect( p );
+//                novaFormaGeometrica( retangulo );
+                manipulador = retangulo.getFormaHandler(retangulo);
+                atualizar(); // repinta JFrame
             }break;
 
             case (Ponto.NOME):{
@@ -96,7 +96,7 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
             }break;
 
             case (Linha.NOME):{
-                snapCanvas = deepCopyBI( canvas );
+                snapCanvas = Uteis.deepCopyBI( canvas );
 
                 Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
                 Linha linha = new Linha( p );
@@ -106,7 +106,7 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
             }break;
 
             case (Lapis.NOME):{
-                snapCanvas = deepCopyBI( canvas );
+                snapCanvas = Uteis.deepCopyBI( canvas );
 
                 Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
                 Lapis lapis = new Lapis( p );
@@ -116,7 +116,7 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
             }break;
 
             case (Quadrado.NOME):{
-                snapCanvas = deepCopyBI( canvas );
+                snapCanvas = Uteis.deepCopyBI( canvas );
 
                 Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
                 Quadrado quadrado = new Quadrado( p );
@@ -126,7 +126,7 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
             }break;
 
             case (Retangulo.NOME):{
-                snapCanvas = deepCopyBI( canvas );
+                snapCanvas = Uteis.deepCopyBI( canvas );
 
                 Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
                 Retangulo retangulo = new Retangulo( p );
@@ -136,7 +136,7 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
             }break;
 
             case (Circulo.NOME):{
-                snapCanvas = deepCopyBI( canvas );
+                snapCanvas = Uteis.deepCopyBI( canvas );
 
                 Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
                 Circulo circulo = new Circulo( p );
@@ -175,8 +175,14 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
 
 
         switch (states.getSelectedTool()){
-            case (StateMach.MOUSE_TOOL):{
+            case (MouseSelect.NOME):{
+                if (manipulador != null){
+                    manipulador.drag(e.getPoint().x, e.getPoint().y );
+                    atualizar();
+                }
 
+
+                
 
             }break;
 
@@ -212,6 +218,34 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
     }
     @Override
     public void mouseReleased(MouseEvent e) {
+
+
+        switch (states.getSelectedTool()){
+
+            case (MouseSelect.NOME):{
+                manipulador = null;
+                canvas = Uteis.deepCopyBI(snapCanvas);
+                atualizar();
+            }break;
+
+
+
+            default: {
+
+            }break;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         labelX.setText( String.valueOf( e.getPoint().x ) );
         labelY.setText( String.valueOf( e.getPoint().y ) );
         labelEventoMouse.setText( "soltou.." );
@@ -277,10 +311,11 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
 
 //todo try 4 SUCESSO!!!!!!!!!
         if (manipulador != null){
-            canvas = deepCopyBI(snapCanvas);
+            canvas = Uteis.deepCopyBI(snapCanvas);
 
             Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
             newGraph.setColor(Color.black);
+
             manipulador.paint(newGraph);
             newGraph.dispose();
         }
@@ -331,12 +366,7 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
     }
 
 
-    static BufferedImage deepCopyBI(BufferedImage bi) {
-        ColorModel cm = bi.getColorModel();
-        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
-        WritableRaster raster = bi.copyData(null);
-        return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
-    }
+
 
 
 

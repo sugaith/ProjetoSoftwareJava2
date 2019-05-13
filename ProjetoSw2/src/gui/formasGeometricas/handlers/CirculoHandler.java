@@ -2,8 +2,7 @@ package gui.formasGeometricas.handlers;
 
 import gui.formasGeometricas.Circulo;
 import gui.formasGeometricas.Ponto;
-import gui.formasGeometricas.Retangulo;
-import gui.uteis.Uteis;
+import utils.Uteis;
 
 import java.awt.*;
 

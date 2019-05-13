@@ -2,33 +2,32 @@ package gui.formasGeometricas;
 
 import gui.formasGeometricas.handlers.InterfaceFormaHandler;
 import gui.formasGeometricas.handlers.MouseSelectHandler;
-import gui.formasGeometricas.handlers.QuadradoHandler;
 import gui.formasGeometricas.handlers.RetanguloHandler;
 
 import java.awt.*;
 
-public class Retangulo implements FormaGeometrica {
+public class MouseSelect implements FormaGeometrica {
 	public static final long serialVersionUID = 2L;
-	public static final String NOME = "Retangulo";
+	public static final String NOME = "MouseSelect";
 	private Ponto a;
 	private Ponto b;
 
-	public Retangulo(Retangulo l) {
+	public MouseSelect(MouseSelect l) {
 		this.a = l.getA();
 		this.b = l.getB();
 	}
 
-	public Retangulo(Ponto p) {
+	public MouseSelect(Ponto p) {
 		this.a = new Ponto(p);
 		this.b = new Ponto(p);
 	}
 
-	public Retangulo(Ponto a, Ponto b) {
+	public MouseSelect(Ponto a, Ponto b) {
 		this.a = new Ponto(a);
 		this.b = new Ponto(b);
 	}
 
-	public Retangulo(byte bytes[]) {
+	public MouseSelect(byte bytes[]) {
 //		if (ByteBuffer.wrap(bytes, 0, 8).getLong() != serialVersionUID) {
 //			a.x = 0;
 //			a.y = 0;
@@ -44,7 +43,7 @@ public class Retangulo implements FormaGeometrica {
 
 	@Override
 	public InterfaceFormaHandler getFormaHandler(FormaGeometrica forma) {
-		return new RetanguloHandler(this);
+		return new MouseSelectHandler(this);
 	}
 
 	@Override
