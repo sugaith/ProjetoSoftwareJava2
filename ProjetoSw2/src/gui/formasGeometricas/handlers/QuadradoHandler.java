@@ -49,6 +49,12 @@ public class QuadradoHandler implements InterfaceFormaHandler {
     }
 
     @Override
+    public void translade(int w, int h) {
+        quadrado.setA(new Ponto( quadrado.getA().getX() + w, quadrado.getA().getY() + h  ));
+        quadrado.setB(new Ponto( quadrado.getB().getX() + w, quadrado.getB().getY() + h  ));
+    }
+
+    @Override
     public FormaGeometrica getForma() {
         return quadrado;
     }

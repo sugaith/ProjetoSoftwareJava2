@@ -14,5 +14,6 @@ public interface  InterfaceFormaHandler {
     void paint (Graphics g);
 
     boolean intersects(MouseSelect mouseSelect);
+    void translade(int w, int h);
     FormaGeometrica getForma();
 }

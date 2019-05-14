@@ -33,6 +33,7 @@ public class CirculoHandler implements InterfaceFormaHandler {
     public boolean intersects(MouseSelect mouseSelect) {
 
         int r = Uteis.distanciaEuclidiana( circulo.getA(), circulo.getB() );
+
         int x = circulo.getA().getX() - (r/2);
         int y = circulo.getA().getY() - (r/2);
         Shape circle = new Ellipse2D.Double(x, y, r, r);
@@ -40,6 +41,14 @@ public class CirculoHandler implements InterfaceFormaHandler {
         Area area = new Area(circle);
 
         return area.intersects( Uteis.mouseSelect_toRetangle( mouseSelect ) );
+    }
+
+    @Override
+    public void translade(int w, int h) {
+
+        circulo.setA(new Ponto( circulo.getA().getX() + w, circulo.getA().getY() + h  ));
+        circulo.setB(new Ponto( circulo.getB().getX() + w, circulo.getB().getY() + h  ));
+
     }
 
     @Override

@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java" line="381" mnemonic="1" />
-    <bookmark url="file://$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java" line="288" mnemonic="2" />
-    <bookmark url="file://$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java" line="249" mnemonic="5" />
+    <bookmark url="file://$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java" line="377" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java" line="338" mnemonic="5" />
+    <bookmark url="file://$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java" description="//        atualizar(); // repinta JFrame" line="267" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="080c440c-c232-4a88-a94d-fc7f90882920" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/Circulo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/Circulo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/Linha.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/Linha.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/Quadrado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/Quadrado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/Retangulo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/Retangulo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/CirculoHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/CirculoHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/InterfaceFormaHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/InterfaceFormaHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LapisHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LapisHandler.java" afterDir="false" />
@@ -21,7 +16,8 @@
       <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/PontoHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/PontoHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/QuadradoHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/QuadradoHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/RetanguloHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/RetanguloHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Uteis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Uteis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/uteis/StateMach.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/uteis/StateMach.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,138 +38,125 @@
     <favorites_list name="ProjetoSw2" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.64116454">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="296">
-                  <caret line="101" column="62" selection-start-line="101" selection-start-column="62" selection-end-line="101" selection-end-column="62" />
-                  <folding>
-                    <element signature="e#10818#10819#0" expanded="true" />
-                    <element signature="e#10855#10856#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/List.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="250">
-                  <caret line="492" column="9" selection-start-line="492" selection-start-column="9" selection-end-line="492" selection-end-column="9" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/gui/uteis/ListaEncadeada.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="293">
-                  <caret line="208" column="16" selection-start-line="208" selection-start-column="16" selection-end-line="208" selection-end-column="16" />
-                  <folding>
-                    <element signature="e#454#455#0" expanded="true" />
-                    <element signature="e#485#486#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/Ponto.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="119">
-                  <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/MouseSelect.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="17">
-                  <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/MouseSelectHandler.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="102">
-                  <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-                  <folding>
-                    <element signature="e#443#444#0" expanded="true" />
-                    <element signature="e#479#480#0" expanded="true" />
-                    <element signature="e#1415#1416#0" expanded="true" />
-                    <element signature="e#1443#1444#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/Retangulo.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="102">
-                  <caret line="35" column="20" lean-forward="true" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/RetanguloHandler.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="29" column="35" lean-forward="true" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LinhaHandler.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="480">
-                  <caret line="40" column="75" lean-forward="true" selection-start-line="40" selection-start-column="75" selection-end-line="40" selection-end-column="75" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/utils/Uteis.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="531">
-                  <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="296">
-                  <caret line="405" column="47" lean-forward="true" selection-start-line="405" selection-start-column="47" selection-end-line="405" selection-end-column="47" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="389">
+              <caret line="383" column="54" lean-forward="true" selection-start-line="383" selection-start-column="54" selection-end-line="383" selection-end-column="54" />
+              <folding>
+                <element signature="e#18307#18308#0" expanded="true" />
+                <element signature="e#19275#19276#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LinhaHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="517">
+              <caret line="46" column="83" lean-forward="true" selection-start-line="45" selection-start-column="8" selection-end-line="46" selection-end-column="83" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LapisHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="141">
+              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="335">
+                <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/uteis/StateMach.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+              <folding>
+                <element signature="e#453#454#0" expanded="true" />
+                <element signature="e#491#492#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/FramePrincipal.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="59" column="7" lean-forward="true" selection-start-line="59" selection-start-column="7" selection-end-line="59" selection-end-column="7" />
+              <folding>
+                <element signature="docComment;class#FramePrincipal#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/InterfaceFormaHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/QuadradoHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/CirculoHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="148">
+              <caret line="49" column="89" lean-forward="true" selection-start-line="48" selection-start-column="8" selection-end-line="49" selection-end-column="89" />
+              <folding>
+                <element signature="e#1617#1618#0" expanded="true" />
+                <element signature="e#1662#1663#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/Uteis.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -199,10 +182,18 @@
       <find>tool</find>
       <find>select to</find>
       <find>deepCopyBI</find>
+      <find>curs</find>
+      <find>SETCUR</find>
+      <find>setcurs</find>
+      <find>setcur</find>
+      <find>circulo</find>
+      <find>ponto</find>
+      <find>DEFAULT_CURSOR</find>
     </findStrings>
     <replaceStrings>
       <replace>Quadrado</replace>
       <replace>Uteis.deepCopyBI</replace>
+      <replace>circulo</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -221,24 +212,24 @@
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/Lapis.java" />
         <option value="$PROJECT_DIR$/src/gui/uteis/Uteis.java" />
         <option value="$PROJECT_DIR$/src/gui/Documento.java" />
-        <option value="$PROJECT_DIR$/src/gui/uteis/StateMach.java" />
         <option value="$PROJECT_DIR$/src/gui/apresentacao/FramePrincipal.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/MouseSelect.java" />
-        <option value="$PROJECT_DIR$/../README.md" />
         <option value="$PROJECT_DIR$/src/utils/Uteis.java" />
-        <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/InterfaceFormaHandler.java" />
-        <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/CirculoHandler.java" />
-        <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LapisHandler.java" />
-        <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/QuadradoHandler.java" />
-        <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/PontoHandler.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/Quadrado.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/Circulo.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/Linha.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/MouseSelectHandler.java" />
-        <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LinhaHandler.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/RetanguloHandler.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/Retangulo.java" />
+        <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/InterfaceFormaHandler.java" />
+        <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/PontoHandler.java" />
+        <option value="$PROJECT_DIR$/src/gui/uteis/StateMach.java" />
+        <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/CirculoHandler.java" />
+        <option value="$PROJECT_DIR$/../README.md" />
+        <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LapisHandler.java" />
         <option value="$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java" />
+        <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LinhaHandler.java" />
+        <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/QuadradoHandler.java" />
       </list>
     </option>
   </component>
@@ -280,6 +271,13 @@
               <item name="ProjetoSw2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="gui" type="462c0819:PsiDirectoryNode" />
+              <item name="apresentacao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProjetoSw2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjetoSw2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
               <item name="formasGeometricas" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -311,7 +309,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557804794138" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557866943322" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../ProjSw2_forms/src/gui/apresentacao/FramePrincipal.java" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../../../ProjSw2_forms/src/gui/apresentacao/FramePrincipal.java" />
@@ -401,7 +399,7 @@
       <window_info id="Structure" order="5" sideWeight="0.67912775" visible="true" weight="0.18035516" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32917964" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34475598" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.21391486" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997923" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -414,7 +412,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" content_ui="combo" id="Project" order="4" sideWeight="0.67912775" weight="0.1864595" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="4" sideWeight="0.67912775" visible="true" weight="0.22419533" />
       <window_info anchor="right" id="Maven" order="5" />
       <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info anchor="right" id="Capture Analysis" order="7" />
@@ -433,19 +431,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java</url>
-          <line>231</line>
+          <line>321</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java</url>
-          <line>133</line>
+          <line>194</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LinhaHandler.java</url>
-          <line>66</line>
+          <line>72</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
@@ -454,18 +452,6 @@
           <line>20</line>
           <properties />
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java</url>
-          <line>217</line>
-          <properties />
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java</url>
-          <line>96</line>
-          <properties />
-          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -515,13 +501,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/uteis/Iterador.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/InterfaceOuvintePanels.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -541,9 +520,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-255" />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/FramePrincipal.form">
-      <provider selected="true" editor-type-id="ui-designer" />
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../exemplos miguel/Ponto.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -609,54 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/uteis/StateMach.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-          <folding>
-            <element signature="e#194#195#0" expanded="true" />
-            <element signature="e#235#236#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/FramePrincipal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="39" column="29" lean-forward="true" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
-          <folding>
-            <element signature="docComment;class#FramePrincipal#0" />
-            <element signature="e#1700#1789#0" expanded="true" />
-            <element signature="e#4620#4621#0" expanded="true" />
-            <element signature="e#4680#4681#0" expanded="true" />
-            <element signature="e#4843#4844#0" expanded="true" />
-            <element signature="e#4903#4904#0" expanded="true" />
-            <element signature="e#5063#5064#0" expanded="true" />
-            <element signature="e#5123#5124#0" expanded="true" />
-            <element signature="e#5286#5287#0" expanded="true" />
-            <element signature="e#5349#5350#0" expanded="true" />
-            <element signature="e#5513#5514#0" expanded="true" />
-            <element signature="e#5577#5578#0" expanded="true" />
-            <element signature="e#5739#5740#0" expanded="true" />
-            <element signature="e#5801#5802#0" expanded="true" />
-            <element signature="e#5964#5965#0" expanded="true" />
-            <element signature="e#6026#6027#0" expanded="true" />
-            <element signature="e#14419#14420#0" expanded="true" />
-            <element signature="e#14488#14489#0" expanded="true" />
-            <element signature="e#14747#14748#0" expanded="true" />
-            <element signature="e#14817#14818#0" expanded="true" />
-            <element signature="e#15260#15261#0" expanded="true" />
-            <element signature="e#15334#15335#0" expanded="true" />
-            <element signature="e#15676#15677#0" expanded="true" />
-            <element signature="e#15748#15749#0" expanded="true" />
-            <element signature="e#16201#16202#0" expanded="true" />
-            <element signature="e#16272#16273#0" expanded="true" />
-            <element signature="e#33152#33153#0" expanded="true" />
-            <element signature="e#33221#33222#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/lang/Object.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -690,60 +618,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="170">
-            <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="78" lean-forward="true" selection-start-line="14" selection-start-column="78" selection-end-line="14" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/awt/geom/Area.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
           <caret line="612" column="7" lean-forward="true" selection-start-line="612" selection-start-column="7" selection-end-line="612" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LapisHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="29" column="40" lean-forward="true" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
-          <folding>
-            <element signature="e#1052#1053#0" expanded="true" />
-            <element signature="e#1347#1348#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/CirculoHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="41" selection-end-column="78" />
-          <folding>
-            <element signature="e#920#921#0" expanded="true" />
-            <element signature="e#947#948#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/PontoHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
-          <folding>
-            <element signature="e#400#401#0" expanded="true" />
-            <element signature="e#428#429#0" expanded="true" />
-            <element signature="e#483#484#0" expanded="true" />
-            <element signature="e#510#511#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -753,27 +631,6 @@
           <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/InterfaceFormaHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/QuadradoHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="43" column="22" lean-forward="true" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
-          <folding>
-            <element signature="e#955#956#0" expanded="true" />
-            <element signature="e#982#983#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -789,13 +646,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="61" column="19" selection-start-line="61" selection-start-column="19" selection-end-line="61" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/Lapis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-170">
-          <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -825,60 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/uteis/ListaEncadeada.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="208" column="16" selection-start-line="208" selection-start-column="16" selection-end-line="208" selection-end-column="16" />
-          <folding>
-            <element signature="e#454#455#0" expanded="true" />
-            <element signature="e#485#486#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/MouseSelectHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="e#443#444#0" expanded="true" />
-            <element signature="e#479#480#0" expanded="true" />
-            <element signature="e#1415#1416#0" expanded="true" />
-            <element signature="e#1443#1444#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/Uteis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LinhaHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="40" column="75" lean-forward="true" selection-start-line="40" selection-start-column="75" selection-end-line="40" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/RetanguloHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="29" column="35" lean-forward="true" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/Retangulo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -893,14 +689,179 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/javax/swing/JPopupMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="909" column="16" selection-start-line="909" selection-start-column="16" selection-end-line="909" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/MouseSelectHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#443#444#0" expanded="true" />
+            <element signature="e#479#480#0" expanded="true" />
+            <element signature="e#1415#1416#0" expanded="true" />
+            <element signature="e#1443#1444#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/RetanguloHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/PontoHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="e#400#401#0" expanded="true" />
+            <element signature="e#428#429#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/uteis/Iterador.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/uteis/StateMach.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+          <folding>
+            <element signature="e#453#454#0" expanded="true" />
+            <element signature="e#491#492#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/InterfaceFormaHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/FramePrincipal.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/FramePrincipal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="59" column="7" lean-forward="true" selection-start-line="59" selection-start-column="7" selection-end-line="59" selection-end-column="7" />
+          <folding>
+            <element signature="docComment;class#FramePrincipal#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/Uteis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/uteis/ListaEncadeada.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="185" column="8" lean-forward="true" selection-start-line="185" selection-start-column="8" selection-end-line="185" selection-end-column="8" />
+          <folding>
+            <element signature="e#454#455#0" expanded="true" />
+            <element signature="e#485#486#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="335">
+            <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="78" lean-forward="true" selection-start-line="14" selection-start-column="78" selection-end-line="14" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/Lapis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+          <folding>
+            <element signature="e#906#907#0" expanded="true" />
+            <element signature="e#930#931#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LapisHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="101" column="62" selection-start-line="101" selection-start-column="62" selection-end-line="101" selection-end-column="62" />
+        <state relative-caret-position="389">
+          <caret line="383" column="54" lean-forward="true" selection-start-line="383" selection-start-column="54" selection-end-line="383" selection-end-column="54" />
           <folding>
-            <element signature="e#10818#10819#0" expanded="true" />
-            <element signature="e#10855#10856#0" expanded="true" />
+            <element signature="e#18307#18308#0" expanded="true" />
+            <element signature="e#19275#19276#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/CirculoHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="49" column="89" lean-forward="true" selection-start-line="48" selection-start-column="8" selection-end-line="49" selection-end-column="89" />
+          <folding>
+            <element signature="e#1617#1618#0" expanded="true" />
+            <element signature="e#1662#1663#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LinhaHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="517">
+          <caret line="46" column="83" lean-forward="true" selection-start-line="45" selection-start-column="8" selection-end-line="46" selection-end-column="83" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/QuadradoHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
         </state>
       </provider>
     </entry>

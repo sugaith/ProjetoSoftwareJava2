@@ -35,6 +35,11 @@ public class MouseSelectHandler implements InterfaceFormaHandler {
     }
 
     @Override
+    public void translade(int w, int h) {
+
+    }
+
+    @Override
     public FormaGeometrica getForma() {
         return mouseSelect;
     }

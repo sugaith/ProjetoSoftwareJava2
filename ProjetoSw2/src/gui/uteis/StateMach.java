@@ -3,15 +3,21 @@ package gui.uteis;
 import gui.formasGeometricas.MouseSelect;
 
 public class StateMach {
+    public static String NONE = "NONE";
+    public static String ROTATE = "Rotação";
+    public static String TRANSLATE  = "Translação";
 
 
 
+    //TOOLS
     private String selectedTool;
     private String selectedSubTool;
 
 
     public StateMach() {
+
         selectedTool = MouseSelect.NOME;
+        selectedSubTool = NONE;
     }
 
 

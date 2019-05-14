@@ -42,6 +42,12 @@ public class LinhaHandler implements InterfaceFormaHandler {
     }
 
     @Override
+    public void translade(int w, int h) {
+        linha.setA(new Ponto( linha.getA().getX() + w, linha.getA().getY() + h  ));
+        linha.setB(new Ponto( linha.getB().getX() + w, linha.getB().getY() + h  ));
+    }
+
+    @Override
     public FormaGeometrica getForma() {
         return linha;
     }

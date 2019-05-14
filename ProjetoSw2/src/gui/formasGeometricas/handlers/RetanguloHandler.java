@@ -53,6 +53,12 @@ public class RetanguloHandler implements InterfaceFormaHandler {
     }
 
     @Override
+    public void translade(int w, int h) {
+        retangulo.setA(new Ponto( retangulo.getA().getX() + w, retangulo.getA().getY() + h  ));
+        retangulo.setB(new Ponto( retangulo.getB().getX() + w, retangulo.getB().getY() + h  ));
+    }
+
+    @Override
     public FormaGeometrica getForma() {
         return retangulo;
     }

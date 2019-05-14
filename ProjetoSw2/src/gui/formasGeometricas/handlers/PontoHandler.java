@@ -19,6 +19,11 @@ public class PontoHandler implements InterfaceFormaHandler {
     }
 
     @Override
+    public void translade(int w, int h) {
+
+    }
+
+    @Override
     public FormaGeometrica getForma() {
         return p;
     }

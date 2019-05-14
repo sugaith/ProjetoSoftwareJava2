@@ -8,6 +8,7 @@ import utils.Uteis;
 
 import java.awt.*;
 import java.awt.geom.Area;
+import java.awt.geom.Path2D;
 
 public class LapisHandler implements InterfaceFormaHandler {
     private Lapis lapis;
@@ -20,6 +21,7 @@ public class LapisHandler implements InterfaceFormaHandler {
     public void paint(Graphics g) {
         lapis.getListaPontos().forEach(ponto ->
                 g.fillOval(ponto.getX(), ponto.getY(), 4, 4));
+
     }
 
     @Override
@@ -33,6 +35,14 @@ public class LapisHandler implements InterfaceFormaHandler {
                         area.contains(ponto.getX(), ponto.getY()));
 
         return ret_aux;
+    }
+
+    @Override
+    public void translade(int w, int h) {
+        lapis.getListaPontos().forEach( ponto -> {
+            ponto.setX( ponto.getX() + w);
+            ponto.setY( ponto.getY() + h);
+        });
     }
 
     @Override

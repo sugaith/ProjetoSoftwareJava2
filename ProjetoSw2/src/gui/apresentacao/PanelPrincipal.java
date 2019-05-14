@@ -13,10 +13,9 @@ import gui.uteis.StateMach;
 import utils.Uteis;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
@@ -31,15 +30,17 @@ import java.util.List;
 public class PanelPrincipal extends javax.swing.JPanel implements MouseListener, MouseMotionListener,InterfaceOuvintePanels{
 //    private ListaEncadeada<Ponto> points;
     protected JLabel labelX, labelY, labelEventoMouse;
-    protected Documento doc;
-    private StateMach states;
+
     public static int WIDTH_CANVAS = 2000, HEIGHT_CANVAS = 1800;
     private BufferedImage canvas = new BufferedImage(WIDTH_CANVAS, HEIGHT_CANVAS, BufferedImage.TYPE_INT_RGB);
     private BufferedImage snapCanvas = new BufferedImage(WIDTH_CANVAS, HEIGHT_CANVAS, BufferedImage.TYPE_INT_RGB);
 
     private InterfaceFormaHandler manipulador = null;
-
     private List<InterfaceFormaHandler> listaManipuladoresSelecionados = new ArrayList<>();
+    protected Documento doc;
+    private StateMach states;
+    public JPopupMenu popupMenu = new JPopupMenu();
+
 
     /**
      * Creates new form PanelPrincipal
@@ -49,6 +50,7 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
         this.doc = doc;
         this.states = states;
         initComponents();
+        createPopupMenu();
         addMouseListener(this);
         addMouseMotionListener(this);
 
@@ -73,40 +75,107 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
         repaint();
     }
 
+    private void createPopupMenu(){
+        ActionListener menuListener = new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                System.out.println("menu item ["
+                        + event.getActionCommand() + "] pressionado");
+
+                if (event.getActionCommand().equals(StateMach.TRANSLATE)){
+                    states.setSelectedSubTool(StateMach.TRANSLATE);
+                    setCursor(new Cursor(Cursor.MOVE_CURSOR));
+
+                }
+                if (event.getActionCommand().equals(StateMach.ROTATE)){
+
+                }
+
+                popupMenu.setVisible(false);
+            }
+        };
+        JMenuItem item;
+
+        popupMenu.add(item = new JMenuItem(StateMach.TRANSLATE));
+        item.addActionListener(menuListener);
+        popupMenu.addSeparator();
+        popupMenu.add(item = new JMenuItem(StateMach.ROTATE));
+        item.addActionListener(menuListener);
+        popupMenu.setBorder(new BevelBorder(BevelBorder.RAISED));
+    }
+
+    private void showPopupMenu(MouseEvent mouseEvent) {
+        popupMenu.setLocation(MouseInfo.getPointerInfo().getLocation());
+        popupMenu.setVisible(true);
+    }
+
     public void addListener4MousePos(JLabel labelX, JLabel labelY, JLabel labelEventoMouse){
         this.labelX = labelX;
         this.labelY = labelY;
         this.labelEventoMouse = labelEventoMouse;
     }
 
+
+    Ponto mouseCoords_saved = new Ponto(0,0);
     @Override
     public void mousePressed(MouseEvent e) {
+
+        popupMenu.setVisible(false);
+
+        //todo POR DENTRO DA MAQUINA ESTADOS
         switch (states.getSelectedTool()){
 
             case (MouseSelect.NOME):{
+                //todo fazer SWITCH CASE
 
-                //        pinta formas DEselecionadas de PRETO se houver
+
+                if (states.getSelectedSubTool().equals( StateMach.TRANSLATE )){
+                    //salva coordenadas do mouse
+                    mouseCoords_saved = new Ponto(e.getX(), e.getY());
 
 
-                snapCanvas = Uteis.deepCopyBI( canvas );
+//                    pinta formas selecionadas de BRANCO PARA APAGAR
+                    if (! listaManipuladoresSelecionados.isEmpty()){
+                        Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
+                        newGraph.setColor(Color.WHITE);
+                        listaManipuladoresSelecionados.forEach(formaHandler ->{
+                            formaHandler.paint(newGraph);
+                            System.out.println("pintou de BRANCOWW " +formaHandler.getForma().toString());
+                        });
+                        newGraph.setColor(Color.BLACK);
 
-                Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
-                MouseSelect retangulo = new MouseSelect( p );
+                        newGraph.dispose();
+                        //limpa lista
+//                        listaManipuladoresSelecionados.clear();
+                    }
+
+                    snapCanvas = Uteis.deepCopyBI( canvas );
+
+                }else{
+                    snapCanvas = Uteis.deepCopyBI( canvas );
+
+                    Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
+                    MouseSelect retangulo = new MouseSelect( p );
 //                novaFormaGeometrica( retangulo );
-                manipulador = retangulo.getFormaHandler(retangulo);
+                    manipulador = retangulo.getFormaHandler(retangulo);
 
-                if (! listaManipuladoresSelecionados.isEmpty()){
-                    Graphics2D newGraph = (Graphics2D) snapCanvas.createGraphics();
-                    newGraph.setColor(Color.BLACK);
-                    listaManipuladoresSelecionados.forEach(formaHandler ->{
-                        formaHandler.paint(newGraph);
-                        System.out.println("pintou de PRETOWW " +formaHandler.getForma().toString());
+                    //        pinta formas selecionadas de PRETO se houver
+                    if (! listaManipuladoresSelecionados.isEmpty()){
+                        Graphics2D newGraph = (Graphics2D) snapCanvas.createGraphics();
+                        newGraph.setColor(Color.BLACK);
+                        listaManipuladoresSelecionados.forEach(formaHandler ->{
+                            formaHandler.paint(newGraph);
+                            System.out.println("pintou de PRETOWW " +formaHandler.getForma().toString());
+                        });
+                        newGraph.dispose();
 
-                    });
-                    newGraph.dispose();
+                        //limpa lista
+                        listaManipuladoresSelecionados.clear();
+                    }
 
-                    listaManipuladoresSelecionados.clear();
                 }
+
+
+
 
 
                 atualizar(); // repinta JFrame
@@ -201,16 +270,46 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
 
         switch (states.getSelectedTool()){
             case (MouseSelect.NOME):{
-                if (manipulador != null){
-                    manipulador.drag(e.getPoint().x, e.getPoint().y );
 
-                    //1. metodo verifica em cada forma se Rect_de_selecao intersecta com alguma forma
-                    //2. retorna lista de manipuladores intersectores
-                    this.verificaSelecionados();
-                    //3. pinta-los-ei de vermei em atualizar()
+                //todo por SWITCH CASE
+                if (states.getSelectedSubTool().equals( StateMach.TRANSLATE )){
+                    //constantes de translado
+                    int w = e.getX() - mouseCoords_saved.getX()  ;
+                    int h = e.getY() - mouseCoords_saved.getY()  ;
+                    System.out.println("TRANSLADE --->");
+                    System.out.println(w);
+                    System.out.println(h);
 
+//                    final int cw, ch;
+//                    subtrai alguns pixels para precisao
+                    double pCent = 1;
+                    final int cw = (int) (w * pCent);
+                    final int ch = (int) (h * pCent);
+
+                    listaManipuladoresSelecionados.forEach(handler ->{
+                        handler.translade(cw,ch);
+                    });
+
+                    //salva coordenadas do mouse
+                    mouseCoords_saved = new Ponto(e.getX(), e.getY());
                     atualizar();
+
+                }else{
+
+                    //atualiza retangulo de selecao e selecionados
+                    if (manipulador != null){
+                        manipulador.drag(e.getPoint().x, e.getPoint().y );
+
+                        //1. metodo verifica em cada forma se Rect_de_selecao intersecta com alguma forma
+                        //2. retorna lista de manipuladores intersectores
+                        this.verificaSelecionados();
+                        //3. pinta-los-ei de vermei em atualizar()
+                    }
+                    atualizar();
+
                 }
+
+
             }break;
 
             case (Ponto.NOME):{
@@ -279,9 +378,20 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
         switch (states.getSelectedTool()){
 
             case (MouseSelect.NOME):{
+                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
                 manipulador = null;
                 canvas = Uteis.deepCopyBI(snapCanvas);
                 atualizar();
+
+                //mostra popup caso haja selecionados
+                if (states.getSelectedSubTool().equals(StateMach.TRANSLATE)){
+                    states.setSelectedSubTool(StateMach.NONE);
+                }else{
+                    if (listaManipuladoresSelecionados.size() > 0)
+                        showPopupMenu(e);
+                }
+
 
             }break;
 
@@ -324,6 +434,18 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
 
     @Override
     public void mouseEntered(MouseEvent e) {
+
+        if (states.getSelectedTool().equals( MouseSelect.NOME )){
+            setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            if (states.getSelectedSubTool().equals( StateMach.TRANSLATE )){
+                setCursor(new Cursor(Cursor.MOVE_CURSOR));
+            }
+        }else{
+            setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+        }
+
+
+
         labelX.setText( String.valueOf( e.getPoint().x ) );
         labelY.setText( String.valueOf( e.getPoint().y ) );
         labelEventoMouse.setText( "entrou.." );
@@ -365,18 +487,12 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
 
 //TODO TENTAR FAZER SEM REDESENHAR TUDO
 //todo try 4 SUCESSO!!!!!!!!!
-        if (manipulador != null){
-            canvas = Uteis.deepCopyBI(snapCanvas);
-
-            Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
-            newGraph.setColor(Color.BLACK);
-            manipulador.paint(newGraph);
-
-            newGraph.dispose();
-        }
+        //RECUPERA SNAPS SHOT
+        canvas = Uteis.deepCopyBI(snapCanvas);
 
         //pinta formas selecionadas de vermelho se houver
         if (! listaManipuladoresSelecionados.isEmpty()){
+//            canvas = Uteis.deepCopyBI(snapCanvas);
             Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
             newGraph.setColor(Color.RED);
             listaManipuladoresSelecionados.forEach(formaHandler ->{
@@ -388,6 +504,14 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
             newGraph.dispose();
         }
 
+        if (manipulador != null){
+//            canvas = Uteis.deepCopyBI(snapCanvas);
+            Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
+            newGraph.setColor(Color.BLACK);
+            manipulador.paint(newGraph);
+
+            newGraph.dispose();
+        }
         g.drawImage(canvas, 0, 0, null);
 //        repaint(); //loop infinito na thead!!
         System.out.println("pintou");

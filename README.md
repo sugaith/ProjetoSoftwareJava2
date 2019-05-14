@@ -19,7 +19,7 @@
             - descriminar os padroes de projeto (handler, listener, iterator, singleton, )
     
 2)FOI** PADRAO MANIPULADOR (handler) E CONTINUACAO P/ DE FORMAS AUTOMATICAS
-   ** FOI** LINHA QUADRADO(GANHA UMA ESTRELINHA) E CIRCULO, RETANGULO   
+   ** FOI** FORMAS --> LINHA QUADRADO(GANHA UMA ESTRELINHA) E CIRCULO, RETANGULO   
 
 3) ACESSO A BANCO DE DADOS
    - tabela DOCUMENTO -> FORMA -> CRIAR, LER, REMOVER   
@@ -27,17 +27,21 @@
 4) VISUALIZACAO FORMATO DE TABELA
     - semelhante ao textArea dos pontos, mas em tabela..
     
-PLUS)** FOI* PINTAR SEM PERCORRER E REDESENHAR TODAS AS FORMAS
+PLUS)
+    ** FOI* CONTUNUAÇÀO AO TERMINAR FORMA
+    ** FOI* PINTAR SEM PERCORRER (atualizacao do paint) E REDESENHAR TODAS AS FORMAS
     - MAQINA ESTADOS -> por os cases dentro da maquina em cada evento, e retornar forma
     ** FOI* QUADRADO
-    ** FOI* atualizacao do paint sem iterar todos os componentes
     - Selection TOOL _
+        - DELETE
+        **FOI* TRANSLATE
+        - ROTATE
     
     
     
     
     
-# DOCS
+# MAIN DOCS
 //    https://stackoverflow.com/questions/42494119/how-to-define-java-awt-rectangle-using-4-points
 //    https://www.mathopenref.com/coordrectangle.html
 //    https://www.mathopenref.com/coordrectareaperim.html
