@@ -7,16 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="080c440c-c232-4a88-a94d-fc7f90882920" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/CirculoHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/CirculoHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/InterfaceFormaHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/InterfaceFormaHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LapisHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LapisHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LinhaHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LinhaHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/MouseSelectHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/MouseSelectHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/PontoHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/PontoHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/QuadradoHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/QuadradoHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/RetanguloHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/RetanguloHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/uteis/StateMach.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/uteis/StateMach.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -73,27 +63,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="335">
-                <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+              <first_editor relative-caret-position="386">
+                <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
               </first_editor>
               <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gui/uteis/StateMach.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-              <folding>
-                <element signature="e#453#454#0" expanded="true" />
-                <element signature="e#491#492#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -122,11 +99,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/QuadradoHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+            <state relative-caret-position="544">
+              <caret line="53" column="92" lean-forward="true" selection-start-line="52" selection-start-column="7" selection-end-line="53" selection-end-column="92" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/RetanguloHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="52" column="5" lean-forward="true" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -219,17 +208,17 @@
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/Circulo.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/Linha.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/MouseSelectHandler.java" />
-        <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/RetanguloHandler.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/Retangulo.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/InterfaceFormaHandler.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/PontoHandler.java" />
         <option value="$PROJECT_DIR$/src/gui/uteis/StateMach.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/CirculoHandler.java" />
-        <option value="$PROJECT_DIR$/../README.md" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LapisHandler.java" />
         <option value="$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/LinhaHandler.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/QuadradoHandler.java" />
+        <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/RetanguloHandler.java" />
+        <option value="$PROJECT_DIR$/../README.md" />
       </list>
     </option>
   </component>
@@ -309,7 +298,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557866943322" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557867793189" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../ProjSw2_forms/src/gui/apresentacao/FramePrincipal.java" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../../../ProjSw2_forms/src/gui/apresentacao/FramePrincipal.java" />
@@ -399,7 +388,7 @@
       <window_info id="Structure" order="5" sideWeight="0.67912775" visible="true" weight="0.18035516" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32917964" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.21391486" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21391486" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997923" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -412,7 +401,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="4" sideWeight="0.67912775" visible="true" weight="0.22419533" />
+      <window_info anchor="right" content_ui="combo" id="Project" order="4" sideWeight="0.67912775" visible="true" weight="0.22419533" />
       <window_info anchor="right" id="Maven" order="5" />
       <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info anchor="right" id="Capture Analysis" order="7" />
@@ -710,16 +699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/RetanguloHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="56" selection-start-line="56" selection-end-line="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/PontoHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -793,21 +772,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="335">
-            <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="78" lean-forward="true" selection-start-line="14" selection-start-column="78" selection-end-line="14" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/Lapis.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
@@ -860,8 +824,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/QuadradoHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+        <state relative-caret-position="544">
+          <caret line="53" column="92" lean-forward="true" selection-start-line="52" selection-start-column="7" selection-end-line="53" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/formasGeometricas/handlers/RetanguloHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="52" column="5" lean-forward="true" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="386">
+            <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="78" lean-forward="true" selection-start-line="14" selection-start-column="78" selection-end-line="14" selection-end-column="78" />
         </state>
       </provider>
     </entry>

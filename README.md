@@ -15,7 +15,8 @@
        - fazer e gerar java doc ??????
        - DIAGRAMA DE CLASSE -> identificar o padroes de projetos nas classes
             ** FOI* INICIO
-            - FINAL
+            ** FOI* MEIO
+            - FIM
             - descriminar os padroes de projeto (handler, listener, iterator, singleton, )
     
 2)FOI** PADRAO MANIPULADOR (handler) E CONTINUACAO P/ DE FORMAS AUTOMATICAS
