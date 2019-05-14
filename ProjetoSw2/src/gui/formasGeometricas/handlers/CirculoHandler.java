@@ -1,16 +1,50 @@
 package gui.formasGeometricas.handlers;
 
 import gui.formasGeometricas.Circulo;
+import gui.formasGeometricas.FormaGeometrica;
+import gui.formasGeometricas.MouseSelect;
 import gui.formasGeometricas.Ponto;
 import utils.Uteis;
 
 import java.awt.*;
+import java.awt.geom.Area;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 
 public class CirculoHandler implements InterfaceFormaHandler {
     private Circulo circulo;
 
     public CirculoHandler(Circulo l) {
         this.circulo = l;
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        int r = Uteis.distanciaEuclidiana( circulo.getA(), circulo.getB() );
+
+        int x = circulo.getA().getX() - (r/2);
+        int y = circulo.getA().getY() - (r/2);
+        g.drawOval(x,y,r,r);
+
+//        g.drawOval(circulo.getA().getX(), circulo.getB().getX(), circulo.getA().getY(), circulo.getB().getY());
+    }
+
+    @Override
+    public boolean intersects(MouseSelect mouseSelect) {
+
+        int r = Uteis.distanciaEuclidiana( circulo.getA(), circulo.getB() );
+        int x = circulo.getA().getX() - (r/2);
+        int y = circulo.getA().getY() - (r/2);
+        Shape circle = new Ellipse2D.Double(x, y, r, r);
+
+        Area area = new Area(circle);
+
+        return area.intersects( Uteis.mouseSelect_toRetangle( mouseSelect ) );
+    }
+
+    @Override
+    public FormaGeometrica getForma() {
+        return circulo;
     }
 
     @Override
@@ -33,14 +67,5 @@ public class CirculoHandler implements InterfaceFormaHandler {
         circulo.setB(new Ponto(x, y));
     }
 
-    @Override
-    public void paint(Graphics g) {
-        int r = Uteis.distanciaEuclidiana( circulo.getA(), circulo.getB() );
 
-        int x = circulo.getA().getX() - (r/2);
-        int y = circulo.getA().getY() - (r/2);
-        g.drawOval(x,y,r,r);
-
-//        g.drawOval(circulo.getA().getX(), circulo.getB().getX(), circulo.getA().getY(), circulo.getB().getY());
-    }
 }

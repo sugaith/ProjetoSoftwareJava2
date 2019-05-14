@@ -1,5 +1,7 @@
 package gui.formasGeometricas.handlers;
 
+import gui.formasGeometricas.FormaGeometrica;
+import gui.formasGeometricas.MouseSelect;
 import gui.formasGeometricas.Ponto;
 
 import java.awt.*;
@@ -9,6 +11,16 @@ public class PontoHandler implements InterfaceFormaHandler {
 
     public PontoHandler(Ponto p) {
         this.p = p;
+    }
+
+    @Override
+    public boolean intersects(MouseSelect mouseSelect) {
+        return false;
+    }
+
+    @Override
+    public FormaGeometrica getForma() {
+        return p;
     }
 
     @Override

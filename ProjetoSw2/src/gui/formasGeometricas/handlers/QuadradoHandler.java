@@ -1,16 +1,56 @@
 package gui.formasGeometricas.handlers;
 
+import gui.formasGeometricas.FormaGeometrica;
+import gui.formasGeometricas.MouseSelect;
 import gui.formasGeometricas.Quadrado;
 import gui.formasGeometricas.Ponto;
 import utils.Uteis;
 
 import java.awt.*;
+import java.awt.geom.Area;
 
 public class QuadradoHandler implements InterfaceFormaHandler {
     private Quadrado quadrado;
 
     public QuadradoHandler(Quadrado l) {
         this.quadrado = l;
+    }
+
+    @Override
+    public void paint(Graphics g) {
+//        g.drawRect(quadrado.getA().getX(), quadrado.getA().getY(), quadrado.getB().getX(), quadrado.getB().getY());
+
+
+        int r = Uteis.distanciaEuclidiana( quadrado.getA(), quadrado.getB() );
+
+        int x = quadrado.getA().getX() - (r/2);
+        int y = quadrado.getA().getY() - (r/2);
+        g.drawRect(x,y,r,r);
+    }
+
+
+    @Override
+    public boolean intersects(MouseSelect mouseSelect) {
+        int r = Uteis.distanciaEuclidiana( quadrado.getA(), quadrado.getB() );
+
+        int x = quadrado.getA().getX() - (r/2);
+        int y = quadrado.getA().getY() - (r/2);
+
+        Polygon p = new Polygon();
+
+        p.addPoint(x, y);
+        p.addPoint(x+r, y);
+        p.addPoint(x, y+r);
+        p.addPoint(x+r, y+r);
+
+        Area area = new Area(p);
+
+        return area.intersects( Uteis.mouseSelect_toRetangle( mouseSelect ) );
+    }
+
+    @Override
+    public FormaGeometrica getForma() {
+        return quadrado;
     }
 
     @Override
@@ -33,15 +73,5 @@ public class QuadradoHandler implements InterfaceFormaHandler {
         quadrado.setB(new Ponto(x, y));
     }
 
-    @Override
-    public void paint(Graphics g) {
-//        g.drawRect(quadrado.getA().getX(), quadrado.getA().getY(), quadrado.getB().getX(), quadrado.getB().getY());
 
-
-        int r = Uteis.distanciaEuclidiana( quadrado.getA(), quadrado.getB() );
-
-        int x = quadrado.getA().getX() - (r/2);
-        int y = quadrado.getA().getY() - (r/2);
-        g.drawRect(x,y,r,r);
-    }
 }

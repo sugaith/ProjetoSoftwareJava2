@@ -1,7 +1,10 @@
 package utils;
 
+import gui.formasGeometricas.MouseSelect;
 import gui.formasGeometricas.Ponto;
 
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
@@ -22,6 +25,17 @@ public class Uteis {
         boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
         WritableRaster raster = bi.copyData(null);
         return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+    }
+
+    public static Rectangle2D mouseSelect_toRetangle(MouseSelect mouseSelect) {
+
+        int px = Math.min( mouseSelect.getA().getX(), mouseSelect.getB().getX() );
+        int py = Math.min( mouseSelect.getA().getY(), mouseSelect.getB().getY() );
+        int pw = Math.abs( mouseSelect.getA().getX() - mouseSelect.getB().getX() );
+        int ph = Math.abs( mouseSelect.getA().getY() - mouseSelect.getB().getY() );
+
+
+        return new Rectangle(px,py,pw,ph);
     }
 
 

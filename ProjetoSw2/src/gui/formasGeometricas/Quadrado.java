@@ -68,9 +68,7 @@ public class Quadrado implements FormaGeometrica {
 
 
 	@Override
-	public String toString() {
-		return String.format("%s %s", a, b);
-	}
+	public String toString() {		return NOME;	}
 
 
 

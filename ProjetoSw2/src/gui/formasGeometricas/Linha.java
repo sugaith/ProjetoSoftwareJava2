@@ -66,7 +66,7 @@ public class Linha implements FormaGeometrica {
 
 	@Override
 	public String toString() {
-		return String.format("%s %s", a, b);
+		return NOME;
 	}
 
 	@Override

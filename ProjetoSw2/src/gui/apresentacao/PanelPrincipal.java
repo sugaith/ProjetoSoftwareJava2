@@ -8,6 +8,7 @@ package gui.apresentacao;
 import gui.Documento;
 import gui.formasGeometricas.*;
 import gui.formasGeometricas.handlers.InterfaceFormaHandler;
+import gui.uteis.Iterador;
 import gui.uteis.StateMach;
 import utils.Uteis;
 
@@ -19,6 +20,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -35,6 +38,8 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
     private BufferedImage snapCanvas = new BufferedImage(WIDTH_CANVAS, HEIGHT_CANVAS, BufferedImage.TYPE_INT_RGB);
 
     private InterfaceFormaHandler manipulador = null;
+
+    private List<InterfaceFormaHandler> listaManipuladoresSelecionados = new ArrayList<>();
 
     /**
      * Creates new form PanelPrincipal
@@ -79,12 +84,31 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
         switch (states.getSelectedTool()){
 
             case (MouseSelect.NOME):{
+
+                //        pinta formas DEselecionadas de PRETO se houver
+
+
                 snapCanvas = Uteis.deepCopyBI( canvas );
 
                 Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
                 MouseSelect retangulo = new MouseSelect( p );
 //                novaFormaGeometrica( retangulo );
                 manipulador = retangulo.getFormaHandler(retangulo);
+
+                if (! listaManipuladoresSelecionados.isEmpty()){
+                    Graphics2D newGraph = (Graphics2D) snapCanvas.createGraphics();
+                    newGraph.setColor(Color.BLACK);
+                    listaManipuladoresSelecionados.forEach(formaHandler ->{
+                        formaHandler.paint(newGraph);
+                        System.out.println("pintou de PRETOWW " +formaHandler.getForma().toString());
+
+                    });
+                    newGraph.dispose();
+
+                    listaManipuladoresSelecionados.clear();
+                }
+
+
                 atualizar(); // repinta JFrame
             }break;
 
@@ -158,6 +182,7 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
         labelY.setText( String.valueOf( e.getPoint().y ) );
         labelEventoMouse.setText( "pressionando.." );
         System.out.println("pressionou..");
+        System.out.println("formas selecionadas -> " + listaManipuladoresSelecionados.size());
 
     }
 
@@ -178,12 +203,14 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
             case (MouseSelect.NOME):{
                 if (manipulador != null){
                     manipulador.drag(e.getPoint().x, e.getPoint().y );
+
+                    //1. metodo verifica em cada forma se Rect_de_selecao intersecta com alguma forma
+                    //2. retorna lista de manipuladores intersectores
+                    this.verificaSelecionados();
+                    //3. pinta-los-ei de vermei em atualizar()
+
                     atualizar();
                 }
-
-
-                
-
             }break;
 
             case (Ponto.NOME):{
@@ -207,6 +234,35 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
         labelY.setText( String.valueOf( e.getPoint().y ) );
         labelEventoMouse.setText( "arrastando.." );
         System.out.println("arrastando..");
+        System.out.println("formas selecionadas -> " + listaManipuladoresSelecionados.size());
+    }
+
+    private void verificaSelecionados() {
+
+        try {
+
+            //salva e limpa lista de selecionados (caso foram deselecionados)
+//            listaManipuladoresDes_selecionados.addAll( listaManipuladoresSelecionados );
+            listaManipuladoresSelecionados.clear();
+
+            Iterador<FormaGeometrica> it = doc.getIterador();
+            FormaGeometrica forma;
+
+             while((forma = it.proximo()) != null) {
+                 InterfaceFormaHandler formaHandler = forma.getFormaHandler(forma);
+                 if (formaHandler.intersects( (MouseSelect) manipulador.getForma() )){
+                     listaManipuladoresSelecionados.add( formaHandler );
+                     System.out.println("inseriu!! listaManipuladoresSelecionados ");
+                     System.out.println(forma.toString());
+                     System.out.println(listaManipuladoresSelecionados.size());
+                 }
+             }
+
+        }catch (ClassCastException ce){
+            System.out.println(ce.getMessage());
+            ce.printStackTrace();
+        }
+
     }
 
     @Override
@@ -226,6 +282,7 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
                 manipulador = null;
                 canvas = Uteis.deepCopyBI(snapCanvas);
                 atualizar();
+
             }break;
 
 
@@ -250,6 +307,7 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
         labelY.setText( String.valueOf( e.getPoint().y ) );
         labelEventoMouse.setText( "soltou.." );
         System.out.println("soltou..");
+        System.out.println("formas selecionadas -> " + listaManipuladoresSelecionados.size());
 
     }
 
@@ -293,7 +351,7 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
 
     @Override
     public void paintComponent (Graphics g){
-
+//ORIGINAL 2
 //        super.paintComponent(g);//limpa area de desenho
 //        Iterador<FormaGeometrica> it = doc.getIterador();
 //        FormaGeometrica forma;
@@ -305,23 +363,34 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
 
 
 
-        //TODO TENTAR FAZER SEM REDESENHAR TUDO
-
-
-
+//TODO TENTAR FAZER SEM REDESENHAR TUDO
 //todo try 4 SUCESSO!!!!!!!!!
         if (manipulador != null){
             canvas = Uteis.deepCopyBI(snapCanvas);
 
             Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
-            newGraph.setColor(Color.black);
-
+            newGraph.setColor(Color.BLACK);
             manipulador.paint(newGraph);
+
+            newGraph.dispose();
+        }
+
+        //pinta formas selecionadas de vermelho se houver
+        if (! listaManipuladoresSelecionados.isEmpty()){
+            Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
+            newGraph.setColor(Color.RED);
+            listaManipuladoresSelecionados.forEach(formaHandler ->{
+                formaHandler.paint(newGraph);
+                System.out.println("pintou de VERMEI" +formaHandler.getForma().toString());
+
+            });
+            newGraph.setColor(Color.BLACK);
             newGraph.dispose();
         }
 
         g.drawImage(canvas, 0, 0, null);
-        repaint();
+//        repaint(); //loop infinito na thead!!
+        System.out.println("pintou");
 
 
 
