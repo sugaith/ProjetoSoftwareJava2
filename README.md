@@ -46,7 +46,7 @@
 - adicionar barra de rolagem no canvas (interface para determinar tamanho do canvas)
 - AO MOVER AS FORMAS, pintar de preto todos os nao selecionados (ao inves de pintar de branco os selecionados)
 - ***FOI*** arrumar o ponto (deixar desenhando apenas um ponto, sem o comportamento do drago - igual ao lapis)
- 
+- SALVAR EM PNG 
 
     
     

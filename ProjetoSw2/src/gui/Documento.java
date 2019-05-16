@@ -2,6 +2,7 @@ package gui;
 
 import gui.apresentacao.InterfaceOuvintePanels;
 import gui.formasGeometricas.FormaGeometrica;
+import gui.formasGeometricas.handlers.InterfaceFormaHandler;
 import gui.uteis.Iterador;
 import gui.uteis.ListaEncadeada;
 
@@ -33,6 +34,25 @@ public class Documento implements Serializable {
         listaOuvintes.inserirFim(view);
         atualizaOuvintes();
     }
+
+    public void removeOuvinte(InterfaceOuvintePanels view) {
+        Iterador<InterfaceOuvintePanels> i = listaOuvintes.getInicio();
+        InterfaceOuvintePanels view_lista;
+        int index=0;
+        while ((view_lista = (InterfaceOuvintePanels) i.proximo()) != null) {
+            // Invoca o metodo Update do objeto Observer
+            if (view.getClass().equals( view_lista.getClass() )){
+                System.out.println(view.getClass());
+                listaOuvintes.remover( index );
+                break;
+            }
+            index++;
+        }
+
+        atualizaOuvintes();
+    }
+
+
 
 
     public void atualizaOuvintes() {

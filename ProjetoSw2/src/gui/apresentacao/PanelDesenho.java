@@ -24,7 +24,7 @@ import java.util.List;
  *
  * @author Tania
  */
-public class PanelPrincipal extends javax.swing.JPanel implements MouseListener, MouseMotionListener,InterfaceOuvintePanels{
+public class PanelDesenho extends javax.swing.JPanel implements MouseListener, MouseMotionListener,InterfaceOuvintePanels{
 //    private ListaEncadeada<Ponto> points;
     private JLabel labelX, labelY, labelEventoMouse;
     private static int WIDTH_CANVAS = 2000, HEIGHT_CANVAS = 1800;
@@ -41,9 +41,9 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
 
 
     /**
-     * Creates new form PanelPrincipal
+     * Creates new form PanelDesenho
      */
-    public PanelPrincipal(Documento doc) {
+    public PanelDesenho(Documento doc) {
         super(true);
         this.doc = doc;
 //        this.states = states;

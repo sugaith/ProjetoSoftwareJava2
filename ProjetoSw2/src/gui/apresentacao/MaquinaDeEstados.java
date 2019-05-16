@@ -18,9 +18,9 @@ public class MaquinaDeEstados {
     private String selectedSubTool;
 
 
-    private PanelPrincipal panelDesenho;
+    private PanelDesenho panelDesenho;
 
-    public MaquinaDeEstados(PanelPrincipal panelDesenho) {
+    public MaquinaDeEstados(PanelDesenho panelDesenho) {
         this.panelDesenho = panelDesenho;
 
         selectedTool = MouseSelect.NOME;
@@ -66,7 +66,7 @@ public class MaquinaDeEstados {
 
                     //salva coordenadas do mouse
                     panelDesenho.mouseCoords_saved = new Ponto(e.getX(), e.getY());
-                    panelDesenho.atualizar();
+                    panelDesenho.doc.atualizaOuvintes();
 
                 }else{
 
@@ -79,7 +79,7 @@ public class MaquinaDeEstados {
                         panelDesenho.verificaSelecionados();
                         //3. pinta-los-ei de vermei em atualizar()
                     }
-                    panelDesenho.atualizar();
+                    panelDesenho.doc.atualizaOuvintes();
 
                 }
 
@@ -90,14 +90,14 @@ public class MaquinaDeEstados {
 //                Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
 //                novaFormaGeometrica( p );
 //                manipulador = p.getFormaHandler(p);
-//                atualizar(); // repinta JFrame
+//                doc.atualizaOuvintes(); // repinta JFrame
 //            }break;
 
 
             default: {
                 if (panelDesenho.manipulador != null){
                     panelDesenho.manipulador.drag(e.getPoint().x, e.getPoint().y );
-                    panelDesenho.atualizar();
+                    panelDesenho.doc.atualizaOuvintes();
                 }
             }break;
         }
@@ -165,7 +165,7 @@ public class MaquinaDeEstados {
                 }
 
 
-                panelDesenho.atualizar(); // repinta JFrame
+                panelDesenho.doc.atualizaOuvintes(); // repinta JFrame
             }break;
 
             case (Ponto.NOME):{
@@ -174,7 +174,7 @@ public class MaquinaDeEstados {
                 Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
                 panelDesenho.novaFormaGeometrica( p );
                 panelDesenho.manipulador = p.getFormaHandler(p);
-                panelDesenho.atualizar(); // repinta JFrame
+                panelDesenho.doc.atualizaOuvintes(); // repinta JFrame
             }break;
 
             case (Linha.NOME):{
@@ -184,7 +184,7 @@ public class MaquinaDeEstados {
                 Linha linha = new Linha( p );
                 panelDesenho.novaFormaGeometrica( linha );
                 panelDesenho.manipulador = linha.getFormaHandler(linha);
-                panelDesenho.atualizar(); // repinta JFrame
+                panelDesenho.doc.atualizaOuvintes(); // repinta JFrame
             }break;
 
             case (Lapis.NOME):{
@@ -194,7 +194,7 @@ public class MaquinaDeEstados {
                 Lapis lapis = new Lapis( p );
                 panelDesenho.novaFormaGeometrica( lapis );
                 panelDesenho.manipulador = lapis.getFormaHandler(lapis);
-                panelDesenho.atualizar(); // repinta JFrame
+                panelDesenho.doc.atualizaOuvintes(); // repinta JFrame
             }break;
 
             case (Quadrado.NOME):{
@@ -204,7 +204,7 @@ public class MaquinaDeEstados {
                 Quadrado quadrado = new Quadrado( p );
                 panelDesenho.novaFormaGeometrica( quadrado );
                 panelDesenho.manipulador = quadrado.getFormaHandler(quadrado);
-                panelDesenho.atualizar(); // repinta JFrame
+                panelDesenho.doc.atualizaOuvintes(); // repinta JFrame
             }break;
 
             case (Retangulo.NOME):{
@@ -214,7 +214,7 @@ public class MaquinaDeEstados {
                 Retangulo retangulo = new Retangulo( p );
                 panelDesenho.novaFormaGeometrica( retangulo );
                 panelDesenho.manipulador = retangulo.getFormaHandler(retangulo);
-                panelDesenho.atualizar(); // repinta JFrame
+                panelDesenho.doc.atualizaOuvintes(); // repinta JFrame
             }break;
 
             case (Circulo.NOME):{
@@ -224,7 +224,7 @@ public class MaquinaDeEstados {
                 Circulo circulo = new Circulo( p );
                 panelDesenho.novaFormaGeometrica( circulo );
                 panelDesenho.manipulador = circulo.getFormaHandler(circulo);
-                panelDesenho.atualizar(); // repinta JFrame
+                panelDesenho.doc.atualizaOuvintes(); // repinta JFrame
             }break;
 
 
@@ -251,7 +251,7 @@ public class MaquinaDeEstados {
 
                 panelDesenho.manipulador = null;
                 panelDesenho.canvas = Uteis.deepCopyBI(panelDesenho.snapCanvas);
-                panelDesenho.atualizar();
+                panelDesenho.doc.atualizaOuvintes();
 
                 //mostra popup caso haja selecionados
                 if (this.getSelectedSubTool().equals(MaquinaDeEstados.TRANSLATE)){

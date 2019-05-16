@@ -1,13 +1,14 @@
-package gui.apresentacao;
+package gui.apresentacao.visualizacao;
 
 import gui.Documento;
+import gui.apresentacao.InterfaceOuvintePanels;
 import gui.formasGeometricas.FormaGeometrica;
 import gui.uteis.Iterador;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class PanelTexto extends JTextArea implements InterfaceOuvintePanels{
+public class PanelTexto extends JTextArea implements InterfaceOuvintePanels {
 
     protected Documento doc;
 
