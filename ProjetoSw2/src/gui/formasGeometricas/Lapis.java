@@ -43,8 +43,9 @@ public class Lapis implements FormaGeometrica {
     @Override
     public String getStrPosition() {
         StringBuffer str = new StringBuffer();
-        str.append("Lapis (");
+        str.append("Lapis ");
         listaPontos.forEach(ponto -> {
+            str.append("(");
             str.append(ponto.getX()).append(",").append(ponto.getY()).append("),");
         });
 

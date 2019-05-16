@@ -6,6 +6,7 @@
 package gui.apresentacao;
 
 import gui.Documento;
+import gui.apresentacao.visualizacao.FrameTabela;
 import gui.apresentacao.visualizacao.FrameTexto;
 import gui.apresentacao.visualizacao.PanelTexto;
 import gui.formasGeometricas.*;
@@ -37,6 +38,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private Documento doc = new Documento();
 
     private FrameTexto frameTexto;
+    private FrameTabela frameTabela;
     private PanelTexto panelTexto;
 
 
@@ -45,6 +47,7 @@ public class FramePrincipal extends javax.swing.JFrame {
      */
     public FramePrincipal() {
 
+        super("Trabalho Projeto Sw II 2bim, 2019 - Prof Miguel Matrakas");
         panelDesenho = new PanelDesenho(doc);
 
         //configura interface
@@ -747,7 +750,21 @@ public class FramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemArqBdSalvarComoActionPerformed
 
     private void jMenuItemVerFormatoTabelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVerFormatoTabelaActionPerformed
-        // TODO add your handling code here:
+
+        frameTabela = new FrameTabela(doc);
+        frameTabela.addWindowListener(new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+//                doc.removeOuvinte(panelTexto);
+//                frameTabela = null;
+                frameTabela.dispose();
+            }
+
+        });
+        doc.adicionaOuvinte(frameTabela);
+        frameTabela.setVisible(true);
+
     }//GEN-LAST:event_jMenuItemVerFormatoTabelaActionPerformed
 
     private void jMenuItemVerFormatoTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVerFormatoTextoActionPerformed
@@ -756,9 +773,6 @@ public class FramePrincipal extends javax.swing.JFrame {
         doc.adicionaOuvinte(panelTexto);
 
         frameTexto = new FrameTexto( panelTexto );
-        frameTexto.setVisible(true);
-
-        //todo SOBRESCREVER ONCLOSE PARA REMOVER DA LISTA DE OUVINTE
         frameTexto.addWindowListener(new WindowAdapter() {
 
             @Override
@@ -769,7 +783,7 @@ public class FramePrincipal extends javax.swing.JFrame {
             }
 
         });
-
+        frameTexto.setVisible(true);
 
     }//GEN-LAST:event_jMenuItemVerFormatoTextoActionPerformed
 

@@ -5,18 +5,73 @@
  */
 package gui.apresentacao.visualizacao;
 
+import gui.Documento;
+import gui.apresentacao.InterfaceOuvintePanels;
+import gui.formasGeometricas.FormaGeometrica;
+import gui.uteis.Iterador;
+
+import javax.print.Doc;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author suga
  */
-public class FrameTabela extends javax.swing.JFrame {
+public class FrameTabela extends javax.swing.JFrame implements InterfaceOuvintePanels {
+
+    private Documento doc;
 
     /**
      * Creates new form FrameTabela
      */
-    public FrameTabela() {
+    public FrameTabela(Documento doc) {
+        super("Visualização - TABELA");
+        this.doc = doc;
         initComponents();
     }
+
+    @Override
+    public void atualizar() {
+        StringBuffer buf = new StringBuffer();
+        Iterador<FormaGeometrica> i = doc.getIterador();
+        FormaGeometrica forma;
+
+        //PREENCHENDO A TABELA
+        DefaultTableModel model = new DefaultTableModel();
+        jTableFormas.setModel(model);
+        jTableFormas.setAutoCreateRowSorter(true);
+//        sorter = new TableRowSorter<TableModel>(model);
+//        jTableFormas.setRowSorter(sorter);
+
+        //colunas
+        model.addColumn("Forma");
+        model.addColumn("Pontos");
+        //dados (linhas)
+        while((forma = i.proximo()) != null) {
+            model.insertRow( model.getRowCount() ,
+                    new Object[]{
+                        forma.toString(),
+                        forma.getStrPosition().replace( forma.toString()+" ", "" ),
+                    }
+            );
+        }
+
+        TableColumnModel tcm = jTableFormas.getColumnModel();
+        tcm.getColumn(0).setMinWidth(50);
+        tcm.getColumn(1).setMinWidth(500);
+
+//        jTableFormas.sizeColumnsToFit(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+    }
+
+    @Override
+    public void novaFormaGeometrica(FormaGeometrica forma) {
+
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,40 +114,6 @@ public class FrameTabela extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameTabela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameTabela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameTabela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameTabela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrameTabela().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

@@ -15,6 +15,7 @@ public class FrameTexto extends javax.swing.JFrame {
      * Creates new form FrameTexto
      */
     public FrameTexto(PanelTexto pTexto) {
+        super("Visualização - TEXTO");
         panelJtextArea = pTexto;
 
         initComponents();
