@@ -5,12 +5,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/gui/apresentacao/FramePrincipal.java" line="769" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="080c440c-c232-4a88-a94d-fc7f90882920" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/gui/apresentacao/FramePrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/apresentacao/FramePrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/apresentacao/visualizacao/FrameTabela.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/apresentacao/visualizacao/FrameTabela.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/apresentacao/visualizacao/FrameTexto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/apresentacao/visualizacao/FrameTexto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/Lapis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/Lapis.java" afterDir="false" />
-    </list>
+    <list default="true" id="080c440c-c232-4a88-a94d-fc7f90882920" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,46 +27,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gui/Documento.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
-              <caret line="58" column="63" selection-start-line="58" selection-start-column="63" selection-end-line="58" selection-end-column="63" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2058#2059#0" expanded="true" />
-                <element signature="e#2086#2087#0" expanded="true" />
-                <element signature="e#2158#2159#0" expanded="true" />
-                <element signature="e#2192#2193#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gui/uteis/Iterador.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gui/uteis/ListaEncadeada.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-              <folding>
-                <element signature="e#454#455#0" expanded="true" />
-                <element signature="e#485#486#0" expanded="true" />
-                <element signature="e#1168#1169#0" expanded="true" />
-                <element signature="e#1212#1213#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/visualizacao/PanelTexto.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="544">
@@ -92,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/FramePrincipal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="52" column="29" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="29" />
+            <state relative-caret-position="457">
+              <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
               <folding>
                 <element signature="docComment;class#FramePrincipal#0" />
                 <element signature="e#5316#5317#0" expanded="true" />
@@ -134,6 +89,36 @@
                 <element signature="e#37419#37420#0" expanded="true" />
                 <element signature="e#37488#37489#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/persistencia/DaoDesenho.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/persistencia/ConexaoMySQL.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="45" column="32" lean-forward="true" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/persistencia/Conexao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -281,6 +266,7 @@
         <option value="$PROJECT_DIR$/src/gui/apresentacao/visualizacao/FrameTexto.java" />
         <option value="$PROJECT_DIR$/src/gui/apresentacao/visualizacao/FrameTabela.java" />
         <option value="$PROJECT_DIR$/src/gui/apresentacao/FramePrincipal.java" />
+        <option value="$PROJECT_DIR$/src/persistencia/DaoPagos.java" />
       </list>
     </option>
   </component>
@@ -343,23 +329,46 @@
               <item name="ProjetoSw2" type="b2602c69:ProjectViewProjectNode" />
               <item name="ProjetoSw2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="persistencia" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProjetoSw2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjetoSw2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="ProjetoSw2" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ProjetoSw2" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+            <path>
+              <item name="ProjetoSw2" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ProjetoSw2" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="libs" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558041435924" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558048436817" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../ProjSw2_forms/src/gui/apresentacao/FramePrincipal.java" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../../../ProjSw2_forms/src/gui/apresentacao/FramePrincipal.java" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\FACULDADE\JAVA MIGUEL\git\ProjetoSoftwareJava2\ProjetoSw2\libs" />
+      <recent name="D:\FACULDADE\JAVA MIGUEL\git\ProjetoSoftwareJava2\ProjetoSw2\src\persistencia" />
       <recent name="D:\FACULDADE\JAVA MIGUEL\git\ProjetoSoftwareJava2\ProjetoSw2\src\gui\uteis" />
       <recent name="D:\FACULDADE\JAVA MIGUEL\git\ProjetoSoftwareJava2\ProjetoSw2\src\gui\formasGeometricas" />
     </key>
@@ -441,7 +450,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Favorites" order="4" sideWeight="0.32087228" side_tool="true" weight="0.18035516" />
-      <window_info active="true" id="Structure" order="5" sideWeight="0.67912775" visible="true" weight="0.18035516" />
+      <window_info id="Structure" order="5" sideWeight="0.67912775" visible="true" weight="0.18035516" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32917964" />
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.21391486" />
@@ -457,7 +466,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" content_ui="combo" id="Project" order="4" sideWeight="0.67912775" visible="true" weight="0.2264151" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="4" sideWeight="0.67912775" visible="true" weight="0.2264151" />
       <window_info anchor="right" id="Maven" order="5" />
       <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info anchor="right" id="Capture Analysis" order="7" />
@@ -490,36 +499,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/io/ByteArrayInputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="175" column="28" selection-start-line="175" selection-start-column="28" selection-end-line="175" selection-end-column="28" />
-          <folding>
-            <element signature="e#4342#4343#0" expanded="true" />
-            <element signature="e#4405#4406#0" expanded="true" />
-            <element signature="e#8784#8785#0" expanded="true" />
-            <element signature="e#8810#8811#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/Arrays.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="3515" column="25" selection-start-line="3515" selection-start-column="25" selection-end-line="3515" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/io/ObjectInputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="420" column="24" selection-start-line="420" selection-start-column="24" selection-end-line="420" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ProjetoSw2.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/io/ObjectOutputStream.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19499">
@@ -840,7 +819,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/uteis/Iterador.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
+        <state>
           <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
         </state>
       </provider>
@@ -926,10 +905,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://D:/DADOS TRAMPO/NETBEANS PROJECTS/RelatoriosForPega_definit/src/relatoriosforpega/persistencia/DaoClientes_teste.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1938">
+          <folding>
+            <element signature="e#0#6810#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/FramePrincipal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="52" column="29" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="29" />
+        <state relative-caret-position="457">
+          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
           <folding>
             <element signature="docComment;class#FramePrincipal#0" />
             <element signature="e#5316#5317#0" expanded="true" />
@@ -967,6 +955,30 @@
             <element signature="e#37419#37420#0" expanded="true" />
             <element signature="e#37488#37489#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/persistencia/DaoDesenho.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/persistencia/Conexao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/persistencia/ConexaoMySQL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="45" column="32" lean-forward="true" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
         </state>
       </provider>
     </entry>
