@@ -9,7 +9,6 @@ import gui.Documento;
 import gui.formasGeometricas.*;
 import gui.uteis.Iterador;
 import gui.uteis.ListaEncadeada;
-import gui.uteis.StateMach;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -32,14 +31,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class FramePrincipal extends javax.swing.JFrame {
 
     private Documento doc = new Documento();
-    private StateMach states = new StateMach();
 
     /**
      * Creates new form FramePrincipal
      */
     public FramePrincipal() {
 
-        panelPrincipal = new PanelPrincipal(doc, states);
+        panelPrincipal = new PanelPrincipal(doc);
         panelTexto = new PanelTexto(doc);
 //        panelPrincipal.setStates(states);
 
@@ -47,9 +45,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         //configura interface
         initComponents();
 
-
         //atualiza label com estado inicial
-        labelSelectedTool.setText(states.getSelectedTool());
+        labelSelectedTool.setText(panelPrincipal.getStates().getSelectedTool());
 
         //listener para posicao do mouse
         panelPrincipal.addListener4MousePos( labelPosicaoMouseX, labelPosicaoMouseY, labelEventoMouse );
@@ -417,37 +414,37 @@ public class FramePrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMouseActionPerformed(ActionEvent evt) {
-        states.setSelectedTool(MouseSelect.NOME);
+        panelPrincipal.getStates().setSelectedTool(MouseSelect.NOME);
         labelSelectedTool.setText(MouseSelect.NOME);
     }
 
     private void btnCirculoActionPerformed(ActionEvent evt) {
-        states.setSelectedTool(Circulo.NOME);
+        panelPrincipal.getStates().setSelectedTool(Circulo.NOME);
         labelSelectedTool.setText(Circulo.NOME);
     }
 
     private void btnRetanguloActionPerformed(ActionEvent evt) {
-        states.setSelectedTool(Retangulo.NOME);
+        panelPrincipal.getStates().setSelectedTool(Retangulo.NOME);
         labelSelectedTool.setText(Retangulo.NOME);
     }
 
     private void btnQuadradoActionPerformed(ActionEvent evt) {
-        states.setSelectedTool(Quadrado.NOME);
+        panelPrincipal.getStates().setSelectedTool(Quadrado.NOME);
         labelSelectedTool.setText(Quadrado.NOME);
     }
 
     private void btnLapisActionPerformed(ActionEvent evt) {
-        states.setSelectedTool(Lapis.NOME);
+        panelPrincipal.getStates().setSelectedTool(Lapis.NOME);
         labelSelectedTool.setText(Lapis.NOME);
     }
 
     private void btnPontoActionPerformed(ActionEvent evt) {
-        states.setSelectedTool(Ponto.NOME);
+        panelPrincipal.getStates().setSelectedTool(Ponto.NOME);
         labelSelectedTool.setText(Ponto.NOME);
     }
 
     private void btnLinhaActionPerformed(ActionEvent evt) {
-        states.setSelectedTool(Linha.NOME);
+        panelPrincipal.getStates().setSelectedTool(Linha.NOME);
         labelSelectedTool.setText(Linha.NOME);
     }
 

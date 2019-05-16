@@ -9,8 +9,6 @@ import java.io.Serializable;
 public interface FormaGeometrica extends Serializable {
 
     String toString();
-    @Transient
-    void desenhar(Graphics g);
 
     String getStrPosition();
     String toTextLine();

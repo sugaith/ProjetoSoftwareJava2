@@ -9,7 +9,6 @@ import gui.Documento;
 import gui.formasGeometricas.*;
 import gui.formasGeometricas.handlers.InterfaceFormaHandler;
 import gui.uteis.Iterador;
-import gui.uteis.StateMach;
 import utils.Uteis;
 
 import javax.swing.*;
@@ -17,8 +16,6 @@ import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.ColorModel;
-import java.awt.image.WritableRaster;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,28 +26,29 @@ import java.util.List;
  */
 public class PanelPrincipal extends javax.swing.JPanel implements MouseListener, MouseMotionListener,InterfaceOuvintePanels{
 //    private ListaEncadeada<Ponto> points;
-    protected JLabel labelX, labelY, labelEventoMouse;
+    private JLabel labelX, labelY, labelEventoMouse;
+    private static int WIDTH_CANVAS = 2000, HEIGHT_CANVAS = 1800;
 
-    public static int WIDTH_CANVAS = 2000, HEIGHT_CANVAS = 1800;
-    private BufferedImage canvas = new BufferedImage(WIDTH_CANVAS, HEIGHT_CANVAS, BufferedImage.TYPE_INT_RGB);
-    private BufferedImage snapCanvas = new BufferedImage(WIDTH_CANVAS, HEIGHT_CANVAS, BufferedImage.TYPE_INT_RGB);
+    BufferedImage canvas = new BufferedImage(WIDTH_CANVAS, HEIGHT_CANVAS, BufferedImage.TYPE_INT_RGB);
+    BufferedImage snapCanvas = new BufferedImage(WIDTH_CANVAS, HEIGHT_CANVAS, BufferedImage.TYPE_INT_RGB);
+    InterfaceFormaHandler manipulador = null;
+    List<InterfaceFormaHandler> listaManipuladoresSelecionados = new ArrayList<>();
+    Documento doc;
+//    MaquinaEstados states;
+    JPopupMenu popupMenu = new JPopupMenu();
 
-    private InterfaceFormaHandler manipulador = null;
-    private List<InterfaceFormaHandler> listaManipuladoresSelecionados = new ArrayList<>();
-    protected Documento doc;
-    private StateMach states;
-    public JPopupMenu popupMenu = new JPopupMenu();
+    private MaquinaEstados states = new MaquinaEstados(this);
 
 
     /**
      * Creates new form PanelPrincipal
      */
-    public PanelPrincipal(Documento doc, StateMach states) {
+    public PanelPrincipal(Documento doc) {
         super(true);
         this.doc = doc;
-        this.states = states;
-        initComponents();
-        createPopupMenu();
+//        this.states = states;
+        initComponents();//inicia componentes visuais layout
+        createPopupMenu();//cria popup menu
         addMouseListener(this);
         addMouseMotionListener(this);
 
@@ -60,19 +58,21 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
     public void iniciaCanvas() {
         Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
 
+        //inicia canvas com fundo branco e prepara a escrita negra
         newGraph.setColor(Color.WHITE);
+//        newGraph.setBackground(Color.WHITE);
         newGraph.fillRect(0, 0, WIDTH_CANVAS, HEIGHT_CANVAS);
         newGraph.setColor(Color.BLACK);
-//
-//        newGraph.setBackground(Color.WHITE);
         newGraph.setPaint(Color.BLACK);
-//        newGraph.setColor(Color.BLACK);
         newGraph.dispose();
 
+        //tira primeiro Snap
         snapCanvas = Uteis.deepCopyBI(canvas);
+//        limpa manipulador e lista de selecionados
         manipulador = null;
+        listaManipuladoresSelecionados.clear();
 
-        repaint();
+        repaint();//pinta o canvas no Panel
     }
 
     private void createPopupMenu(){
@@ -81,12 +81,12 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
                 System.out.println("menu item ["
                         + event.getActionCommand() + "] pressionado");
 
-                if (event.getActionCommand().equals(StateMach.TRANSLATE)){
-                    states.setSelectedSubTool(StateMach.TRANSLATE);
+                if (event.getActionCommand().equals(MaquinaEstados.TRANSLATE)){
+                    states.setSelectedSubTool(MaquinaEstados.TRANSLATE);
                     setCursor(new Cursor(Cursor.MOVE_CURSOR));
 
                 }
-                if (event.getActionCommand().equals(StateMach.ROTATE)){
+                if (event.getActionCommand().equals(MaquinaEstados.ROTATE)){
 
                 }
 
@@ -95,20 +95,20 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
         };
         JMenuItem item;
 
-        popupMenu.add(item = new JMenuItem(StateMach.TRANSLATE));
+        popupMenu.add(item = new JMenuItem(MaquinaEstados.TRANSLATE));
         item.addActionListener(menuListener);
         popupMenu.addSeparator();
-        popupMenu.add(item = new JMenuItem(StateMach.ROTATE));
+        popupMenu.add(item = new JMenuItem(MaquinaEstados.ROTATE));
         item.addActionListener(menuListener);
         popupMenu.setBorder(new BevelBorder(BevelBorder.RAISED));
     }
 
-    private void showPopupMenu(MouseEvent mouseEvent) {
+    void showPopupMenu(MouseEvent mouseEvent) {
         popupMenu.setLocation(MouseInfo.getPointerInfo().getLocation());
         popupMenu.setVisible(true);
     }
 
-    public void addListener4MousePos(JLabel labelX, JLabel labelY, JLabel labelEventoMouse){
+    void addListener4MousePos(JLabel labelX, JLabel labelY, JLabel labelEventoMouse){
         this.labelX = labelX;
         this.labelY = labelY;
         this.labelEventoMouse = labelEventoMouse;
@@ -119,136 +119,9 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
     @Override
     public void mousePressed(MouseEvent e) {
 
-        popupMenu.setVisible(false);
+        states.mousePressed(e);
 
-        //todo POR DENTRO DA MAQUINA ESTADOS
-        switch (states.getSelectedTool()){
-
-            case (MouseSelect.NOME):{
-                //todo fazer SWITCH CASE
-
-
-                if (states.getSelectedSubTool().equals( StateMach.TRANSLATE )){
-                    //salva coordenadas do mouse
-                    mouseCoords_saved = new Ponto(e.getX(), e.getY());
-
-
-//                    pinta formas selecionadas de BRANCO PARA APAGAR
-                    if (! listaManipuladoresSelecionados.isEmpty()){
-                        Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
-                        newGraph.setColor(Color.WHITE);
-                        listaManipuladoresSelecionados.forEach(formaHandler ->{
-                            formaHandler.paint(newGraph);
-                            System.out.println("pintou de BRANCOWW " +formaHandler.getForma().toString());
-                        });
-                        newGraph.setColor(Color.BLACK);
-
-                        newGraph.dispose();
-                        //limpa lista
-//                        listaManipuladoresSelecionados.clear();
-                    }
-
-                    snapCanvas = Uteis.deepCopyBI( canvas );
-
-                }else{
-                    snapCanvas = Uteis.deepCopyBI( canvas );
-
-                    Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
-                    MouseSelect retangulo = new MouseSelect( p );
-//                novaFormaGeometrica( retangulo );
-                    manipulador = retangulo.getFormaHandler(retangulo);
-
-                    //        pinta formas selecionadas de PRETO se houver
-                    if (! listaManipuladoresSelecionados.isEmpty()){
-                        Graphics2D newGraph = (Graphics2D) snapCanvas.createGraphics();
-                        newGraph.setColor(Color.BLACK);
-                        listaManipuladoresSelecionados.forEach(formaHandler ->{
-                            formaHandler.paint(newGraph);
-                            System.out.println("pintou de PRETOWW " +formaHandler.getForma().toString());
-                        });
-                        newGraph.dispose();
-
-                        //limpa lista
-                        listaManipuladoresSelecionados.clear();
-                    }
-
-                }
-
-
-
-
-
-                atualizar(); // repinta JFrame
-            }break;
-
-            case (Ponto.NOME):{
-                Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
-                novaFormaGeometrica( p );
-                manipulador = p.getFormaHandler(p);
-                atualizar(); // repinta JFrame
-            }break;
-
-            case (Linha.NOME):{
-                snapCanvas = Uteis.deepCopyBI( canvas );
-
-                Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
-                Linha linha = new Linha( p );
-                novaFormaGeometrica( linha );
-                manipulador = linha.getFormaHandler(linha);
-                atualizar(); // repinta JFrame
-            }break;
-
-            case (Lapis.NOME):{
-                snapCanvas = Uteis.deepCopyBI( canvas );
-
-                Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
-                Lapis lapis = new Lapis( p );
-                novaFormaGeometrica( lapis );
-                manipulador = lapis.getFormaHandler(lapis);
-                atualizar(); // repinta JFrame
-            }break;
-
-            case (Quadrado.NOME):{
-                snapCanvas = Uteis.deepCopyBI( canvas );
-
-                Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
-                Quadrado quadrado = new Quadrado( p );
-                novaFormaGeometrica( quadrado );
-                manipulador = quadrado.getFormaHandler(quadrado);
-                atualizar(); // repinta JFrame
-            }break;
-
-            case (Retangulo.NOME):{
-                snapCanvas = Uteis.deepCopyBI( canvas );
-
-                Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
-                Retangulo retangulo = new Retangulo( p );
-                novaFormaGeometrica( retangulo );
-                manipulador = retangulo.getFormaHandler(retangulo);
-                atualizar(); // repinta JFrame
-            }break;
-
-            case (Circulo.NOME):{
-                snapCanvas = Uteis.deepCopyBI( canvas );
-
-                Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
-                Circulo circulo = new Circulo( p );
-                novaFormaGeometrica( circulo );
-                manipulador = circulo.getFormaHandler(circulo);
-                atualizar(); // repinta JFrame
-            }break;
-
-
-
-
-            default: break;
-        }
-
-
-
-
-        labelX.setText( String.valueOf( e.getPoint().x ) );
-        labelY.setText( String.valueOf( e.getPoint().y ) );
+        atualizaPosicaoMouseXY(e);
         labelEventoMouse.setText( "pressionando.." );
         System.out.println("pressionou..");
         System.out.println("formas selecionadas -> " + listaManipuladoresSelecionados.size());
@@ -257,86 +130,66 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        //salva forma na lista
-//                    getPoints().inserirFim( new Ponto( e.getPoint().x, e.getPoint().y ) );
-//                    repaint();
 
-        //todo aqui vai ser diferenciado As formas geometricas,
-        // por enquanto so tem ponto
-//                    doc.inserirFim( new Ponto( e.getPoint().x, e.getPoint().y ) );
-//        novaFormaGeometrica( new Ponto( e.getPoint().x, e.getPoint().y ) );
-//        atualizar(); // repinta JFrame
-
-
-        switch (states.getSelectedTool()){
-            case (MouseSelect.NOME):{
-
-                //todo por SWITCH CASE
-                if (states.getSelectedSubTool().equals( StateMach.TRANSLATE )){
-                    //constantes de translado
-                    int w = e.getX() - mouseCoords_saved.getX()  ;
-                    int h = e.getY() - mouseCoords_saved.getY()  ;
-                    System.out.println("TRANSLADE --->");
-                    System.out.println(w);
-                    System.out.println(h);
-
-//                    final int cw, ch;
-//                    subtrai alguns pixels para precisao
-                    double pCent = 1;
-                    final int cw = (int) (w * pCent);
-                    final int ch = (int) (h * pCent);
-
-                    listaManipuladoresSelecionados.forEach(handler ->{
-                        handler.translade(cw,ch);
-                    });
-
-                    //salva coordenadas do mouse
-                    mouseCoords_saved = new Ponto(e.getX(), e.getY());
-                    atualizar();
-
-                }else{
-
-                    //atualiza retangulo de selecao e selecionados
-                    if (manipulador != null){
-                        manipulador.drag(e.getPoint().x, e.getPoint().y );
-
-                        //1. metodo verifica em cada forma se Rect_de_selecao intersecta com alguma forma
-                        //2. retorna lista de manipuladores intersectores
-                        this.verificaSelecionados();
-                        //3. pinta-los-ei de vermei em atualizar()
-                    }
-                    atualizar();
-
-                }
-
-
-            }break;
-
-            case (Ponto.NOME):{
-                Ponto p = new Ponto( e.getPoint().x, e.getPoint().y );
-                novaFormaGeometrica( p );
-                manipulador = p.getFormaHandler(p);
-                atualizar(); // repinta JFrame
-            }break;
-
-
-            default: {
-                if (manipulador != null){
-                    manipulador.drag(e.getPoint().x, e.getPoint().y );
-                    atualizar();
-                }
-            }break;
-        }
+        states.mouseDragged(e);
 
         //atualiza as posicoes do mouse nos labels
-        labelX.setText( String.valueOf( e.getPoint().x ) );
-        labelY.setText( String.valueOf( e.getPoint().y ) );
+        atualizaPosicaoMouseXY(e);
         labelEventoMouse.setText( "arrastando.." );
         System.out.println("arrastando..");
         System.out.println("formas selecionadas -> " + listaManipuladoresSelecionados.size());
     }
 
-    private void verificaSelecionados() {
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        //atualiza as posicoes do mouse nos labels
+        atualizaPosicaoMouseXY(e);
+        labelEventoMouse.setText( "movendo.." );
+    }
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+        states.mouseReleased(e);
+
+        atualizaPosicaoMouseXY(e);
+        labelEventoMouse.setText( "soltou.." );
+        System.out.println("soltou..");
+        System.out.println("formas selecionadas -> " + listaManipuladoresSelecionados.size());
+
+    }
+
+
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        atualizaPosicaoMouseXY(e);
+        labelEventoMouse.setText( "clicou.." );
+        System.out.println("clicou ..");
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+        states.mouseEntered(e);
+
+        atualizaPosicaoMouseXY(e);
+        labelEventoMouse.setText( "entrou.." );
+        System.out.println("entrou ..");
+
+//        setCursor(new Cursor(Cursor.S_RESIZE_CURSOR));
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        atualizaPosicaoMouseXY(e);
+        labelEventoMouse.setText( "saiu.." );
+        System.out.println("saiu ..");
+    }
+
+
+    void verificaSelecionados() {
 
         try {
 
@@ -364,103 +217,7 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
 
     }
 
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        //atualiza as posicoes do mouse nos labels
-        labelX.setText( String.valueOf( e.getPoint().x ) );
-        labelY.setText( String.valueOf( e.getPoint().y ) );
-        labelEventoMouse.setText( "movendo.." );
-    }
-    @Override
-    public void mouseReleased(MouseEvent e) {
 
-
-        switch (states.getSelectedTool()){
-
-            case (MouseSelect.NOME):{
-                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-
-                manipulador = null;
-                canvas = Uteis.deepCopyBI(snapCanvas);
-                atualizar();
-
-                //mostra popup caso haja selecionados
-                if (states.getSelectedSubTool().equals(StateMach.TRANSLATE)){
-                    states.setSelectedSubTool(StateMach.NONE);
-                }else{
-                    if (listaManipuladoresSelecionados.size() > 0)
-                        showPopupMenu(e);
-                }
-
-
-            }break;
-
-
-
-            default: {
-
-            }break;
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-        labelX.setText( String.valueOf( e.getPoint().x ) );
-        labelY.setText( String.valueOf( e.getPoint().y ) );
-        labelEventoMouse.setText( "soltou.." );
-        System.out.println("soltou..");
-        System.out.println("formas selecionadas -> " + listaManipuladoresSelecionados.size());
-
-    }
-
-
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        labelX.setText( String.valueOf( e.getPoint().x ) );
-        labelY.setText( String.valueOf( e.getPoint().y ) );
-        labelEventoMouse.setText( "clicou.." );
-        System.out.println("clicou ..");
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-        if (states.getSelectedTool().equals( MouseSelect.NOME )){
-            setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            if (states.getSelectedSubTool().equals( StateMach.TRANSLATE )){
-                setCursor(new Cursor(Cursor.MOVE_CURSOR));
-            }
-        }else{
-            setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
-        }
-
-
-
-        labelX.setText( String.valueOf( e.getPoint().x ) );
-        labelY.setText( String.valueOf( e.getPoint().y ) );
-        labelEventoMouse.setText( "entrou.." );
-        System.out.println("entrou ..");
-
-//        setCursor(new Cursor(Cursor.S_RESIZE_CURSOR));
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        labelX.setText( String.valueOf( e.getPoint().x ) );
-        labelY.setText( String.valueOf( e.getPoint().y ) );
-        labelEventoMouse.setText( "saiu.." );
-        System.out.println("saiu ..");
-    }
 
 //    @Override
 //    public void paint(Graphics g) {
@@ -487,7 +244,7 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
 
 //TODO TENTAR FAZER SEM REDESENHAR TUDO
 //todo try 4 SUCESSO!!!!!!!!!
-        //RECUPERA SNAPS SHOT
+        //RECUPERA SNAPSHOT
         canvas = Uteis.deepCopyBI(snapCanvas);
 
         //pinta formas selecionadas de vermelho se houver
@@ -504,7 +261,7 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
             newGraph.dispose();
         }
 
-        if (manipulador != null){
+        if (manipulador != null){ //pinta manipulador atual
 //            canvas = Uteis.deepCopyBI(snapCanvas);
             Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
             newGraph.setColor(Color.BLACK);
@@ -512,9 +269,11 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
 
             newGraph.dispose();
         }
+
+        //pinta canvas no Panel
         g.drawImage(canvas, 0, 0, null);
-//        repaint(); //loop infinito na thead!!
-        System.out.println("pintou");
+//        repaint(); //loop infinito na thead!! (RECURSãO)
+        System.out.println("pintou canvas");
 
 
 
@@ -559,8 +318,10 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
     }
 
 
-
-
+    void atualizaPosicaoMouseXY(MouseEvent e){
+        labelX.setText( String.valueOf( e.getPoint().x ) );
+        labelY.setText( String.valueOf( e.getPoint().y ) );
+    }
 
 
     /**
@@ -584,11 +345,15 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public void setStates(StateMach states) {
+    public void setStates(MaquinaEstados states) {
         this.states = states;
     }
 
-//    /**
+    public MaquinaEstados getStates() {
+        return states;
+    }
+
+    //    /**
 //     * @return the points
 //     */
 //    public ListaEncadeada<Ponto> getPoints() {

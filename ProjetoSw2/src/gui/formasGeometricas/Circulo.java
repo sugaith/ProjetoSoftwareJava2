@@ -37,11 +37,6 @@ public class Circulo implements FormaGeometrica {
 	}
 
 	@Override
-	public void desenhar(Graphics g) {
-		g.drawOval(a.getX(), a.getY(), b.getX(), b.getY());
-	}
-
-	@Override
 	public String getStrPosition() {
 		return NOME+" ("+a.getX()+", "+a.getY()+"),("+b.getX()+", "+b.getY()+");";
 	}

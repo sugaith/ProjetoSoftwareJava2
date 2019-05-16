@@ -47,10 +47,6 @@ public class Retangulo implements FormaGeometrica {
 		return new RetanguloHandler(this);
 	}
 
-	@Override
-	public void desenhar(Graphics g) {
-		g.drawLine(a.getX(), a.getY(), b.getX(), b.getY());
-	}
 
 	@Override
 	public String getStrPosition() {

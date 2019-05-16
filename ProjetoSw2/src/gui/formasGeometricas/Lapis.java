@@ -37,13 +37,8 @@ public class Lapis implements FormaGeometrica {
         return 0;
     }
 
-    @Transient
-    @Override
-    public   void desenhar(  Graphics g) {
-//        g.setColor(Color.RED);
-        listaPontos.forEach(ponto ->
-                g.fillOval(ponto.getX(), ponto.getY(), 2, 2));
-    }
+
+
 
     @Override
     public String getStrPosition() {

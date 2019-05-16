@@ -47,11 +47,6 @@ public class Quadrado implements FormaGeometrica {
 	}
 
 	@Override
-	public void desenhar(Graphics g) {
-		g.drawLine(a.getX(), a.getY(), b.getX(), b.getY());
-	}
-
-	@Override
 	public String getStrPosition() {
 		return NOME+" ("+a.getX()+", "+a.getY()+"),("+b.getX()+", "+b.getY()+");";
 	}

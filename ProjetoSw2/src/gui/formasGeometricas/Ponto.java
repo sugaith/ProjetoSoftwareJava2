@@ -44,13 +44,7 @@ public class Ponto implements FormaGeometrica {
         return 1;
     }
 
-    @Transient
-    @Override
-    public   void desenhar(  Graphics g) {
-//        g.setColor(Color.RED);
-        g.fillOval(x, y, 4, 4);
 
-    }
 
     @Override
     public String getStrPosition() {
