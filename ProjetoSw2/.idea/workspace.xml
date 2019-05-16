@@ -5,20 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="080c440c-c232-4a88-a94d-fc7f90882920" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/gui/apresentacao/MaquinaEstados.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/apresentacao/FramePrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/apresentacao/FramePrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/apresentacao/MaquinaEstados.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/apresentacao/MaquinaDeEstados.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/Circulo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/Circulo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/FormaGeometrica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/FormaGeometrica.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/Lapis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/Lapis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/Linha.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/Linha.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/MouseSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/MouseSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/Ponto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/Ponto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/Quadrado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/Quadrado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/Retangulo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/Retangulo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/PontoHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/PontoHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/uteis/StateMach.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -41,11 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="97" column="70" lean-forward="true" selection-start-line="97" selection-start-column="70" selection-end-line="97" selection-end-column="70" />
+            <state relative-caret-position="-1938">
+              <caret line="97" column="72" lean-forward="true" selection-start-line="97" selection-start-column="72" selection-end-line="97" selection-end-column="72" />
               <folding>
                 <element signature="e#18643#18644#0" expanded="true" />
                 <element signature="e#18680#18681#0" expanded="true" />
@@ -59,27 +47,27 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/MaquinaEstados.java">
+        <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/MaquinaDeEstados.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1596">
-              <caret line="116" column="12" lean-forward="true" selection-start-line="116" selection-start-column="12" selection-end-line="116" selection-end-column="12" />
+            <state relative-caret-position="253">
+              <caret line="37" column="63" lean-forward="true" selection-start-line="37" selection-start-column="63" selection-end-line="37" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#10204#10205#0" expanded="true" />
-                <element signature="e#10308#10309#0" expanded="true" />
-                <element signature="e#10388#10389#0" expanded="true" />
-                <element signature="e#10504#10505#0" expanded="true" />
+                <element signature="e#10218#10219#0" expanded="true" />
+                <element signature="e#10322#10323#0" expanded="true" />
+                <element signature="e#10402#10403#0" expanded="true" />
+                <element signature="e#10518#10519#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="85">
-                <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="19" />
+              <first_editor relative-caret-position="306">
+                <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
               </first_editor>
               <second_editor />
             </state>
@@ -160,6 +148,7 @@
       <find>this.</find>
       <find>=(</find>
       <find>states.</find>
+      <find>*FOI*</find>
     </findStrings>
     <replaceStrings>
       <replace>Quadrado</replace>
@@ -169,6 +158,7 @@
       <replace>panelPrincipal.getStates().</replace>
       <replace>this.</replace>
       <replace>atualizaPosicaoMouseXY(e);</replace>
+      <replace>**FOI**</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -193,7 +183,6 @@
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/QuadradoHandler.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/RetanguloHandler.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/handlers/PontoHandler.java" />
-        <option value="$PROJECT_DIR$/../README.md" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/FormaGeometrica.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/Retangulo.java" />
         <option value="$PROJECT_DIR$/src/gui/formasGeometricas/Quadrado.java" />
@@ -207,6 +196,8 @@
         <option value="$PROJECT_DIR$/src/gui/apresentacao/FramePrincipal.java" />
         <option value="$PROJECT_DIR$/src/gui/apresentacao/MaquinaEstados.java" />
         <option value="$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java" />
+        <option value="$PROJECT_DIR$/src/gui/apresentacao/MaquinaDeEstados.java" />
+        <option value="$PROJECT_DIR$/../README.md" />
       </list>
     </option>
   </component>
@@ -271,7 +262,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557966106769" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557966634835" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../ProjSw2_forms/src/gui/apresentacao/FramePrincipal.java" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../../../ProjSw2_forms/src/gui/apresentacao/FramePrincipal.java" />
@@ -358,10 +349,10 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Favorites" order="4" sideWeight="0.32087228" side_tool="true" weight="0.18035516" />
-      <window_info active="true" id="Structure" order="5" sideWeight="0.67912775" visible="true" weight="0.18035516" />
+      <window_info id="Structure" order="5" sideWeight="0.67912775" visible="true" weight="0.18035516" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32917964" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.21391486" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.21391486" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997923" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -764,21 +755,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="85">
-            <caret line="8" column="18" lean-forward="true" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="19" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="78" lean-forward="true" selection-start-line="14" selection-start-column="78" selection-end-line="14" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/FramePrincipal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -815,24 +791,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/MaquinaEstados.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1596">
-          <caret line="116" column="12" lean-forward="true" selection-start-line="116" selection-start-column="12" selection-end-line="116" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#10204#10205#0" expanded="true" />
-            <element signature="e#10308#10309#0" expanded="true" />
-            <element signature="e#10388#10389#0" expanded="true" />
-            <element signature="e#10504#10505#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/PanelPrincipal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="97" column="70" lean-forward="true" selection-start-line="97" selection-start-column="70" selection-end-line="97" selection-end-column="70" />
+        <state relative-caret-position="-1938">
+          <caret line="97" column="72" lean-forward="true" selection-start-line="97" selection-start-column="72" selection-end-line="97" selection-end-column="72" />
           <folding>
             <element signature="e#18643#18644#0" expanded="true" />
             <element signature="e#18680#18681#0" expanded="true" />
@@ -841,6 +803,35 @@
             <element signature="e#19564#19565#0" expanded="true" />
             <element signature="e#19593#19594#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/apresentacao/MaquinaDeEstados.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="37" column="63" lean-forward="true" selection-start-line="37" selection-start-column="63" selection-end-line="37" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#10218#10219#0" expanded="true" />
+            <element signature="e#10322#10323#0" expanded="true" />
+            <element signature="e#10402#10403#0" expanded="true" />
+            <element signature="e#10518#10519#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="306">
+            <caret line="18" column="26" lean-forward="true" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="78" lean-forward="true" selection-start-line="14" selection-start-column="78" selection-end-line="14" selection-end-column="78" />
         </state>
       </provider>
     </entry>

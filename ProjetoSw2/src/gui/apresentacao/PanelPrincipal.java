@@ -34,10 +34,10 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
     InterfaceFormaHandler manipulador = null;
     List<InterfaceFormaHandler> listaManipuladoresSelecionados = new ArrayList<>();
     Documento doc;
-//    MaquinaEstados states;
+//    MaquinaDeEstados states;
     JPopupMenu popupMenu = new JPopupMenu();
 
-    private MaquinaEstados states = new MaquinaEstados(this);
+    private MaquinaDeEstados states = new MaquinaDeEstados(this);
 
 
     /**
@@ -81,12 +81,12 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
                 System.out.println("menu item ["
                         + event.getActionCommand() + "] pressionado");
 
-                if (event.getActionCommand().equals(MaquinaEstados.TRANSLATE)){
-                    states.setSelectedSubTool(MaquinaEstados.TRANSLATE);
+                if (event.getActionCommand().equals(MaquinaDeEstados.TRANSLATE)){
+                    states.setSelectedSubTool(MaquinaDeEstados.TRANSLATE);
                     setCursor(new Cursor(Cursor.MOVE_CURSOR));
 
                 }
-                if (event.getActionCommand().equals(MaquinaEstados.ROTATE)){
+                if (event.getActionCommand().equals(MaquinaDeEstados.ROTATE)){
 
                 }
 
@@ -95,10 +95,10 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
         };
         JMenuItem item;
 
-        popupMenu.add(item = new JMenuItem(MaquinaEstados.TRANSLATE));
+        popupMenu.add(item = new JMenuItem(MaquinaDeEstados.TRANSLATE));
         item.addActionListener(menuListener);
         popupMenu.addSeparator();
-        popupMenu.add(item = new JMenuItem(MaquinaEstados.ROTATE));
+        popupMenu.add(item = new JMenuItem(MaquinaDeEstados.ROTATE));
         item.addActionListener(menuListener);
         popupMenu.setBorder(new BevelBorder(BevelBorder.RAISED));
     }
@@ -345,11 +345,11 @@ public class PanelPrincipal extends javax.swing.JPanel implements MouseListener,
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public void setStates(MaquinaEstados states) {
+    public void setStates(MaquinaDeEstados states) {
         this.states = states;
     }
 
-    public MaquinaEstados getStates() {
+    public MaquinaDeEstados getStates() {
         return states;
     }
 

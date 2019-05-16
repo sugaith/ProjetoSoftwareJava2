@@ -6,7 +6,7 @@ import utils.Uteis;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-public class MaquinaEstados {
+public class MaquinaDeEstados {
     public static String NONE = "NONE";
     public static String ROTATE = "Rotação";
     public static String TRANSLATE  = "Translação";
@@ -20,7 +20,7 @@ public class MaquinaEstados {
 
     private PanelPrincipal panelDesenho;
 
-    public MaquinaEstados(PanelPrincipal panelDesenho) {
+    public MaquinaDeEstados(PanelPrincipal panelDesenho) {
         this.panelDesenho = panelDesenho;
 
         selectedTool = MouseSelect.NOME;
@@ -46,7 +46,7 @@ public class MaquinaEstados {
             case (MouseSelect.NOME):{
 
                 //todo por SWITCH CASE
-                if (this.getSelectedSubTool().equals( MaquinaEstados.TRANSLATE )){
+                if (this.getSelectedSubTool().equals( MaquinaDeEstados.TRANSLATE )){
                     //constantes de translado
                     int w = e.getX() - panelDesenho.mouseCoords_saved.getX()  ;
                     int h = e.getY() - panelDesenho.mouseCoords_saved.getY()  ;
@@ -118,7 +118,7 @@ public class MaquinaEstados {
                 //todo fazer SWITCH CASE
 
 
-                if (this.getSelectedSubTool().equals( MaquinaEstados.TRANSLATE )){
+                if (this.getSelectedSubTool().equals( MaquinaDeEstados.TRANSLATE )){
                     //salva coordenadas do mouse
                     panelDesenho.mouseCoords_saved = new Ponto(e.getX(), e.getY());
 
@@ -254,8 +254,8 @@ public class MaquinaEstados {
                 panelDesenho.atualizar();
 
                 //mostra popup caso haja selecionados
-                if (this.getSelectedSubTool().equals(MaquinaEstados.TRANSLATE)){
-                    this.setSelectedSubTool(MaquinaEstados.NONE);
+                if (this.getSelectedSubTool().equals(MaquinaDeEstados.TRANSLATE)){
+                    this.setSelectedSubTool(MaquinaDeEstados.NONE);
                 }else{
                     if (panelDesenho.listaManipuladoresSelecionados.size() > 0)
                         panelDesenho.showPopupMenu(e);
@@ -274,7 +274,7 @@ public class MaquinaEstados {
 
         if (getSelectedTool().equals( MouseSelect.NOME )){
             panelDesenho.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            if (getSelectedSubTool().equals( MaquinaEstados.TRANSLATE )){
+            if (getSelectedSubTool().equals( MaquinaDeEstados.TRANSLATE )){
 
                 panelDesenho.setCursor(new Cursor(Cursor.MOVE_CURSOR));
             }
