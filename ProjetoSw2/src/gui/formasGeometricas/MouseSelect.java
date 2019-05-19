@@ -63,8 +63,13 @@ public class MouseSelect implements FormaGeometrica {
 		return new byte[0];
 	}
 
+    @Override
+    public String toTextLineBD() {
+        return null;
+    }
 
-	@Override
+
+    @Override
 	public String toString() {
 		return String.format("%s %s", a, b);
 	}

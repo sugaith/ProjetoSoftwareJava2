@@ -14,6 +14,8 @@ public interface FormaGeometrica extends Serializable {
     String toTextLine();
     byte[] toByteArray();
 
+    String toTextLineBD();
+
     InterfaceFormaHandler getFormaHandler(FormaGeometrica forma);
 
 

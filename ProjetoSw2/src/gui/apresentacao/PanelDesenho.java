@@ -9,6 +9,7 @@ import gui.Documento;
 import gui.formasGeometricas.*;
 import gui.formasGeometricas.handlers.InterfaceFormaHandler;
 import gui.uteis.Iterador;
+import persistencia.dao.Forma;
 import utils.Uteis;
 
 import javax.swing.*;
@@ -39,6 +40,8 @@ public class PanelDesenho extends javax.swing.JPanel implements MouseListener, M
 
     private MaquinaDeEstados states = new MaquinaDeEstados(this);
 
+    boolean pintarTodos = false;
+
 
     /**
      * Creates new form PanelDesenho
@@ -51,6 +54,7 @@ public class PanelDesenho extends javax.swing.JPanel implements MouseListener, M
         createPopupMenu();//cria popup menu
         addMouseListener(this);
         addMouseMotionListener(this);
+        setSize(WIDTH_CANVAS, HEIGHT_CANVAS);
 
         iniciaCanvas();
     }
@@ -230,22 +234,24 @@ public class PanelDesenho extends javax.swing.JPanel implements MouseListener, M
 
     @Override
     public void paintComponent (Graphics g){
-//ORIGINAL 2
-//        super.paintComponent(g);//limpa area de desenho
-//        Iterador<FormaGeometrica> it = doc.getIterador();
-//        FormaGeometrica forma;
-//
-//         while((forma = it.proximo()) != null) {
-//                forma.desenhar(g);
-//         }
-
-
-
-
 //TODO TENTAR FAZER SEM REDESENHAR TUDO
 //todo try 4 SUCESSO!!!!!!!!!
         //RECUPERA SNAPSHOT
         canvas = Uteis.deepCopyBI(snapCanvas);
+
+        if (pintarTodos){
+            Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
+            newGraph.setColor(Color.BLACK);
+            Iterador<FormaGeometrica> i = doc.getIterador();
+            FormaGeometrica formaGeometrica;
+
+            while((formaGeometrica = i.proximo()) != null) {
+                formaGeometrica.getFormaHandler(formaGeometrica).paint(newGraph);
+            }
+            newGraph.dispose();
+
+            pintarTodos = false;
+        }
 
         //pinta formas selecionadas de vermelho se houver
         if (! listaManipuladoresSelecionados.isEmpty()){
@@ -274,36 +280,6 @@ public class PanelDesenho extends javax.swing.JPanel implements MouseListener, M
         g.drawImage(canvas, 0, 0, null);
 //        repaint(); //loop infinito na thead!! (RECURSãO)
         System.out.println("pintou canvas");
-
-
-
-//todo try 3 SUCESSO +-
-//        if (manipulador != null){
-//            Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
-//            newGraph.setColor(Color.black);
-//            manipulador.paint(newGraph);
-//            newGraph.dispose();
-//        }
-//        g.drawImage(canvas, 0, 0, null);
-//        repaint();
-
-
-//todo try 2
-//        if (newGraph == null){
-//            super.paintComponent(g);//limpa area de desenho
-//            newGraph = (Graphics2D) g.create();
-//        }else{
-//            if (manipulador != null)
-//                manipulador.paint(newGraph);
-//        }
-
-
-//todo try1
-//        newGraph = (Graphics2D) g.create();
-//        newGraph.setBackground(Color.WHITE);
-//        super.paintComponent(newGraph);
-//        if (manipulador != null)
-//            manipulador.paint(newGraph);
 
     }
 
@@ -351,6 +327,10 @@ public class PanelDesenho extends javax.swing.JPanel implements MouseListener, M
 
     public MaquinaDeEstados getStates() {
         return states;
+    }
+
+    public void setPintarTodos(boolean pintarTodos) {
+        this.pintarTodos = pintarTodos;
     }
 
     //    /**

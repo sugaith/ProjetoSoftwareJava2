@@ -12,6 +12,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.beans.Transient;
 import java.io.ByteArrayOutputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.stream.Collectors;
 
 /**
@@ -20,6 +22,7 @@ import java.util.stream.Collectors;
  */
 public class Ponto implements FormaGeometrica {
     public static final String NOME = "Ponto";
+    public static final byte ID = 1;
     private int x;
     private int y;
 
@@ -36,14 +39,29 @@ public class Ponto implements FormaGeometrica {
     public Ponto(byte[] arrayForma) {
 //        this.x = (arrayForma[0] & 0xFF);
 //        this.y = (arrayForma[1] & 0xFF);
-        this.x = (arrayForma[0]);
-        this.y = (arrayForma[1]);
+
+//        this.x = (arrayForma[0]);
+//        this.y = (arrayForma[1]);
+
+        ByteBuffer bb = ByteBuffer.allocate(4);
+//        bb.order(ByteOrder.LITTLE_ENDIAN);//ordem de bits esq p/ direita
+        bb.put(arrayForma[1]);//x
+        bb.put(arrayForma[2]);//x
+        bb.put(arrayForma[3]);//y
+        bb.put(arrayForma[4]);//y
+
+        this.x = bb.getShort(0);
+        this.y = bb.getShort(2);
     }
 
-    public static int getIdentificadorBinario() {
-        return 1;
+    @Override
+    public byte[] toByteArray() {
+        ByteBuffer buffer = ByteBuffer.allocate(5);
+        buffer.put(ID);//id
+        buffer.putShort( (short) x );
+        buffer.putShort( (short) y );
+        return buffer.array();
     }
-
 
 
     @Override
@@ -53,7 +71,7 @@ public class Ponto implements FormaGeometrica {
 
     @Override
     public String toTextLine() {
-        return "Ponto " + x + " " + y;
+        return NOME+" " + x + " " + y;
     }
 
     @Override
@@ -61,15 +79,12 @@ public class Ponto implements FormaGeometrica {
         return NOME;
     }
 
+
+
     @Override
-    public byte[] toByteArray() {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    public String toTextLineBD() {
+        return x+","+y;
 
-        baos.write( this.getIdentificadorBinario() );
-        baos.write( x );
-        baos.write( y );
-
-        return baos.toByteArray();
     }
 
     @Override

@@ -6,9 +6,13 @@ import gui.formasGeometricas.handlers.QuadradoHandler;
 import gui.formasGeometricas.handlers.RetanguloHandler;
 
 import java.awt.*;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 public class Retangulo implements FormaGeometrica {
 	public static final long serialVersionUID = 2L;
+	public static final byte ID = 4;
+
 	public static final String NOME = "Retangulo";
 	private Ponto a;
 	private Ponto b;
@@ -28,18 +32,27 @@ public class Retangulo implements FormaGeometrica {
 		this.b = new Ponto(b);
 	}
 
-	public Retangulo(byte bytes[]) {
-//		if (ByteBuffer.wrap(bytes, 0, 8).getLong() != serialVersionUID) {
-//			a.x = 0;
-//			a.y = 0;
-//			b.x = 0;
-//			b.y = 0;
-//			return;
-//		}
-//		a.x = ByteBuffer.wrap(bytes, 8, 12).getInt();
-//		a.y = ByteBuffer.wrap(bytes, 12, 16).getInt();
-//		b.x = ByteBuffer.wrap(bytes, 16, 20).getInt();
-//		b.y = ByteBuffer.wrap(bytes, 20, 24).getInt();
+	public Retangulo(byte arrayForma[]) {
+		ByteBuffer bb = ByteBuffer.allocate(8);
+//		bb.order(ByteOrder.LITTLE_ENDIAN);//ordem de bits esq p/ direita
+		bb.put(arrayForma[1]);//x
+		bb.put(arrayForma[2]);//x
+		bb.put(arrayForma[3]);//y
+		bb.put(arrayForma[4]);//y
+
+		bb.put(arrayForma[5]);//x
+		bb.put(arrayForma[6]);//x
+		bb.put(arrayForma[7]);//y
+		bb.put(arrayForma[8]);//y
+
+		int x1 = bb.getShort(0);
+		int y1 = bb.getShort(2);
+
+		int x2 = bb.getShort(4);
+		int y2 = bb.getShort(6);
+
+		this.a = new Ponto(x1,y1);
+		this.b = new Ponto(x2,y2);
 	}
 
 	@Override
@@ -55,16 +68,27 @@ public class Retangulo implements FormaGeometrica {
 
 	@Override
 	public String toTextLine() {
-		return NOME+" "+a.getX()+" "+a.getY()+" "+b.getX()+"  "+b.getY();
+		return NOME+" "+a.getX()+" "+a.getY()+" "+b.getX()+" "+b.getY();
 	}
 
 	@Override
 	public byte[] toByteArray() {
-		return new byte[0];
+		ByteBuffer buffer = ByteBuffer.allocate(9);
+		buffer.put(ID);//id
+		buffer.putShort( (short) getA().getX() );
+		buffer.putShort( (short) getA().getY() );
+		buffer.putShort( (short) getB().getX() );
+		buffer.putShort( (short) getB().getY() );
+		return buffer.array();
 	}
 
+    @Override
+    public String toTextLineBD() {
+		return a.getX()+","+a.getY()+" | "+b.getX()+","+b.getY();
+    }
 
-	@Override
+
+    @Override
 	public String toString() {
 		return NOME;
 	}

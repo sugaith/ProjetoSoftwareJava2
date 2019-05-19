@@ -13,11 +13,7 @@ import java.sql.Connection;
  */
 public class Conexao {
     protected Connection conexao;
-
-    
-
-
-
+    protected static String info = "";
 
     /**
      * @return the conexao
@@ -33,4 +29,7 @@ public class Conexao {
         this.conexao = conexao;
     }
 
+    public static String getInfo() {
+        return info;
+    }
 }

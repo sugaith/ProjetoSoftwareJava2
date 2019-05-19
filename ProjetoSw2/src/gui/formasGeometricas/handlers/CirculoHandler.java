@@ -20,6 +20,7 @@ public class CirculoHandler implements InterfaceFormaHandler {
 
     @Override
     public void paint(Graphics g) {
+
         int r = Uteis.distanciaEuclidiana( circulo.getA(), circulo.getB() );
 
         int x = circulo.getA().getX() - (r/2);

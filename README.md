@@ -9,30 +9,37 @@
 
 # PARA TRABAHO FINAL APRESENTACAO
 
-0) - FAazer uma classe Aplicacao que instancia o documento e chama o FramePrincipal (SINGLETON)
+0) - ***FOI*** Fazer uma classe Aplicacao que instancia o documento e chama o FramePrincipal (SINGLETON)
 
 1) - DOCUMENTACAO
        - fazer e gerar java doc ??????
-       - DIAGRAMA DE CLASSE -> descriminar os padroes de projeto (handler, listener, iterator, singleton..
+       - ***FOI*** MER
+       - DIAGRAMA DE CLASSE -> 
             - ***FOI*** INICIO
             - ***FOI*** MEIO
             - FIM         
+            - descriminar os padroes 
+                - handler, listener, iterator, singleton, DAO, factory, stream/lambda..
     
 2) ***FOI*** PADRAO MANIPULADOR (handler) E CONTINUACAO P/ DE FORMAS AUTOMATICAS
    - ***FOI*** FORMAS --> LINHA QUADRADO(GANHA UMA ESTRELINHA) E CIRCULO, RETANGULO   
 
-3) ACESSO A BANCO DE DADOS
-   - tabela DOCUMENTO -> FORMA  
-    - INSERIR
-    - SELECIONAR   
-    - ATUALIZAR
-    - REMOVER
+3) ***FOI*** ACESSO A BANCO DE DADOS
+   - ***FOI*** tabela DOCUMENTO -> FORMA  
+    - ***FOI*** INSERIR
+    - ***FOI*** CONSULTAR   
+    - ***FOI*** ATUALIZAR
+    - ***FOI*** REMOVER
     
-4) VISUALIZACAO FORMATO DE TABELA E TEXTO
-    - ARRUMAR TEXT AREA
-    - FAZER JTABLE 
+4) ***FOI*** VISUALIZACAO FORMATO DE TABELA E TEXTO
+    - ***FOI*** ARRUMAR TEXT AREA
+    - ***FOI*** FAZER JTABLE 
     
 5) PLUS
+    - ***FOI*** Arrumar persistencia arquivos
+        - ***FOI*** TEXTO
+        - ***FOI*** SERIAL
+        - ***FOI*** BINARIO
     - ***FOI*** CONTUNUAÇÀO AO TERMINAR FORMA
     - ***FOI*** PINTAR SEM PERCORRER (atualizacao do paint) E REDESENHAR TODAS AS FORMAS
     - ***FOI*** MAQINA ESTADOS -> por os cases dentro da maquina em cada evento, e retornar forma
@@ -41,12 +48,12 @@
         - DELETE
         - ***FOI*** TRANSLATE
         - ROTATE
+    - ***FOI*** ROLLBACK E AUTOCOMMIT FALSE NOS DAOS
     
 # À fazer - DETALHES:
 - adicionar barra de rolagem no canvas (interface para determinar tamanho do canvas)
-- AO MOVER AS FORMAS, pintar de preto todos os nao selecionados (ao inves de pintar de branco os selecionados)
 - ***FOI*** arrumar o ponto (deixar desenhando apenas um ponto, sem o comportamento do drago - igual ao lapis)
-- SALVAR EM PNG 
+- ***FOI*** SALVAR EM PNG 
 
     
     

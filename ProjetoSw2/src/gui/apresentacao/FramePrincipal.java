@@ -6,12 +6,18 @@
 package gui.apresentacao;
 
 import gui.Documento;
+import gui.apresentacao.visualizacao.FrameBancoDeDados;
 import gui.apresentacao.visualizacao.FrameTabela;
 import gui.apresentacao.visualizacao.FrameTexto;
 import gui.apresentacao.visualizacao.PanelTexto;
 import gui.formasGeometricas.*;
 import gui.uteis.Iterador;
 import gui.uteis.ListaEncadeada;
+import persistencia.ConexaoMySQL;
+import persistencia.Factory;
+import persistencia.dao.DaoDesenho;
+import persistencia.dao.Desenho;
+import utils.Uteis;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,9 +29,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -34,20 +40,47 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Thiago Correa
  */
 public class FramePrincipal extends javax.swing.JFrame {
+    private static String TITLE = "Trabalho Projeto Sw II 2bim, 2019 - Prof Miguel Matrakas";
+
+    private ConexaoMySQL mysql
+            = new ConexaoMySQL
+            ("192.168.15.5", "projsw2_paint",
+            "root", "root");
 
     private Documento doc = new Documento();
 
+    private FrameBancoDeDados frameBancoDeDados;
     private FrameTexto frameTexto;
     private FrameTabela frameTabela;
     private PanelTexto panelTexto;
+    private Desenho desenhoAberto = null;
+
 
 
     /**
      * Creates new form FramePrincipal
      */
-    public FramePrincipal() {
+    public FramePrincipal(Documento doc) {
+        super(TITLE);
+        this.doc = doc;
+        panelDesenho = new PanelDesenho(doc);
 
-        super("Trabalho Projeto Sw II 2bim, 2019 - Prof Miguel Matrakas");
+        //configura interface
+        initComponents();
+        setSize(1000,800);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+
+        //atualiza label com estado inicial
+        labelSelectedTool.setText(panelDesenho.getStates().getSelectedTool());
+
+        //listener para posicao do mouse
+        panelDesenho.addListener4MousePos( labelPosicaoMouseX, labelPosicaoMouseY, labelEventoMouse );
+        doc.adicionaOuvinte(panelDesenho);
+    }
+
+    public FramePrincipal() {
+        super(TITLE);
         panelDesenho = new PanelDesenho(doc);
 
         //configura interface
@@ -79,6 +112,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         labelPosicaoMouseX = new javax.swing.JLabel();
         labelPosicaoMouseY = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         btnMouse = new javax.swing.JButton();
         btnPonto = new javax.swing.JButton();
@@ -102,13 +136,14 @@ public class FramePrincipal extends javax.swing.JFrame {
         menuItem_salvarBinario = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         menuItem_abrirSerial = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem_salvarSerial = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItemArqBdAbrir = new javax.swing.JMenuItem();
         jMenuItemArqBdSalvar = new javax.swing.JMenuItem();
         jMenuItemArqBdSalvarComo = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItemLimparTela = new javax.swing.JMenuItem();
+        jMenuItemNovo = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItemVerFormatoTexto = new javax.swing.JMenuItem();
         jMenuItemVerFormatoTabela = new javax.swing.JMenuItem();
@@ -296,6 +331,19 @@ public class FramePrincipal extends javax.swing.JFrame {
 
 
 
+        panelDesenho.setLayout(PanelPrincipalLayout);
+        PanelPrincipalLayout.setHorizontalGroup(
+            PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        PanelPrincipalLayout.setVerticalGroup(
+            PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 449, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(panelDesenho);
+//        jScrollPane1.add(panelDesenho);
+
         jMenu1.setText("Arquivo");
 
         jMenu3.setText("Arquivo Txt");
@@ -318,9 +366,18 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         jMenu6.add(jMenu3);
 
+
+        jMenu6.setText("Disco");
         jMenu4.setText("Arquivo binário");
 
         menuItem_abrirBinaro.setText("Abrir Binário");
+        menuItem_abrirBinaro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItem_abrirBinarioActionPerformed(evt);
+            }
+        });
+
+
         jMenu4.add(menuItem_abrirBinaro);
 
         menuItem_salvarBinario.setText("Salvar Binário");
@@ -343,11 +400,18 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         jMenu5.add(menuItem_abrirSerial);
 
-        jMenuItem1.setText("Salvar Serial");
-        jMenu5.add(jMenuItem1);
+        jMenuItem_salvarSerial.setText("Salvar Serial");
+        jMenuItem_salvarSerial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItem_salvarSerialActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem_salvarSerial);
 
         jMenu6.add(jMenu5);
 
+
+        jMenu1.add(jMenuItemNovo);
         jMenu1.add(jMenu6);
 
         jMenu7.setText("Banco de Dados");
@@ -371,16 +435,33 @@ public class FramePrincipal extends javax.swing.JFrame {
         jMenuItemArqBdSalvarComo.setText("Salvar como..");
         jMenuItemArqBdSalvarComo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemArqBdSalvarComoActionPerformed(evt);
+                jMenuItemArqBdSalvarComo(evt);
             }
         });
         jMenu7.add(jMenuItemArqBdSalvarComo);
+
+        JMenuItem menuExportarPNG = new JMenuItem();
+        menuExportarPNG.setText("Exportar PNG..");
+        menuExportarPNG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemExportarPNG(evt);
+            }
+        });
+
+        jMenu1.add(menuExportarPNG);
 
         jMenu1.add(jMenu7);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Editar");
+
+        jMenuItemNovo.setText("Novo");
+        jMenuItemNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItem_ArqNovo(evt);
+            }
+        });
 
         jMenuItemLimparTela.setText("Limpar Tela");
         jMenuItemLimparTela.addActionListener(new java.awt.event.ActionListener() {
@@ -419,12 +500,12 @@ public class FramePrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(panelDesenho, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panelDesenho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -472,6 +553,37 @@ public class FramePrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jMenuItemExportarPNG(ActionEvent evt) {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Exportar");
+        FileNameExtensionFilter filterTxt = new FileNameExtensionFilter("PNG", "png");
+        fileChooser.addChoosableFileFilter(filterTxt);
+
+        int userSelection = fileChooser.showSaveDialog(this);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            try {
+                File fileToSave = fileChooser.getSelectedFile();
+                Path file = Paths.get(fileToSave.getCanonicalPath() + ".png");
+
+                File outputfile = new File(file.toString());
+                ImageIO.write(panelDesenho.canvas, "png", outputfile);
+
+                System.out.println("arquivo salvo====> " + fileToSave.getAbsolutePath());
+                Uteis.showAlert("Arquivo salvo: "+fileToSave.getAbsolutePath());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void menuItem_ArqNovo(ActionEvent evt) {
+        menuItem_limparTelaActionPerformed(evt);
+        desenhoAberto = null;
+        setTitle( "NOVO - " + TITLE );
+    }
+
     private void btnMouseActionPerformed(ActionEvent evt) {
         panelDesenho.getStates().setSelectedTool(MouseSelect.NOME);
         labelSelectedTool.setText(MouseSelect.NOME);
@@ -513,7 +625,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         panelDesenho.iniciaCanvas();
     }
 
-    private void menuItem_abrirTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_abrirTxtActionPerformed
+    private void menuItem_abrirTxtActionPerformed(java.awt.event.ActionEvent evt) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
         FileNameExtensionFilter filterTxt = new FileNameExtensionFilter("Arq texto", "txt");
@@ -529,28 +641,19 @@ public class FramePrincipal extends javax.swing.JFrame {
                 ListaEncadeada<FormaGeometrica> listaPoint_aux = new ListaEncadeada<>();
                 lines.forEach(s -> {
                     System.out.println(s);
-                    String px, py;
-                    px = s.split(" ")[1];
-                    py = s.split(" ")[2];
-                    int x = Integer.valueOf(px);
-                    int y = Integer.valueOf(py);
-                    
-                    Ponto p = new Ponto(x, y);
 
-//                    listaPoint_aux.inserirFim(p);
-                    doc.inserirFim( p );
+                    FormaGeometrica forma = Factory.criarFormaGeom_porTexto( s );
+                    if (forma != null)
+                        doc.inserirFim( forma );
                 });
-//                panelDesenho panel = (panelDesenho) panelDesenho;
-//                panel.setPoints(listaPoint_aux);
-//                panel.repaint();
 
+                panelDesenho.setPintarTodos( true );
                 doc.atualizaOuvintes();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } 
-    }//GEN-LAST:event_menuItem_abrirTxtActionPerformed
+    }
 
     private void menuItem_abrirSerialActionPerformed(java.awt.event.ActionEvent evt) {
         JFileChooser fileChooser = new JFileChooser();
@@ -574,6 +677,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 doc.setListaFormas( obj.getListaFormas() );
 //                this.doc = obj;
 
+                panelDesenho.setPintarTodos( true );
                 doc.atualizaOuvintes();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -602,13 +706,16 @@ public class FramePrincipal extends javax.swing.JFrame {
                 o.close();
                 f.close();
                 System.out.println("arquivo salvo====> " + fileToSave.getAbsolutePath());
+                Uteis.showAlert("Arquivo salvo: "+fileToSave.getAbsolutePath());
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private void menuItem_salvarTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_salvarTxtActionPerformed
+    //SALVAR ARQ TEXTO
+    private void menuItem_salvarTxtActionPerformed(java.awt.event.ActionEvent evt) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Salvar como");  
         FileNameExtensionFilter filterTxt = new FileNameExtensionFilter("Arq texto", "txt");
@@ -621,18 +728,6 @@ public class FramePrincipal extends javax.swing.JFrame {
             try {
                 List<String> lines = new ArrayList<>();
 
-//                panelDesenho panel = (panelDesenho) panelDesenho;
-//                for (int i=0; i<panel.getPoints().getTamanho(); i++){
-////                    Point p = panel.getPoints().pesquisar(i);
-//                    Ponto p = panel.getPoints().pesquisar(i);
-////                    Double x = p.getX();
-////                    Double y = p.getY();
-//
-//                    String line = "Ponto " + p.getX() + " " + p.getY();
-//                    lines.add(line);
-//                }
-
-                //todo novo salvar com forma
                 Iterador<FormaGeometrica> it = doc.getIterador();
                 FormaGeometrica forma;
                 while((forma = it.proximo()) != null) {
@@ -642,15 +737,16 @@ public class FramePrincipal extends javax.swing.JFrame {
 
                 Path file = Paths.get(fileToSave.getCanonicalPath() + ".txt");
                 Files.write(file, lines, Charset.forName("UTF-8"));
-                //Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
+
                 System.out.println("arquivo salvo====> " + fileToSave.getAbsolutePath());
+                Uteis.showAlert("Arquivo salvo: "+fileToSave.getAbsolutePath());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-    }//GEN-LAST:event_menuItem_salvarTxtActionPerformed
+    }
 
-    private void menuItem_salvarBinarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_salvarBinarioActionPerformed
+    private void menuItem_salvarBinarioActionPerformed(java.awt.event.ActionEvent evt) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Salvar como");  
         FileNameExtensionFilter filterBin = new FileNameExtensionFilter("Arq Binario", "bin");
@@ -660,25 +756,9 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             try {
-//                File fileToSave = fileChooser.getSelectedFile();
                 File fileToSave = new File( fileChooser.getSelectedFile().getCanonicalPath() + ".bin" );
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
-//                panelDesenho panel = (panelDesenho) panelDesenho;
-//                for (int i=0; i < panel.getPoints().getTamanho(); i++){
-////                    Point p = panel.getPoints().pesquisar(i);
-//                    Ponto p = panel.getPoints().pesquisar(i);
-////                    Double x = p.getX();
-////                    Double y = p.getY();
-//                    int repr_ponto = 1;
-//                    baos.write(repr_ponto);
-////                    baos.write(x.intValue());
-////                    baos.write(y.intValue());
-//                    baos.write(p.getX());
-//                    baos.write(p.getY());
-//                }
-
-                //todo novo salvar com forma OK
                 Iterador<FormaGeometrica> it = doc.getIterador();
                 FormaGeometrica forma;
                 while((forma = it.proximo()) != null) {
@@ -690,13 +770,14 @@ public class FramePrincipal extends javax.swing.JFrame {
                 fos.close();
                 
                 System.out.println("arquivo salvo====> " + fileToSave.getAbsolutePath());
+                Uteis.showAlert("Arquivo salvo: "+fileToSave.getAbsolutePath());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-    }//GEN-LAST:event_menuItem_salvarBinarioActionPerformed
+    }
 
-    private void menuItem_abrirBinarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem_abrirBinarioActionPerformed
+    private void menuItem_abrirBinarioActionPerformed(java.awt.event.ActionEvent evt) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
         FileNameExtensionFilter filterTxt = new FileNameExtensionFilter("Arq binario", "bin");
@@ -710,46 +791,108 @@ public class FramePrincipal extends javax.swing.JFrame {
                 Path file = Paths.get(selectedFile.getCanonicalPath());
 
                 byte[] fileContent = Files.readAllBytes(file);
-                int i=0;
-                while (i<fileContent.length){
-                    //le primeiro byte INDENTIFICADOR (por enquanto apenas ponto)
-                    byte byteID = fileContent[i];
 
-                    if (byteID == Ponto.getIdentificadorBinario()){
-                        int qtPontos = 2;
+                List<FormaGeometrica> listaFormasGeo = Factory.gerarFormasGeometricas( fileContent );
 
-                        byte[] arrayForma = Arrays.copyOfRange(fileContent, i+1, i+1+ qtPontos);
-                        Ponto p = new Ponto( arrayForma );
-                        doc.inserirFim( p );
+                panelDesenho.iniciaCanvas();
+                doc.setListaFormas(new ListaEncadeada<>());
 
-                        //todo acrescenta depenendo da forma
-                        i += qtPontos + 1;
-                    }
+                listaFormasGeo.forEach(formaGeometrica ->{
+                    panelDesenho.novaFormaGeometrica( formaGeometrica );
+                });
 
-
-                    //todo substutuir por switch-case de formas
-                }
-
+                panelDesenho.setPintarTodos( true );
                 doc.atualizaOuvintes();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-    }//GEN-LAST:event_menuItem_abrirBinarioActionPerformed
+    }
 
-    private void jMenuItemArqBdAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemArqBdAbrirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemArqBdAbrirActionPerformed
+    private void jMenuItemArqBdAbrirActionPerformed(java.awt.event.ActionEvent evt) {
+        frameBancoDeDados = new FrameBancoDeDados(this, mysql);
+        frameBancoDeDados.addWindowListener(new WindowAdapter() {
 
-    private void jMenuItemArqBdSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemArqBdSalvarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemArqBdSalvarActionPerformed
+            @Override
+            public void windowClosing(WindowEvent e) {
+//                doc.removeOuvinte(panelTexto);
+//                frameTabela = null;
+                frameBancoDeDados.dispose();
+            }
 
-    private void jMenuItemArqBdSalvarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemArqBdSalvarComoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemArqBdSalvarComoActionPerformed
+        });
+        frameBancoDeDados.setVisible(true);
+    }
 
-    private void jMenuItemVerFormatoTabelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVerFormatoTabelaActionPerformed
+    public void abreDesenho ( Desenho desenho ){
+        desenhoAberto = desenho;
+
+        setTitle( desenho.getNome() + " - " +TITLE );
+
+        doc.setListaFormas( new ListaEncadeada<>() );
+        panelDesenho.iniciaCanvas();
+
+        List<FormaGeometrica> listaFormas = Factory.gerarFormasGeometricas( desenho );
+
+        listaFormas.forEach(formaGeometrica ->{
+            panelDesenho.novaFormaGeometrica( formaGeometrica );
+        });
+
+        panelDesenho.setPintarTodos( true );
+
+        doc.atualizaOuvintes();
+    }
+
+    private void jMenuItemArqBdSalvarActionPerformed(java.awt.event.ActionEvent evt) {
+
+        if (desenhoAberto == null){
+            jMenuItemArqBdSalvarComo(evt);
+        }else{
+            Desenho d_aux = Factory.criarDesenhoDao(doc, desenhoAberto.getNome());
+            d_aux.setId( desenhoAberto.getId() );
+
+            mysql.conectar();
+
+            if (new DaoDesenho(mysql.getConexao()).atualizarDesenho( d_aux )){
+                desenhoAberto = new DaoDesenho(mysql.getConexao()).consultaId( d_aux.getId() );
+                setTitle( desenhoAberto.getNome() + " - " + TITLE );
+
+                Uteis.showAlert( desenhoAberto.getNome()+ " atualizado!" + desenhoAberto.getId() );
+            }else{
+                Uteis.showAlert( DaoDesenho.getInfo() );
+            }
+
+            mysql.desconectar();
+
+        }
+
+
+    }
+
+    private void jMenuItemArqBdSalvarComo(java.awt.event.ActionEvent evt) {
+        String nome = Uteis.showInput("Insira o nome do desenho:");
+        System.out.println(nome);
+
+        if (nome != null){
+            Desenho desenho = Factory.criarDesenhoDao(doc, nome);
+
+            mysql.conectar();
+
+            if (new DaoDesenho(mysql.getConexao()).inserirDesenho(desenho)){
+                desenhoAberto = new DaoDesenho(mysql.getConexao()).consultaId(DaoDesenho.last_genKey);
+                setTitle( desenhoAberto.getNome() + " - " + TITLE );
+
+                Uteis.showAlert( nome + " inserido!" + DaoDesenho.last_genKey );
+            }else{
+                Uteis.showAlert( DaoDesenho.getInfo() );
+            }
+
+            mysql.desconectar();
+        }
+    }
+
+    private void jMenuItemVerFormatoTabelaActionPerformed(java.awt.event.ActionEvent evt) {
 
         frameTabela = new FrameTabela(doc);
         frameTabela.addWindowListener(new WindowAdapter() {
@@ -765,9 +908,9 @@ public class FramePrincipal extends javax.swing.JFrame {
         doc.adicionaOuvinte(frameTabela);
         frameTabela.setVisible(true);
 
-    }//GEN-LAST:event_jMenuItemVerFormatoTabelaActionPerformed
+    }
 
-    private void jMenuItemVerFormatoTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVerFormatoTextoActionPerformed
+    private void jMenuItemVerFormatoTextoActionPerformed(java.awt.event.ActionEvent evt) {
 
         panelTexto = new PanelTexto(doc);
         doc.adicionaOuvinte(panelTexto);
@@ -785,42 +928,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         frameTexto.setVisible(true);
 
-    }//GEN-LAST:event_jMenuItemVerFormatoTextoActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FramePrincipal().setVisible(true);
-            }
-        }); 
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private PanelDesenho panelDesenho;
@@ -845,7 +954,8 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem_salvarSerial;
+    private javax.swing.JMenuItem jMenuItemNovo;
     private javax.swing.JMenuItem jMenuItemLimparTela;
     private javax.swing.JMenuItem jMenuItemArqBdAbrir;
     private javax.swing.JMenuItem jMenuItemArqBdSalvar;
@@ -854,6 +964,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemVerFormatoTexto;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelPosicaoMouseX;
     private javax.swing.JLabel labelPosicaoMouseY;
     private javax.swing.JLabel labelSelectedTool;
@@ -862,5 +973,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItem_abrirTxt;
     private javax.swing.JMenuItem menuItem_salvarBinario;
     private javax.swing.JMenuItem menuItem_salvarTxt;
+
+
     // End of variables declaration//GEN-END:variables
 }
