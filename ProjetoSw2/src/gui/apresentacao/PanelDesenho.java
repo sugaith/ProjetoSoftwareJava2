@@ -9,7 +9,6 @@ import gui.Documento;
 import gui.formasGeometricas.*;
 import gui.formasGeometricas.handlers.InterfaceFormaHandler;
 import gui.uteis.Iterador;
-import persistencia.dao.Forma;
 import utils.Uteis;
 
 import javax.swing.*;

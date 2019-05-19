@@ -1,17 +1,12 @@
 package gui.uteis;
 
 
-import persistencia.dao.Desenho;
+import persistencia.dao.entidade.Desenho;
 import utils.Uteis;
 
-import java.math.BigDecimal;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
-
-
 
 
 public class DesenhoTableModel extends AbstractTableModel {

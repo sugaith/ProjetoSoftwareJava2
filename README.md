@@ -12,7 +12,6 @@
 0) - ***FOI*** Fazer uma classe Aplicacao que instancia o documento e chama o FramePrincipal (SINGLETON)
 
 1) - DOCUMENTACAO
-       - fazer e gerar java doc ??????
        - ***FOI*** MER
        - DIAGRAMA DE CLASSE -> 
             - ***FOI*** INICIO
@@ -51,7 +50,7 @@
     - ***FOI*** ROLLBACK E AUTOCOMMIT FALSE NOS DAOS
     
 # À fazer - DETALHES:
-- adicionar barra de rolagem no canvas (interface para determinar tamanho do canvas)
+- adicionar barra de rolagem no canvas
 - ***FOI*** arrumar o ponto (deixar desenhando apenas um ponto, sem o comportamento do drago - igual ao lapis)
 - ***FOI*** SALVAR EM PNG 
 

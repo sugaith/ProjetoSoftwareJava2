@@ -8,18 +8,16 @@ package gui.apresentacao.visualizacao;
 import gui.apresentacao.FramePrincipal;
 import gui.uteis.DesenhoTableModel;
 import gui.uteis.FormaDaoTableModel;
-import persistencia.Conexao;
 import persistencia.ConexaoMySQL;
 import persistencia.dao.DaoDesenho;
-import persistencia.dao.Desenho;
-import persistencia.dao.Forma;
+import persistencia.dao.entidade.Desenho;
+import persistencia.dao.entidade.Forma;
 import utils.Uteis;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

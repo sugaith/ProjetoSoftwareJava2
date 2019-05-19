@@ -1,4 +1,4 @@
-package persistencia.dao;
+package persistencia.dao.entidade;
 
 import java.util.Date;
 

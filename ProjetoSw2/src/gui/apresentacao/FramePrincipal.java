@@ -16,7 +16,7 @@ import gui.uteis.ListaEncadeada;
 import persistencia.ConexaoMySQL;
 import persistencia.Factory;
 import persistencia.dao.DaoDesenho;
-import persistencia.dao.Desenho;
+import persistencia.dao.entidade.Desenho;
 import utils.Uteis;
 
 import java.awt.*;

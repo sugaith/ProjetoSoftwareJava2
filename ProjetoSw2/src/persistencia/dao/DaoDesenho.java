@@ -6,12 +6,11 @@
 package persistencia.dao;
 
 import persistencia.Conexao;
+import persistencia.dao.entidade.Desenho;
 import utils.Uteis;
 
-import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 

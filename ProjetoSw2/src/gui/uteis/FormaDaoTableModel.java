@@ -1,11 +1,10 @@
 package gui.uteis;
 
 
-import persistencia.dao.Forma;
+import persistencia.dao.entidade.Forma;
 import utils.Uteis;
 
 import javax.swing.table.AbstractTableModel;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,19 +1,14 @@
 package persistencia;
 
 import gui.Documento;
-import gui.apresentacao.MaquinaDeEstados;
 import gui.formasGeometricas.*;
 import gui.uteis.Iterador;
-import persistencia.dao.Desenho;
-import persistencia.dao.Forma;
-import utils.Uteis;
+import persistencia.dao.entidade.Desenho;
+import persistencia.dao.entidade.Forma;
 
-import java.awt.*;
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 public class Factory {
@@ -56,7 +51,6 @@ public class Factory {
                     byte[] tam = Arrays.copyOfRange(fileContent, i+1, i+3);
 
                     ByteBuffer bb_aux = ByteBuffer.allocate( 2 );
-//                    bb_aux.order(ByteOrder.BIG_ENDIAN);//ordem de bits esq p/ direita
                     bb_aux.put(tam[0]);//tamanho vet pontos
                     bb_aux.put(tam[1]);//tamanho vet pontos
                     int tamanho = bb_aux.getShort(0);//tamanho vet pontos
@@ -107,8 +101,6 @@ public class Factory {
 
     public static List<FormaGeometrica> gerarFormasGeometricas(Desenho desenho) {
         List<FormaGeometrica> lista = new ArrayList<>();
-
-//        desenho.getListaFormas().forEach(formaDao ->
 
         for (Forma formaDao : desenho.getListaFormas())
         {
