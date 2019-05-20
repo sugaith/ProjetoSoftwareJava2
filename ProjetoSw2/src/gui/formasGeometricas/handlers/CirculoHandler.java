@@ -53,6 +53,12 @@ public class CirculoHandler implements InterfaceFormaHandler {
     }
 
     @Override
+    public void rotate(Ponto eixo, int gr) {
+        circulo.setA(Uteis.rotacionaPonto(circulo.getA(), eixo, gr));
+        circulo.setB(Uteis.rotacionaPonto(circulo.getB(), eixo, gr));
+    }
+
+    @Override
     public FormaGeometrica getForma() {
         return circulo;
     }

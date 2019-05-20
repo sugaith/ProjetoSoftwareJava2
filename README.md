@@ -44,7 +44,7 @@
     - ***FOI*** MAQINA ESTADOS -> por os cases dentro da maquina em cada evento, e retornar forma
     - ***FOI*** QUADRADO
     - Selection TOOL _
-        - DELETE
+        - ***FOI*** DELETE
         - ***FOI*** TRANSLATE
         - ROTATE
     - ***FOI*** ROLLBACK E AUTOCOMMIT FALSE NOS DAOS

@@ -40,6 +40,11 @@ public class MouseSelectHandler implements InterfaceFormaHandler {
     }
 
     @Override
+    public void rotate(Ponto eixo, int gr) {
+
+    }
+
+    @Override
     public FormaGeometrica getForma() {
         return mouseSelect;
     }

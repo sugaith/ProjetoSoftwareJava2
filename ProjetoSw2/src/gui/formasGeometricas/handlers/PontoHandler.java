@@ -28,6 +28,14 @@ public class PontoHandler implements InterfaceFormaHandler {
     }
 
     @Override
+    public void rotate(Ponto eixo, int graus) {
+        Ponto novoPonto = Uteis.rotacionaPonto( ponto, eixo, graus );
+
+        ponto.setX( novoPonto.getX() );
+        ponto.setY( novoPonto.getY() );
+    }
+
+    @Override
     public FormaGeometrica getForma() {
         return ponto;
     }

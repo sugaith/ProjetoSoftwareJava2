@@ -59,6 +59,12 @@ public class RetanguloHandler implements InterfaceFormaHandler {
     }
 
     @Override
+    public void rotate(Ponto eixo, int gr) {
+        retangulo.setA(Uteis.rotacionaPonto(retangulo.getA(), eixo, gr));
+        retangulo.setB(Uteis.rotacionaPonto(retangulo.getB(), eixo, gr));
+    }
+
+    @Override
     public FormaGeometrica getForma() {
         return retangulo;
     }

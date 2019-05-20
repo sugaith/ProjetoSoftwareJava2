@@ -16,6 +16,7 @@ import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +41,8 @@ public class PanelDesenho extends javax.swing.JPanel implements MouseListener, M
     private MaquinaDeEstados states = new MaquinaDeEstados(this);
 
     boolean pintarTodos = false;
+
+    Ponto pontoEixo = new Ponto(100, 100);
 
 
     /**
@@ -85,12 +88,21 @@ public class PanelDesenho extends javax.swing.JPanel implements MouseListener, M
                         + event.getActionCommand() + "] pressionado");
 
                 if (event.getActionCommand().equals(MaquinaDeEstados.TRANSLATE)){
+
                     states.setSelectedSubTool(MaquinaDeEstados.TRANSLATE);
                     setCursor(new Cursor(Cursor.MOVE_CURSOR));
 
                 }
                 if (event.getActionCommand().equals(MaquinaDeEstados.ROTATE)){
 
+                    states.setSelectedSubTool(MaquinaDeEstados.ROTATE);
+                    states.setSelectedSubSubTool(MaquinaDeEstados.EIXO_DEFINE);
+
+                    atualizar();
+                }
+
+                if (event.getActionCommand().equals(MaquinaDeEstados.DELETE)){
+                    removerManipuladoresSelecionados();
                 }
 
                 popupMenu.setVisible(false);
@@ -100,10 +112,47 @@ public class PanelDesenho extends javax.swing.JPanel implements MouseListener, M
 
         popupMenu.add(item = new JMenuItem(MaquinaDeEstados.TRANSLATE));
         item.addActionListener(menuListener);
+
         popupMenu.addSeparator();
+
         popupMenu.add(item = new JMenuItem(MaquinaDeEstados.ROTATE));
         item.addActionListener(menuListener);
+        popupMenu.addSeparator();
+
+        popupMenu.add(item = new JMenuItem(MaquinaDeEstados.DELETE));
+        item.addActionListener(menuListener);
+
         popupMenu.setBorder(new BevelBorder(BevelBorder.RAISED));
+    }
+
+    private void removerManipuladoresSelecionados() {
+
+//        for (Integer index : listaIndexFormasSelecionadas) {
+//            doc.getListaFormas().remover(index);
+//        }
+
+        //para remover tem q fazre assim pois ao remover o tamanho diminui e os indexes se perdem
+        Iterador<FormaGeometrica> it ;
+        FormaGeometrica forma;
+        for (InterfaceFormaHandler listaManipuladoresSelecionado : listaManipuladoresSelecionados) {
+            FormaGeometrica fSelected = listaManipuladoresSelecionado.getForma();
+            it = doc.getIterador();
+
+            int index_forma = 0;
+            while ((forma = it.proximo()) != null) {
+                if (fSelected.getStrPosition().equals(forma.getStrPosition())) {
+                    doc.getListaFormas().remover(index_forma);
+                    break;
+                }
+                index_forma++;
+            }
+        }
+
+        listaManipuladoresSelecionados.clear();
+        iniciaCanvas();
+
+        this.setPintarTodos(true);
+        doc.atualizaOuvintes();
     }
 
     void showPopupMenu(MouseEvent mouseEvent) {
@@ -203,14 +252,20 @@ public class PanelDesenho extends javax.swing.JPanel implements MouseListener, M
             Iterador<FormaGeometrica> it = doc.getIterador();
             FormaGeometrica forma;
 
+            int index = 0;
              while((forma = it.proximo()) != null) {
                  InterfaceFormaHandler formaHandler = forma.getFormaHandler(forma);
+                 //se intersecta...
                  if (formaHandler.intersects( (MouseSelect) manipulador.getForma() )){
+
                      listaManipuladoresSelecionados.add( formaHandler );
+
                      System.out.println("inseriu!! listaManipuladoresSelecionados ");
                      System.out.println(forma.toString());
                      System.out.println(listaManipuladoresSelecionados.size());
                  }
+
+                 index++;
              }
 
         }catch (ClassCastException ce){
@@ -262,6 +317,20 @@ public class PanelDesenho extends javax.swing.JPanel implements MouseListener, M
                 System.out.println("pintou de VERMEI" +formaHandler.getForma().toString());
 
             });
+            newGraph.setColor(Color.BLACK);
+            newGraph.dispose();
+        }
+
+
+        //se estiver rotacionando, desenho o ponto do eixo
+        if (states.getSelectedSubTool().equals(MaquinaDeEstados.ROTATE)){
+            Graphics2D newGraph = (Graphics2D) canvas.createGraphics();
+            newGraph.setColor(Color.RED);
+
+            int x = pontoEixo.getX() - (50 / 2);
+            int y = pontoEixo.getY() - (50 / 2);
+            newGraph.fillOval(x, y, 50, 50);
+
             newGraph.setColor(Color.BLACK);
             newGraph.dispose();
         }

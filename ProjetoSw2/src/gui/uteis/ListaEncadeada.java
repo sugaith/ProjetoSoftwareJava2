@@ -177,19 +177,19 @@ public class ListaEncadeada<TIPO> implements Serializable {
 	}
 
 	public TIPO remover(int pos) {
-		if(pos < 1 || pos > tamanho)
+		if(pos < 0 || pos > tamanho)
 			return null;
 		
-		if(pos == 1) { // remover inicio
+		if(pos == 0) { // remover inicio
 			return removerInicio();
 		}
 		
-		if(pos == tamanho) { // remover o fim
+		if(pos == tamanho-1) { // remover o fim
 			return removerFim();
 		}
 		
 		No aux = inicio;
-		int cont = 1;
+		int cont = 0;
 		
 		// remover no do meio da lista
 		while(cont < pos ) {

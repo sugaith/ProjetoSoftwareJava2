@@ -55,6 +55,12 @@ public class QuadradoHandler implements InterfaceFormaHandler {
     }
 
     @Override
+    public void rotate(Ponto eixo, int gr) {
+        quadrado.setA(Uteis.rotacionaPonto(quadrado.getA(), eixo, gr));
+        quadrado.setB(Uteis.rotacionaPonto(quadrado.getB(), eixo, gr));
+    }
+
+    @Override
     public FormaGeometrica getForma() {
         return quadrado;
     }

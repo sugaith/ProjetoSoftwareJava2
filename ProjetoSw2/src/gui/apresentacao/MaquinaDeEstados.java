@@ -7,8 +7,10 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class MaquinaDeEstados {
+    public static final String DELETE = "Remover";
     public static String NONE = "NONE";
     public static String ROTATE = "Rotação";
+    public static String EIXO_DEFINE = "definindo_eixo";
     public static String TRANSLATE  = "Translação";
 
 
@@ -16,6 +18,7 @@ public class MaquinaDeEstados {
     //TOOLS
     private String selectedTool;
     private String selectedSubTool;
+    private String selectedSubSubTool;
 
 
     private PanelDesenho panelDesenho;
@@ -25,6 +28,7 @@ public class MaquinaDeEstados {
 
         selectedTool = MouseSelect.NOME;
         selectedSubTool = NONE;
+        selectedSubSubTool = NONE;
     }
 
 
@@ -68,6 +72,21 @@ public class MaquinaDeEstados {
                     panelDesenho.mouseCoords_saved = new Ponto(e.getX(), e.getY());
                     panelDesenho.doc.atualizaOuvintes();
 
+                }else if (this.getSelectedSubTool().equals( MaquinaDeEstados.ROTATE )){
+//                    Ponto eixo = new Ponto(850,450);
+//                    int graus = 90;
+                    //constante de rotacao (GRAUS
+                    int gr = e.getX() - panelDesenho.mouseCoords_saved.getX()  ;
+                    System.out.println("ROTATE graus --->");
+                    System.out.println(gr);
+
+                    panelDesenho.listaManipuladoresSelecionados.forEach(handler ->{
+                        handler.rotate(panelDesenho.pontoEixo, gr);
+                    });
+
+                    //salva coordenadas do mouse
+                    panelDesenho.mouseCoords_saved = new Ponto(e.getX(), e.getY());
+                    panelDesenho.doc.atualizaOuvintes();
                 }else{
 
                     //atualiza retangulo de selecao e selecionados
@@ -139,6 +158,36 @@ public class MaquinaDeEstados {
                     }
 
                     panelDesenho.snapCanvas =Uteis.deepCopyBI( panelDesenho.canvas );
+
+                }else if (this.getSelectedSubTool().equals( MaquinaDeEstados.ROTATE )){
+
+                    if (this.getSelectedSubSubTool().equals( MaquinaDeEstados.EIXO_DEFINE )){
+                        panelDesenho.pontoEixo.setX( e.getX() );
+                        panelDesenho.pontoEixo.setY( e.getY() );
+
+                    }else{
+
+                        //salva coordenadas do mouse
+                        panelDesenho.mouseCoords_saved = new Ponto(e.getX(), e.getY());
+
+
+//                    pinta formas selecionadas de BRANCO PARA APAGAR
+                        if (! panelDesenho.listaManipuladoresSelecionados.isEmpty()){
+                            Graphics2D newGraph = (Graphics2D) panelDesenho.canvas.createGraphics();
+                            newGraph.setColor(Color.WHITE);
+                            panelDesenho.listaManipuladoresSelecionados.forEach(formaHandler ->{
+                                formaHandler.paint(newGraph);
+                                System.out.println("pintou de BRANCOWW " +formaHandler.getForma().toString());
+                            });
+                            newGraph.setColor(Color.BLACK);
+
+                            newGraph.dispose();
+                            //limpa lista
+//                        listaManipuladoresSelecionados.clear();
+                        }
+                        panelDesenho.snapCanvas =Uteis.deepCopyBI( panelDesenho.canvas );
+
+                    }
 
                 }else{
                     panelDesenho.snapCanvas =Uteis.deepCopyBI( panelDesenho.canvas );
@@ -253,10 +302,30 @@ public class MaquinaDeEstados {
                 panelDesenho.canvas = Uteis.deepCopyBI(panelDesenho.snapCanvas);
                 panelDesenho.doc.atualizaOuvintes();
 
-                //mostra popup caso haja selecionados
-                if (this.getSelectedSubTool().equals(MaquinaDeEstados.TRANSLATE)){
-                    this.setSelectedSubTool(MaquinaDeEstados.NONE);
+
+                if (this.getSelectedSubTool().equals(MaquinaDeEstados.TRANSLATE) ||
+                        this.getSelectedSubTool().equals(MaquinaDeEstados.ROTATE)){
+
+                    if (this.getSelectedSubTool().equals(MaquinaDeEstados.TRANSLATE)){
+                        this.setSelectedSubTool(MaquinaDeEstados.NONE);
+                    }
+
+                    //se esta rotacionando e definindo eixo, state = nao definindo eixo,
+                    if (this.getSelectedSubTool().equals(MaquinaDeEstados.ROTATE) &&
+                        this.getSelectedSubSubTool().equals(MaquinaDeEstados.EIXO_DEFINE))
+                    {
+                        this.setSelectedSubSubTool(NONE);
+                        panelDesenho.setCursor(new Cursor(Cursor.MOVE_CURSOR));
+                    }else{
+                        this.setSelectedSubTool(MaquinaDeEstados.NONE);
+
+                        panelDesenho.iniciaCanvas();
+                        panelDesenho.setPintarTodos(true);
+                        panelDesenho.doc.atualizaOuvintes();
+                    }
+
                 }else{
+                    //mostra popup caso haja selecionados
                     if (panelDesenho.listaManipuladoresSelecionados.size() > 0)
                         panelDesenho.showPopupMenu(e);
                 }
@@ -274,10 +343,16 @@ public class MaquinaDeEstados {
 
         if (getSelectedTool().equals( MouseSelect.NOME )){
             panelDesenho.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            if (getSelectedSubTool().equals( MaquinaDeEstados.TRANSLATE )){
 
+            if (getSelectedSubTool().equals( MaquinaDeEstados.TRANSLATE ) ||
+                    getSelectedSubTool().equals( MaquinaDeEstados.ROTATE ) ){
                 panelDesenho.setCursor(new Cursor(Cursor.MOVE_CURSOR));
+
+                if (getSelectedSubSubTool().equals(MaquinaDeEstados.EIXO_DEFINE)){
+                    panelDesenho.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                }
             }
+
         }else{
             panelDesenho.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
         }
@@ -311,5 +386,11 @@ public class MaquinaDeEstados {
         this.selectedSubTool = selectedSubTool;
     }
 
+    public String getSelectedSubSubTool() {
+        return selectedSubSubTool;
+    }
 
+    public void setSelectedSubSubTool(String selectedSubSubTool) {
+        this.selectedSubSubTool = selectedSubSubTool;
+    }
 }

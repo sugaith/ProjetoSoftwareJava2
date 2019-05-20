@@ -13,6 +13,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Uteis {
+//    xRot = xCenter + cos(Angle) * (x - xCenter) - sin(Angle) * (y - yCenter)
+//    yRot = yCenter + sin(Angle) * (x - xCenter) + cos(Angle) * (y - yCenter)
+//        Note that in most programming languages you will need to give Angle in radian,
+//        so multiply your degree value with Pi devided by 180
+//        (Angle = Degree * PI / 180).
+    public static Ponto rotacionaPonto(Ponto pontoOrig, Ponto eixo, int graus){
+        double angulo = graus * Math.PI / 180;
+
+        double xRot = eixo.getX() + Math.cos(angulo) * (pontoOrig.getX() - eixo.getX()) - Math.sin(angulo) * (pontoOrig.getY() - eixo.getY());
+        double yRot = eixo.getY() + Math.sin(angulo) * (pontoOrig.getX() - eixo.getX()) + Math.cos(angulo) * (pontoOrig.getY() - eixo.getY());
+
+        return new Ponto((int) xRot, (int) yRot);
+    }
 
     public static int distanciaEuclidiana(Ponto pa, Ponto pb){
         double ax, ay, bx, by;

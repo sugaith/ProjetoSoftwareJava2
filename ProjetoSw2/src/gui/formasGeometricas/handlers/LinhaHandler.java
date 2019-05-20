@@ -48,6 +48,12 @@ public class LinhaHandler implements InterfaceFormaHandler {
     }
 
     @Override
+    public void rotate(Ponto eixo, int gr) {
+        linha.setA(Uteis.rotacionaPonto(linha.getA(), eixo, gr));
+        linha.setB(Uteis.rotacionaPonto(linha.getB(), eixo, gr));
+    }
+
+    @Override
     public FormaGeometrica getForma() {
         return linha;
     }

@@ -46,6 +46,15 @@ public class LapisHandler implements InterfaceFormaHandler {
     }
 
     @Override
+    public void rotate(Ponto eixo, int gr) {
+        lapis.getListaPontos().forEach( ponto -> {
+            Ponto novoPonto = Uteis.rotacionaPonto( ponto, eixo, gr );
+            ponto.setX( novoPonto.getX() );
+            ponto.setY( novoPonto.getY() );
+        });
+    }
+
+    @Override
     public FormaGeometrica getForma() {
         return lapis;
     }
