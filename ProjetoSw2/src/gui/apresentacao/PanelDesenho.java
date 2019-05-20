@@ -299,6 +299,7 @@ public class PanelDesenho extends javax.swing.JPanel implements MouseListener, M
             Iterador<FormaGeometrica> i = doc.getIterador();
             FormaGeometrica formaGeometrica;
 
+
             while((formaGeometrica = i.proximo()) != null) {
                 formaGeometrica.getFormaHandler(formaGeometrica).paint(newGraph);
             }
