@@ -1,2 +1,6 @@
 
 ProjetoSw2/out/
+
+*.class
+
+ProjetoSw2_server/\.idea/

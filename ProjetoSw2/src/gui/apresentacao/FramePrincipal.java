@@ -13,6 +13,7 @@ import gui.apresentacao.visualizacao.PanelTexto;
 import gui.formasGeometricas.*;
 import gui.uteis.Iterador;
 import gui.uteis.ListaEncadeada;
+import persistencia.ClienteSocket;
 import persistencia.ConexaoMySQL;
 import persistencia.Factory;
 import persistencia.dao.DaoDesenho;
@@ -41,11 +42,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class FramePrincipal extends javax.swing.JFrame {
     private static String TITLE = "Trabalho Projeto Sw II 2bim, 2019 - Prof Miguel Matrakas";
-
-    private ConexaoMySQL mysql
-            = new ConexaoMySQL
-            ("192.168.15.5", "projsw2_paint",
-            "root", "root");
 
     private Documento doc = new Documento();
 
@@ -811,7 +807,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     }
 
     private void jMenuItemArqBdAbrirActionPerformed(java.awt.event.ActionEvent evt) {
-        frameBancoDeDados = new FrameBancoDeDados(this, mysql);
+        frameBancoDeDados = new FrameBancoDeDados(this);
         frameBancoDeDados.addWindowListener(new WindowAdapter() {
 
             @Override
@@ -852,22 +848,27 @@ public class FramePrincipal extends javax.swing.JFrame {
             Desenho d_aux = Factory.criarDesenhoDao(doc, desenhoAberto.getNome());
             d_aux.setId( desenhoAberto.getId() );
 
-            mysql.conectar();
+//            mysql.conectar();
+//            if (new DaoDesenho(mysql.getConexao()).atualizarDesenho( d_aux )){
+//                desenhoAberto = new DaoDesenho(mysql.getConexao()).consultaId( d_aux.getId() );
+//                setTitle( desenhoAberto.getNome() + " - " + TITLE );
+//
+//                Uteis.showAlert( desenhoAberto.getNome()+ " atualizado!" + desenhoAberto.getId() );
+//            }else{
+//                Uteis.showAlert( DaoDesenho.getInfo() );
+//            }
+//            mysql.desconectar();
 
-            if (new DaoDesenho(mysql.getConexao()).atualizarDesenho( d_aux )){
-                desenhoAberto = new DaoDesenho(mysql.getConexao()).consultaId( d_aux.getId() );
+
+            Desenho des_atualizdo = new ClienteSocket().atualizarDesenho( d_aux );
+            if (des_atualizdo != null){
+                desenhoAberto = des_atualizdo;
                 setTitle( desenhoAberto.getNome() + " - " + TITLE );
-
-                Uteis.showAlert( desenhoAberto.getNome()+ " atualizado!" + desenhoAberto.getId() );
+                Uteis.showAlert( desenhoAberto.getNome()+ " atualizado! " + desenhoAberto.getId() );
             }else{
                 Uteis.showAlert( DaoDesenho.getInfo() );
             }
-
-            mysql.desconectar();
-
         }
-
-
     }
 
     private void jMenuItemArqBdSalvarComo(java.awt.event.ActionEvent evt) {
@@ -877,18 +878,26 @@ public class FramePrincipal extends javax.swing.JFrame {
         if (nome != null){
             Desenho desenho = Factory.criarDesenhoDao(doc, nome);
 
-            mysql.conectar();
+//            mysql.conectar();//
+//            if (new DaoDesenho(mysql.getConexao()).inserirDesenho(desenho)){
+//                desenhoAberto = new DaoDesenho(mysql.getConexao()).consultaId(DaoDesenho.last_genKey);
+//                setTitle( desenhoAberto.getNome() + " - " + TITLE );
+//
+//                Uteis.showAlert( nome + " inserido!" + DaoDesenho.last_genKey );
+//            }else{
+//                Uteis.showAlert( DaoDesenho.getInfo() );
+//            }//
+//            mysql.desconectar();
 
-            if (new DaoDesenho(mysql.getConexao()).inserirDesenho(desenho)){
-                desenhoAberto = new DaoDesenho(mysql.getConexao()).consultaId(DaoDesenho.last_genKey);
+
+            Desenho des_inserido = new ClienteSocket().inserirDesenho(desenho);
+            if (des_inserido != null){
+                desenhoAberto = des_inserido;
                 setTitle( desenhoAberto.getNome() + " - " + TITLE );
-
-                Uteis.showAlert( nome + " inserido!" + DaoDesenho.last_genKey );
+                Uteis.showAlert( nome + " inserido! " + desenhoAberto.getId()+" - "+ desenhoAberto.getNome() );
             }else{
                 Uteis.showAlert( DaoDesenho.getInfo() );
             }
-
-            mysql.desconectar();
         }
     }
 

@@ -8,6 +8,7 @@ package gui.apresentacao.visualizacao;
 import gui.apresentacao.FramePrincipal;
 import gui.uteis.DesenhoTableModel;
 import gui.uteis.FormaDaoTableModel;
+import persistencia.ClienteSocket;
 import persistencia.ConexaoMySQL;
 import persistencia.dao.DaoDesenho;
 import persistencia.dao.entidade.Desenho;
@@ -18,6 +19,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,22 +28,25 @@ import java.util.List;
  */
 public class FrameBancoDeDados extends javax.swing.JFrame {
     private  FramePrincipal pai;
-    private List<Desenho> listaDesenhos;
-    private ConexaoMySQL mySQL;
+    private List<Desenho> listaDesenhos = new ArrayList<>();
 
     private boolean detailsVisible = false;
 
     /**
      * Creates new form FrameTabela
      */
-    public FrameBancoDeDados( FramePrincipal pai, ConexaoMySQL mySQL) {
-        this.mySQL = mySQL;
+    public FrameBancoDeDados( FramePrincipal pai) {
         this.pai = pai;
         initComponents();
 
-        mySQL.conectar();
-        listaDesenhos = new DaoDesenho(mySQL.getConexao()).consultaTodos();
-        mySQL.desconectar();
+
+//        mySQL.conectar();
+//        listaDesenhos = new DaoDesenho(mySQL.getConexao()).consultaTodos();
+//        mySQL.desconectar();
+
+        List<Desenho> lista = new ClienteSocket().consultaTodos();
+        if (lista != null)
+            listaDesenhos.addAll( lista ) ;
 
         this.preencheTabela();
     }
@@ -97,10 +102,17 @@ public class FrameBancoDeDados extends javax.swing.JFrame {
 
         int id = listaDesenhos.get( jTableFormas.getSelectedRow() ).getId();
 
-        mySQL.conectar();
-        new DaoDesenho(mySQL.getConexao()).excluirDesenho_id( id );
-        listaDesenhos = new DaoDesenho(mySQL.getConexao()).consultaTodos();
-        mySQL.desconectar();
+//        mySQL.conectar();
+//        new DaoDesenho(mySQL.getConexao()).excluirDesenho_id( id );
+//        listaDesenhos = new DaoDesenho(mySQL.getConexao()).consultaTodos();
+//        mySQL.desconectar();
+
+        List<Desenho> lista = new ClienteSocket().excluirDesenho( id );
+
+        if (lista != null) {
+            listaDesenhos.clear();
+            listaDesenhos.addAll( lista ) ;
+        }
 
         preencheTabela();
 
