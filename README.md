@@ -34,7 +34,9 @@
     - ***FOI*** ARRUMAR TEXT AREA
     - ***FOI*** FAZER JTABLE 
     
-5) PLUS
+5) ***FOI*** Persistencia em SOCKET - CLIENT / SERVER     
+    
+6) PLUS
     - ***FOI*** Arrumar persistencia arquivos
         - ***FOI*** TEXTO
         - ***FOI*** SERIAL
@@ -57,10 +59,10 @@
     
     
 # MAIN DOCS
-//    https://stackoverflow.com/questions/42494119/how-to-define-java-awt-rectangle-using-4-points
-//    https://www.mathopenref.com/coordrectangle.html
-//    https://www.mathopenref.com/coordrectareaperim.html
-    //https://www.mkyong.com/awt/java-awt-drawing-rectangle-line-and-circle/
-    //The {@link java.awt.geom.Area Area} class performs
-http://www.java2s.com/Code/Java/Event/MoveShapewithmouse.htm    
+-    https://stackoverflow.com/questions/42494119/how-to-define-java-awt-rectangle-using-4-points
+-    https://www.mathopenref.com/coordrectangle.html
+-    https://www.mathopenref.com/coordrectareaperim.html
+-   https://www.mkyong.com/awt/java-awt-drawing-rectangle-line-and-circle/
+- The {@link java.awt.geom.Area Area} class performs operations
+- http://www.java2s.com/Code/Java/Event/MoveShapewithmouse.htm    
 

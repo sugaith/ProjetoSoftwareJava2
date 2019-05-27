@@ -207,13 +207,8 @@ public class ClienteSocket  {
 
     private boolean connect(){
         try {
-
             socket = new Socket(host, port);
-
-
-
             System.out.println("Conectado!");
-
 
             return true;
         }catch (InterruptedIOException e) {
