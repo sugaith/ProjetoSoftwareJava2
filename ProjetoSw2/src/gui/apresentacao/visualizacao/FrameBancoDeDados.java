@@ -9,7 +9,6 @@ import gui.apresentacao.FramePrincipal;
 import gui.uteis.DesenhoTableModel;
 import gui.uteis.FormaDaoTableModel;
 import persistencia.ClienteSocket;
-import persistencia.ConexaoMySQL;
 import persistencia.dao.DaoDesenho;
 import persistencia.dao.entidade.Desenho;
 import persistencia.dao.entidade.Forma;

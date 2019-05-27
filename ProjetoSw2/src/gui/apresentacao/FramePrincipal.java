@@ -14,7 +14,6 @@ import gui.formasGeometricas.*;
 import gui.uteis.Iterador;
 import gui.uteis.ListaEncadeada;
 import persistencia.ClienteSocket;
-import persistencia.ConexaoMySQL;
 import persistencia.Factory;
 import persistencia.dao.DaoDesenho;
 import persistencia.dao.entidade.Desenho;
