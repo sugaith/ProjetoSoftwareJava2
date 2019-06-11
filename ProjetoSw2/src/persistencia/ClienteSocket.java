@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ClienteSocket  {
     private static int port = 3333;
-    private static String host = "localhost";
+    private static String host = "192.168.15.4";
     public static final String CMD_CONS_TODOS = "CONSULTA_TODOS";
     public static final String CMD_EXCLUIR = "EXCLUIR";
     public static final String CMD_INSERIR = "INSERIR";
